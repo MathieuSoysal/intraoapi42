@@ -96,12 +96,12 @@ A few things worth knowing if you go this route:
 
 ```
 .
-├── client.go              # Config, New(), retry transport, token source
-├── time.go                # custom time handling for the intra API's date/time formats
-├── generate.go             # go:generate directive driving oapi-codegen
+├── client.go                # Config, New(), retry transport, token source
+├── time.go                  # custom time handling for the intra API's date/time formats
+├── generate.go              # go:generate directive driving oapi-codegen
 ├── openapi.gen.go           # generated Go client (do not edit by hand)
-├── openapi.yaml            # bundled, single-file OpenAPI spec (generated, do not edit by hand)
-├── specs/                  # hand-maintained OpenAPI spec, split by concern
+├── openapi.yaml             # bundled, single-file OpenAPI spec (generated, do not edit by hand)
+├── specs/                   # hand-maintained OpenAPI spec, split by concern
 │   ├── openapi.yaml         # spec root, references the folders below
 │   ├── paths/               # one file per resource/endpoint group
 │   ├── schemas/             # one file per data model
