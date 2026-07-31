@@ -20,6 +20,8 @@
             golangci-lint
             gopls
             gotools
+            openapi-generator-cli
+            openapi-python-client
             tree-sitter
             tree-sitter-grammars.tree-sitter-go
           ];
