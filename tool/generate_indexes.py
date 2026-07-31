@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import yaml
 import os
 from pathlib import Path
@@ -33,7 +35,7 @@ def generate_index_file(directory: Path):
         yaml.dump(index_data, f, default_flow_style=False)
 
 def main():
-    cwd = os.getcwd()
+    cwd = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
     base_path = Path(cwd) / "specs"
     for directory_name in directories:
         directory_path = base_path / directory_name
