@@ -4,6 +4,7 @@
 package intraoapi42
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -513,6 +514,35 @@ type PatronageResponse struct {
 	UserId      *int      `json:"user_id,omitempty"`
 }
 
+// PostProjectUserBody defines model for PostProjectUserBody.
+type PostProjectUserBody struct {
+	CreatedAt *IntraTime `json:"created_at,omitempty"`
+
+	// FinalMark The final mark.
+	FinalMark *int64 `json:"final_mark,omitempty"`
+
+	// Id The id.
+	Id       *int64     `json:"id,omitempty"`
+	MarkedAt *IntraTime `json:"marked_at,omitempty"`
+
+	// Occurrence The occurrence.
+	Occurrence *int64 `json:"occurrence,omitempty"`
+
+	// ProjectId The project id.
+	ProjectId   int64      `json:"project_id"`
+	RetriableAt *IntraTime `json:"retriable_at,omitempty"`
+
+	// SkipCheckPermission The skip check permission.
+	SkipCheckPermission *string `json:"skip_check_permission,omitempty"`
+
+	// Status The status.
+	Status    *string    `json:"status,omitempty"`
+	UpdatedAt *IntraTime `json:"updated_at,omitempty"`
+
+	// UserId The user id. Must be unique in the scope of a given project.
+	UserId int64 `json:"user_id"`
+}
+
 // ProjectUserResponse defines model for ProjectUserResponse.
 type ProjectUserResponse struct {
 	CreatedAt     *IntraTime           `json:"created_at,omitempty"`
@@ -532,10 +562,100 @@ type ProjectUserResponse struct {
 	Validated     *bool                `json:"validated?"`
 }
 
+// ProjectUserUpdate defines model for ProjectUserUpdate.
+type ProjectUserUpdate struct {
+	// CreatedAt The created at.
+	CreatedAt *IntraTime `json:"created_at,omitempty"`
+
+	// FinalMark The final mark.
+	FinalMark *int64 `json:"final_mark,omitempty"`
+
+	// Id The id.
+	Id *int64 `json:"id,omitempty"`
+
+	// MarkedAt The marked at.
+	MarkedAt *IntraTime `json:"marked_at,omitempty"`
+
+	// Occurrence The occurrence. Default to 0.
+	Occurrence *int64 `json:"occurrence,omitempty"`
+
+	// ProjectId The project id.
+	ProjectId *int64 `json:"project_id,omitempty"`
+
+	// RetriableAt The retriable at.
+	RetriableAt *IntraTime `json:"retriable_at,omitempty"`
+
+	// SkipCheckPermission The skip check permission.
+	SkipCheckPermission *string `json:"skip_check_permission,omitempty"`
+
+	// Status The status. Default to unknown.
+	Status *string `json:"status,omitempty"`
+
+	// UpdatedAt The updated at.
+	UpdatedAt *IntraTime `json:"updated_at,omitempty"`
+
+	// UserId The user id. Must be unique in the scope of a given project.
+	UserId *int64 `json:"user_id,omitempty"`
+}
+
+// QuestionAnswerResponse defines model for QuestionAnswerResponse.
+type QuestionAnswerResponse struct {
+	Answer *string `json:"answer"`
+	Id     int     `json:"id"`
+	Value  *int    `json:"value"`
+}
+
+// QuestionWithAnswersResponse defines model for QuestionWithAnswersResponse.
+type QuestionWithAnswersResponse struct {
+	Answers    []QuestionAnswerResponse `json:"answers"`
+	Guidelines string                   `json:"guidelines"`
+	Id         int                      `json:"id"`
+	Kind       string                   `json:"kind"`
+	Name       string                   `json:"name"`
+	Position   int                      `json:"position"`
+	Rating     string                   `json:"rating"`
+}
+
 // RoleResponse defines model for RoleResponse.
 type RoleResponse struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
+}
+
+// ScaleFlagResponse defines model for ScaleFlagResponse.
+type ScaleFlagResponse struct {
+	CreatedAt IntraTime `json:"created_at"`
+	Icon      string    `json:"icon"`
+	Id        int       `json:"id"`
+	Name      string    `json:"name"`
+	Positive  bool      `json:"positive"`
+	UpdatedAt IntraTime `json:"updated_at"`
+}
+
+// ScaleTeamResponse defines model for ScaleTeamResponse.
+type ScaleTeamResponse struct {
+	BeginAt              IntraTime                     `json:"begin_at"`
+	Comment              string                        `json:"comment"`
+	Correcteds           []ScaleUserResponse           `json:"correcteds"`
+	Corrector            ScaleUserResponse             `json:"corrector"`
+	CreatedAt            IntraTime                     `json:"created_at"`
+	Feedback             string                        `json:"feedback"`
+	FilledAt             *IntraTime                    `json:"filled_at"`
+	FinalMark            *int                          `json:"final_mark"`
+	Flag                 ScaleFlagResponse             `json:"flag"`
+	Id                   int                           `json:"id"`
+	QuestionsWithAnswers []QuestionWithAnswersResponse `json:"questions_with_answers"`
+	ScaleId              int                           `json:"scale_id"`
+	TeamsUploads         *[]TeamUploadResponse         `json:"teams_uploads,omitempty"`
+	Truant               map[string]interface{}        `json:"truant"`
+	UpdatedAt            IntraTime                     `json:"updated_at"`
+}
+
+// ScaleUserResponse defines model for ScaleUserResponse.
+type ScaleUserResponse struct {
+	Id    int    `json:"id"`
+	Login string `json:"login"`
+	Url   string `json:"url"`
 }
 
 // SkillResponse defines model for SkillResponse.
@@ -543,6 +663,84 @@ type SkillResponse struct {
 	Id    int     `json:"id"`
 	Level float64 `json:"level"`
 	Name  string  `json:"name"`
+}
+
+// TeamResponse defines model for TeamResponse.
+type TeamResponse struct {
+	Closed            bool                `json:"closed?"`
+	ClosedAt          *IntraTime          `json:"closed_at"`
+	CreatedAt         IntraTime           `json:"created_at"`
+	FinalMark         *int                `json:"final_mark,omitempty"`
+	Id                int                 `json:"id"`
+	Locked            bool                `json:"locked?"`
+	LockedAt          *IntraTime          `json:"locked_at"`
+	Name              string              `json:"name"`
+	ProjectGitlabPath *string             `json:"project_gitlab_path"`
+	ProjectId         int                 `json:"project_id"`
+	ProjectSessionId  int                 `json:"project_session_id"`
+	RepoUrl           *string             `json:"repo_url"`
+	RepoUuid          string              `json:"repo_uuid"`
+	ScaleTeams        []ScaleTeamResponse `json:"scale_teams"`
+	Status            string              `json:"status"`
+	TerminatingAt     *IntraTime          `json:"terminating_at"`
+	UpdatedAt         IntraTime           `json:"updated_at"`
+	Url               string              `json:"url"`
+	Users             []TeamUserResponse  `json:"users"`
+	Validated         bool                `json:"validated?"`
+}
+
+// TeamUpdate defines model for TeamUpdate.
+type TeamUpdate struct {
+	ClosedAt  *IntraTime `json:"closed_at,omitempty"`
+	CreatedAt *IntraTime `json:"created_at,omitempty"`
+
+	// DeadlineAt The deadline at. Must be after today.
+	DeadlineAt *int64 `json:"deadline_at,omitempty"`
+
+	// FinalMark The final mark.
+	FinalMark *int64     `json:"final_mark,omitempty"`
+	LockedAt  *IntraTime `json:"locked_at,omitempty"`
+
+	// Name The name.
+	Name *string `json:"name,omitempty"`
+
+	// ProjectId The project id.
+	ProjectId *int64 `json:"project_id,omitempty"`
+
+	// ProjectSessionId The project session id.
+	ProjectSessionId *int64 `json:"project_session_id,omitempty"`
+
+	// RepoUrl The repo url.
+	RepoUrl *string `json:"repo_url,omitempty"`
+
+	// RepoUuid The repo uuid.
+	RepoUuid *string `json:"repo_uuid,omitempty"`
+
+	// TeamsUsersAttributes The teams users attributes.
+	TeamsUsersAttributes *[]struct {
+		// Leader Is it leader?
+		Leader *bool `json:"leader,omitempty"`
+
+		// Occurrence The occurrence.
+		Occurrence *int64 `json:"occurrence,omitempty"`
+
+		// UserId The user id. Must be unique in the scope of a given team.
+		UserId int64 `json:"user_id"`
+
+		// Validated Is it validated?
+		Validated *bool `json:"validated,omitempty"`
+	} `json:"teams_users_attributes,omitempty"`
+	TerminatingAt *IntraTime `json:"terminating_at,omitempty"`
+	UpdatedAt     *IntraTime `json:"updated_at,omitempty"`
+}
+
+// TeamUploadResponse defines model for TeamUploadResponse.
+type TeamUploadResponse struct {
+	Comment   string    `json:"comment"`
+	CreatedAt IntraTime `json:"created_at"`
+	FinalMark *int      `json:"final_mark"`
+	Id        int       `json:"id"`
+	UploadId  int       `json:"upload_id"`
 }
 
 // TeamUserResponse defines model for TeamUserResponse.
@@ -796,6 +994,31 @@ type GetInternshipsParams struct {
 	PageSize *PageSize `form:"page[size],omitempty" json:"page[size],omitempty"`
 }
 
+// PostProjectsUsersJSONBody defines parameters for PostProjectsUsers.
+type PostProjectsUsersJSONBody struct {
+	ProjectsUser PostProjectUserBody `json:"projects_user"`
+}
+
+// PatchProjectUserByIdJSONBody defines parameters for PatchProjectUserById.
+type PatchProjectUserByIdJSONBody struct {
+	ProjectsUser ProjectUserUpdate `json:"projects_user"`
+}
+
+// PutProjectUserByIdJSONBody defines parameters for PutProjectUserById.
+type PutProjectUserByIdJSONBody struct {
+	ProjectsUser ProjectUserUpdate `json:"projects_user"`
+}
+
+// PatchTeamByIdJSONBody defines parameters for PatchTeamById.
+type PatchTeamByIdJSONBody struct {
+	Team TeamUpdate `json:"team"`
+}
+
+// PutTeamByIdJSONBody defines parameters for PutTeamById.
+type PutTeamByIdJSONBody struct {
+	Team TeamUpdate `json:"team"`
+}
+
 // GetUsersParams defines parameters for GetUsers.
 type GetUsersParams struct {
 	// Sort The sort field. Sorted by id desc by default.
@@ -855,6 +1078,47 @@ type GetClosesByUserIdParams struct {
 
 // GetClosesByUserIdParamsSort defines parameters for GetClosesByUserId.
 type GetClosesByUserIdParamsSort string
+
+// GetProjectsUsersByUserIdParams defines parameters for GetProjectsUsersByUserId.
+type GetProjectsUsersByUserIdParams struct {
+	// Filter Filtering on one or more fields.
+	// Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status, primary_campus_id, first_name, last_name, alumni?, staff?.
+	// Example: filter[id]=a_value,another_value (to filter on users with id matching a_value or another_value)
+	Filter *map[string]string `json:"filter,omitempty"`
+
+	// Range Select on a particular range.
+	// Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status.
+	// Example: range[status]=min_value,max_value (to range on users with status field between min_value and max_value)
+	Range *map[string]string `json:"range,omitempty"`
+
+	// Page Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
+	// You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons.
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+
+	// PageNumber Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`.
+	PageNumber *PageNumber `form:"page[number],omitempty" json:"page[number],omitempty"`
+
+	// PageSize Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100).
+	PageSize *PageSize `form:"page[size],omitempty" json:"page[size],omitempty"`
+}
+
+// PostProjectsUsersJSONRequestBody defines body for PostProjectsUsers for application/json ContentType.
+type PostProjectsUsersJSONRequestBody PostProjectsUsersJSONBody
+
+// PatchProjectUserByIdJSONRequestBody defines body for PatchProjectUserById for application/json ContentType.
+type PatchProjectUserByIdJSONRequestBody PatchProjectUserByIdJSONBody
+
+// PutProjectUserByIdJSONRequestBody defines body for PutProjectUserById for application/json ContentType.
+type PutProjectUserByIdJSONRequestBody PutProjectUserByIdJSONBody
+
+// PatchTeamByIdJSONRequestBody defines body for PatchTeamById for application/json ContentType.
+type PatchTeamByIdJSONRequestBody PatchTeamByIdJSONBody
+
+// PutTeamByIdJSONRequestBody defines body for PutTeamById for application/json ContentType.
+type PutTeamByIdJSONRequestBody PutTeamByIdJSONBody
 
 // AsInternshipResponseSalary0 returns the union data inside the InternshipResponse_Salary as a InternshipResponseSalary0
 func (t InternshipResponse_Salary) AsInternshipResponseSalary0() (InternshipResponseSalary0, error) {
@@ -1012,6 +1276,86 @@ type ClientInterface interface {
 	// Corresponds with GET /languages/{id} (the `GetLanguageById` operationId).
 	GetLanguageById(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// PostProjectsUsersWithBody Create a project user
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /projects_users (the `PostProjectsUsers` operationId).
+	PostProjectsUsersWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PostProjectsUsers Create a project user
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /projects_users (the `PostProjectsUsers` operationId).
+	PostProjectsUsers(ctx context.Context, body PostProjectsUsersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PatchProjectUserByIdWithBody Update a project user
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with PATCH /projects_users/{id} (the `PatchProjectUserById` operationId).
+	PatchProjectUserByIdWithBody(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PatchProjectUserById Update a project user
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with PATCH /projects_users/{id} (the `PatchProjectUserById` operationId).
+	PatchProjectUserById(ctx context.Context, id string, body PatchProjectUserByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PutProjectUserByIdWithBody Update a project user
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with PUT /projects_users/{id} (the `PutProjectUserById` operationId).
+	PutProjectUserByIdWithBody(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PutProjectUserById Update a project user
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with PUT /projects_users/{id} (the `PutProjectUserById` operationId).
+	PutProjectUserById(ctx context.Context, id string, body PutProjectUserByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetTeamById Get a team by ID
+	//
+	// Corresponds with GET /teams/{id} (the `GetTeamById` operationId).
+	GetTeamById(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PatchTeamByIdWithBody Patch a team by ID
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with PATCH /teams/{id} (the `PatchTeamById` operationId).
+	PatchTeamByIdWithBody(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PatchTeamById Patch a team by ID
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with PATCH /teams/{id} (the `PatchTeamById` operationId).
+	PatchTeamById(ctx context.Context, id string, body PatchTeamByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PutTeamByIdWithBody Update a team by ID
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with PUT /teams/{id} (the `PutTeamById` operationId).
+	PutTeamByIdWithBody(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PutTeamById Update a team by ID
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with PUT /teams/{id} (the `PutTeamById` operationId).
+	PutTeamById(ctx context.Context, id string, body PutTeamByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PostResetTeamUploadsById Reset team uploads by ID
+	//
+	// Corresponds with POST /teams/{id}/reset_team_uploads (the `PostResetTeamUploadsById` operationId).
+	PostResetTeamUploadsById(ctx context.Context, id string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetUsers Get a list of users
 	//
 	// Corresponds with GET /users (the `GetUsers` operationId).
@@ -1031,6 +1375,11 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /users/{user_id}/closes (the `GetClosesByUserId` operationId).
 	GetClosesByUserId(ctx context.Context, userId int, params *GetClosesByUserIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetProjectsUsersByUserId Get a list of projects users by a user Id
+	//
+	// Corresponds with GET /users/{user_id}/projects_users (the `GetProjectsUsersByUserId` operationId).
+	GetProjectsUsersByUserId(ctx context.Context, userId string, params *GetProjectsUsersByUserIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 // GetCloses Get a list of closes
@@ -1093,6 +1442,206 @@ func (c *Client) GetLanguageById(ctx context.Context, id int, reqEditors ...Requ
 	return c.Client.Do(req)
 }
 
+// PostProjectsUsersWithBody Create a project user
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /projects_users (the `PostProjectsUsers` operationId).
+func (c *Client) PostProjectsUsersWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostProjectsUsersRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PostProjectsUsers Create a project user
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /projects_users (the `PostProjectsUsers` operationId).
+func (c *Client) PostProjectsUsers(ctx context.Context, body PostProjectsUsersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostProjectsUsersRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PatchProjectUserByIdWithBody Update a project user
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with PATCH /projects_users/{id} (the `PatchProjectUserById` operationId).
+func (c *Client) PatchProjectUserByIdWithBody(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPatchProjectUserByIdRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PatchProjectUserById Update a project user
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PATCH /projects_users/{id} (the `PatchProjectUserById` operationId).
+func (c *Client) PatchProjectUserById(ctx context.Context, id string, body PatchProjectUserByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPatchProjectUserByIdRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PutProjectUserByIdWithBody Update a project user
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with PUT /projects_users/{id} (the `PutProjectUserById` operationId).
+func (c *Client) PutProjectUserByIdWithBody(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPutProjectUserByIdRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PutProjectUserById Update a project user
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PUT /projects_users/{id} (the `PutProjectUserById` operationId).
+func (c *Client) PutProjectUserById(ctx context.Context, id string, body PutProjectUserByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPutProjectUserByIdRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetTeamById Get a team by ID
+//
+// Corresponds with GET /teams/{id} (the `GetTeamById` operationId).
+func (c *Client) GetTeamById(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetTeamByIdRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PatchTeamByIdWithBody Patch a team by ID
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with PATCH /teams/{id} (the `PatchTeamById` operationId).
+func (c *Client) PatchTeamByIdWithBody(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPatchTeamByIdRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PatchTeamById Patch a team by ID
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PATCH /teams/{id} (the `PatchTeamById` operationId).
+func (c *Client) PatchTeamById(ctx context.Context, id string, body PatchTeamByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPatchTeamByIdRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PutTeamByIdWithBody Update a team by ID
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with PUT /teams/{id} (the `PutTeamById` operationId).
+func (c *Client) PutTeamByIdWithBody(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPutTeamByIdRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PutTeamById Update a team by ID
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with PUT /teams/{id} (the `PutTeamById` operationId).
+func (c *Client) PutTeamById(ctx context.Context, id string, body PutTeamByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPutTeamByIdRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PostResetTeamUploadsById Reset team uploads by ID
+//
+// Corresponds with POST /teams/{id}/reset_team_uploads (the `PostResetTeamUploadsById` operationId).
+func (c *Client) PostResetTeamUploadsById(ctx context.Context, id string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostResetTeamUploadsByIdRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // GetUsers Get a list of users
 //
 // Corresponds with GET /users (the `GetUsers` operationId).
@@ -1143,6 +1692,21 @@ func (c *Client) GetUserCandidatureById(ctx context.Context, id string, reqEdito
 // Corresponds with GET /users/{user_id}/closes (the `GetClosesByUserId` operationId).
 func (c *Client) GetClosesByUserId(ctx context.Context, userId int, params *GetClosesByUserIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetClosesByUserIdRequest(c.Server, userId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// GetProjectsUsersByUserId Get a list of projects users by a user Id
+//
+// Corresponds with GET /users/{user_id}/projects_users (the `GetProjectsUsersByUserId` operationId).
+func (c *Client) GetProjectsUsersByUserId(ctx context.Context, userId string, params *GetProjectsUsersByUserIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetProjectsUsersByUserIdRequest(c.Server, userId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -1466,6 +2030,302 @@ func NewGetLanguageByIdRequest(server string, id int) (*http.Request, error) {
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPostProjectsUsersRequest calls the generic PostProjectsUsers builder with application/json body
+func NewPostProjectsUsersRequest(server string, body PostProjectsUsersJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPostProjectsUsersRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPostProjectsUsersRequestWithBody constructs an http.Request for the PostProjectsUsers method, with any body, and a specified content type
+func NewPostProjectsUsersRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/projects_users")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPatchProjectUserByIdRequest calls the generic PatchProjectUserById builder with application/json body
+func NewPatchProjectUserByIdRequest(server string, id string, body PatchProjectUserByIdJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPatchProjectUserByIdRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewPatchProjectUserByIdRequestWithBody constructs an http.Request for the PatchProjectUserById method, with any body, and a specified content type
+func NewPatchProjectUserByIdRequestWithBody(server string, id string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/projects_users/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPutProjectUserByIdRequest calls the generic PutProjectUserById builder with application/json body
+func NewPutProjectUserByIdRequest(server string, id string, body PutProjectUserByIdJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPutProjectUserByIdRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewPutProjectUserByIdRequestWithBody constructs an http.Request for the PutProjectUserById method, with any body, and a specified content type
+func NewPutProjectUserByIdRequestWithBody(server string, id string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/projects_users/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewGetTeamByIdRequest constructs an http.Request for the GetTeamById method
+func NewGetTeamByIdRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/teams/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPatchTeamByIdRequest calls the generic PatchTeamById builder with application/json body
+func NewPatchTeamByIdRequest(server string, id string, body PatchTeamByIdJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPatchTeamByIdRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewPatchTeamByIdRequestWithBody constructs an http.Request for the PatchTeamById method, with any body, and a specified content type
+func NewPatchTeamByIdRequestWithBody(server string, id string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/teams/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPutTeamByIdRequest calls the generic PutTeamById builder with application/json body
+func NewPutTeamByIdRequest(server string, id string, body PutTeamByIdJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPutTeamByIdRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewPutTeamByIdRequestWithBody constructs an http.Request for the PutTeamById method, with any body, and a specified content type
+func NewPutTeamByIdRequestWithBody(server string, id string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/teams/%s", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPostResetTeamUploadsByIdRequest constructs an http.Request for the PostResetTeamUploadsById method
+func NewPostResetTeamUploadsByIdRequest(server string, id string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "id", id, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/teams/%s/reset_team_uploads", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -1800,6 +2660,127 @@ func NewGetClosesByUserIdRequest(server string, userId int, params *GetClosesByU
 	return req, nil
 }
 
+// NewGetProjectsUsersByUserIdRequest constructs an http.Request for the GetProjectsUsersByUserId method
+func NewGetProjectsUsersByUserIdRequest(server string, userId string, params *GetProjectsUsersByUserIdParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user_id", userId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/users/%s/projects_users", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Filter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("deepObject", true, "filter", *params.Filter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "object", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Range != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("deepObject", true, "range", *params.Range, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "object", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page[number]", *params.PageNumber, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page[size]", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 func (c *Client) applyEditors(ctx context.Context, req *http.Request, additionalEditors []RequestEditorFn) error {
 	for _, r := range c.RequestEditors {
 		if err := r(ctx, req); err != nil {
@@ -1872,6 +2853,90 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /languages/{id} (the `GetLanguageById` operationId).
 	GetLanguageByIdWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*GetLanguageByIdResponse, error)
 
+	// PostProjectsUsersWithBodyWithResponse Create a project user
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /projects_users (the `PostProjectsUsers` operationId).
+	PostProjectsUsersWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostProjectsUsersResponse, error)
+
+	// PostProjectsUsersWithResponse Create a project user
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /projects_users (the `PostProjectsUsers` operationId).
+	PostProjectsUsersWithResponse(ctx context.Context, body PostProjectsUsersJSONRequestBody, reqEditors ...RequestEditorFn) (*PostProjectsUsersResponse, error)
+
+	// PatchProjectUserByIdWithBodyWithResponse Update a project user
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with PATCH /projects_users/{id} (the `PatchProjectUserById` operationId).
+	PatchProjectUserByIdWithBodyWithResponse(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchProjectUserByIdResponse, error)
+
+	// PatchProjectUserByIdWithResponse Update a project user
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with PATCH /projects_users/{id} (the `PatchProjectUserById` operationId).
+	PatchProjectUserByIdWithResponse(ctx context.Context, id string, body PatchProjectUserByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchProjectUserByIdResponse, error)
+
+	// PutProjectUserByIdWithBodyWithResponse Update a project user
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with PUT /projects_users/{id} (the `PutProjectUserById` operationId).
+	PutProjectUserByIdWithBodyWithResponse(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PutProjectUserByIdResponse, error)
+
+	// PutProjectUserByIdWithResponse Update a project user
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with PUT /projects_users/{id} (the `PutProjectUserById` operationId).
+	PutProjectUserByIdWithResponse(ctx context.Context, id string, body PutProjectUserByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PutProjectUserByIdResponse, error)
+
+	// GetTeamByIdWithResponse Get a team by ID
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /teams/{id} (the `GetTeamById` operationId).
+	GetTeamByIdWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*GetTeamByIdResponse, error)
+
+	// PatchTeamByIdWithBodyWithResponse Patch a team by ID
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with PATCH /teams/{id} (the `PatchTeamById` operationId).
+	PatchTeamByIdWithBodyWithResponse(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchTeamByIdResponse, error)
+
+	// PatchTeamByIdWithResponse Patch a team by ID
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with PATCH /teams/{id} (the `PatchTeamById` operationId).
+	PatchTeamByIdWithResponse(ctx context.Context, id string, body PatchTeamByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchTeamByIdResponse, error)
+
+	// PutTeamByIdWithBodyWithResponse Update a team by ID
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with PUT /teams/{id} (the `PutTeamById` operationId).
+	PutTeamByIdWithBodyWithResponse(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PutTeamByIdResponse, error)
+
+	// PutTeamByIdWithResponse Update a team by ID
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with PUT /teams/{id} (the `PutTeamById` operationId).
+	PutTeamByIdWithResponse(ctx context.Context, id string, body PutTeamByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PutTeamByIdResponse, error)
+
+	// PostResetTeamUploadsByIdWithResponse Reset team uploads by ID
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /teams/{id}/reset_team_uploads (the `PostResetTeamUploadsById` operationId).
+	PostResetTeamUploadsByIdWithResponse(ctx context.Context, id string, reqEditors ...RequestEditorFn) (*PostResetTeamUploadsByIdResponse, error)
+
 	// GetUsersWithResponse Get a list of users
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -1899,6 +2964,13 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with GET /users/{user_id}/closes (the `GetClosesByUserId` operationId).
 	GetClosesByUserIdWithResponse(ctx context.Context, userId int, params *GetClosesByUserIdParams, reqEditors ...RequestEditorFn) (*GetClosesByUserIdResponse, error)
+
+	// GetProjectsUsersByUserIdWithResponse Get a list of projects users by a user Id
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /users/{user_id}/projects_users (the `GetProjectsUsersByUserId` operationId).
+	GetProjectsUsersByUserIdWithResponse(ctx context.Context, userId string, params *GetProjectsUsersByUserIdParams, reqEditors ...RequestEditorFn) (*GetProjectsUsersByUserIdResponse, error)
 }
 
 type GetClosesResponse struct {
@@ -2110,6 +3182,321 @@ func (r GetLanguageByIdResponse) ContentType() string {
 	return ""
 }
 
+type PostProjectsUsersResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *ProjectUserResponse
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorResponse
+	// JSONDefault the response for an HTTP default `application/json` response
+	JSONDefault *ErrorResponse
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r PostProjectsUsersResponse) GetJSON201() *ProjectUserResponse {
+	return r.JSON201
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r PostProjectsUsersResponse) GetJSON400() *ErrorResponse {
+	return r.JSON400
+}
+
+// GetJSONDefault returns the response for an HTTP default `application/json` response
+func (r PostProjectsUsersResponse) GetJSONDefault() *ErrorResponse {
+	return r.JSONDefault
+}
+
+// GetBody returns the raw response body bytes
+func (r PostProjectsUsersResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PostProjectsUsersResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PostProjectsUsersResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PostProjectsUsersResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type PatchProjectUserByIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorResponse
+	// JSONDefault the response for an HTTP default `application/json` response
+	JSONDefault *ErrorResponse
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r PatchProjectUserByIdResponse) GetJSON400() *ErrorResponse {
+	return r.JSON400
+}
+
+// GetJSONDefault returns the response for an HTTP default `application/json` response
+func (r PatchProjectUserByIdResponse) GetJSONDefault() *ErrorResponse {
+	return r.JSONDefault
+}
+
+// GetBody returns the raw response body bytes
+func (r PatchProjectUserByIdResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PatchProjectUserByIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PatchProjectUserByIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PatchProjectUserByIdResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type PutProjectUserByIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSONDefault the response for an HTTP default `application/json` response
+	JSONDefault *ErrorResponse
+}
+
+// GetJSONDefault returns the response for an HTTP default `application/json` response
+func (r PutProjectUserByIdResponse) GetJSONDefault() *ErrorResponse {
+	return r.JSONDefault
+}
+
+// GetBody returns the raw response body bytes
+func (r PutProjectUserByIdResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PutProjectUserByIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PutProjectUserByIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PutProjectUserByIdResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetTeamByIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *TeamResponse
+	// JSONDefault the response for an HTTP default `application/json` response
+	JSONDefault *ErrorResponse
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GetTeamByIdResponse) GetJSON200() *TeamResponse {
+	return r.JSON200
+}
+
+// GetJSONDefault returns the response for an HTTP default `application/json` response
+func (r GetTeamByIdResponse) GetJSONDefault() *ErrorResponse {
+	return r.JSONDefault
+}
+
+// GetBody returns the raw response body bytes
+func (r GetTeamByIdResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GetTeamByIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetTeamByIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetTeamByIdResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type PatchTeamByIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSONDefault the response for an HTTP default `application/json` response
+	JSONDefault *ErrorResponse
+}
+
+// GetJSONDefault returns the response for an HTTP default `application/json` response
+func (r PatchTeamByIdResponse) GetJSONDefault() *ErrorResponse {
+	return r.JSONDefault
+}
+
+// GetBody returns the raw response body bytes
+func (r PatchTeamByIdResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PatchTeamByIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PatchTeamByIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PatchTeamByIdResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type PutTeamByIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSONDefault the response for an HTTP default `application/json` response
+	JSONDefault *ErrorResponse
+}
+
+// GetJSONDefault returns the response for an HTTP default `application/json` response
+func (r PutTeamByIdResponse) GetJSONDefault() *ErrorResponse {
+	return r.JSONDefault
+}
+
+// GetBody returns the raw response body bytes
+func (r PutTeamByIdResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PutTeamByIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PutTeamByIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PutTeamByIdResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type PostResetTeamUploadsByIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSONDefault the response for an HTTP default `application/json` response
+	JSONDefault *ErrorResponse
+}
+
+// GetJSONDefault returns the response for an HTTP default `application/json` response
+func (r PostResetTeamUploadsByIdResponse) GetJSONDefault() *ErrorResponse {
+	return r.JSONDefault
+}
+
+// GetBody returns the raw response body bytes
+func (r PostResetTeamUploadsByIdResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PostResetTeamUploadsByIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PostResetTeamUploadsByIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PostResetTeamUploadsByIdResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // GetUsersResponse200Headers the declared response headers of an HTTP 200 response for GetUsers
 type GetUsersResponse200Headers struct {
 	Link     *string
@@ -2312,6 +3699,64 @@ func (r GetClosesByUserIdResponse) ContentType() string {
 	return ""
 }
 
+// GetProjectsUsersByUserIdResponse200Headers the declared response headers of an HTTP 200 response for GetProjectsUsersByUserId
+type GetProjectsUsersByUserIdResponse200Headers struct {
+	Link     *string
+	XPage    *int
+	XPerPage *int
+	XTotal   *int
+}
+
+type GetProjectsUsersByUserIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]ProjectUserResponse
+	// JSONDefault the response for an HTTP default `application/json` response
+	JSONDefault *ErrorResponse
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *GetProjectsUsersByUserIdResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r GetProjectsUsersByUserIdResponse) GetJSON200() *[]ProjectUserResponse {
+	return r.JSON200
+}
+
+// GetJSONDefault returns the response for an HTTP default `application/json` response
+func (r GetProjectsUsersByUserIdResponse) GetJSONDefault() *ErrorResponse {
+	return r.JSONDefault
+}
+
+// GetBody returns the raw response body bytes
+func (r GetProjectsUsersByUserIdResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r GetProjectsUsersByUserIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetProjectsUsersByUserIdResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetProjectsUsersByUserIdResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // GetClosesWithResponse Get a list of closes
 //
 // Returns a wrapper object for the known response body format(s).
@@ -2364,6 +3809,162 @@ func (c *ClientWithResponses) GetLanguageByIdWithResponse(ctx context.Context, i
 	return ParseGetLanguageByIdResponse(rsp)
 }
 
+// PostProjectsUsersWithBodyWithResponse Create a project user
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /projects_users (the `PostProjectsUsers` operationId).
+func (c *ClientWithResponses) PostProjectsUsersWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostProjectsUsersResponse, error) {
+	rsp, err := c.PostProjectsUsersWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostProjectsUsersResponse(rsp)
+}
+
+// PostProjectsUsersWithResponse Create a project user
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /projects_users (the `PostProjectsUsers` operationId).
+func (c *ClientWithResponses) PostProjectsUsersWithResponse(ctx context.Context, body PostProjectsUsersJSONRequestBody, reqEditors ...RequestEditorFn) (*PostProjectsUsersResponse, error) {
+	rsp, err := c.PostProjectsUsers(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostProjectsUsersResponse(rsp)
+}
+
+// PatchProjectUserByIdWithBodyWithResponse Update a project user
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PATCH /projects_users/{id} (the `PatchProjectUserById` operationId).
+func (c *ClientWithResponses) PatchProjectUserByIdWithBodyWithResponse(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchProjectUserByIdResponse, error) {
+	rsp, err := c.PatchProjectUserByIdWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePatchProjectUserByIdResponse(rsp)
+}
+
+// PatchProjectUserByIdWithResponse Update a project user
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PATCH /projects_users/{id} (the `PatchProjectUserById` operationId).
+func (c *ClientWithResponses) PatchProjectUserByIdWithResponse(ctx context.Context, id string, body PatchProjectUserByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchProjectUserByIdResponse, error) {
+	rsp, err := c.PatchProjectUserById(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePatchProjectUserByIdResponse(rsp)
+}
+
+// PutProjectUserByIdWithBodyWithResponse Update a project user
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /projects_users/{id} (the `PutProjectUserById` operationId).
+func (c *ClientWithResponses) PutProjectUserByIdWithBodyWithResponse(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PutProjectUserByIdResponse, error) {
+	rsp, err := c.PutProjectUserByIdWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePutProjectUserByIdResponse(rsp)
+}
+
+// PutProjectUserByIdWithResponse Update a project user
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /projects_users/{id} (the `PutProjectUserById` operationId).
+func (c *ClientWithResponses) PutProjectUserByIdWithResponse(ctx context.Context, id string, body PutProjectUserByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PutProjectUserByIdResponse, error) {
+	rsp, err := c.PutProjectUserById(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePutProjectUserByIdResponse(rsp)
+}
+
+// GetTeamByIdWithResponse Get a team by ID
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /teams/{id} (the `GetTeamById` operationId).
+func (c *ClientWithResponses) GetTeamByIdWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*GetTeamByIdResponse, error) {
+	rsp, err := c.GetTeamById(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetTeamByIdResponse(rsp)
+}
+
+// PatchTeamByIdWithBodyWithResponse Patch a team by ID
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PATCH /teams/{id} (the `PatchTeamById` operationId).
+func (c *ClientWithResponses) PatchTeamByIdWithBodyWithResponse(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PatchTeamByIdResponse, error) {
+	rsp, err := c.PatchTeamByIdWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePatchTeamByIdResponse(rsp)
+}
+
+// PatchTeamByIdWithResponse Patch a team by ID
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PATCH /teams/{id} (the `PatchTeamById` operationId).
+func (c *ClientWithResponses) PatchTeamByIdWithResponse(ctx context.Context, id string, body PatchTeamByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PatchTeamByIdResponse, error) {
+	rsp, err := c.PatchTeamById(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePatchTeamByIdResponse(rsp)
+}
+
+// PutTeamByIdWithBodyWithResponse Update a team by ID
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /teams/{id} (the `PutTeamById` operationId).
+func (c *ClientWithResponses) PutTeamByIdWithBodyWithResponse(ctx context.Context, id string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PutTeamByIdResponse, error) {
+	rsp, err := c.PutTeamByIdWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePutTeamByIdResponse(rsp)
+}
+
+// PutTeamByIdWithResponse Update a team by ID
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with PUT /teams/{id} (the `PutTeamById` operationId).
+func (c *ClientWithResponses) PutTeamByIdWithResponse(ctx context.Context, id string, body PutTeamByIdJSONRequestBody, reqEditors ...RequestEditorFn) (*PutTeamByIdResponse, error) {
+	rsp, err := c.PutTeamById(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePutTeamByIdResponse(rsp)
+}
+
+// PostResetTeamUploadsByIdWithResponse Reset team uploads by ID
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /teams/{id}/reset_team_uploads (the `PostResetTeamUploadsById` operationId).
+func (c *ClientWithResponses) PostResetTeamUploadsByIdWithResponse(ctx context.Context, id string, reqEditors ...RequestEditorFn) (*PostResetTeamUploadsByIdResponse, error) {
+	rsp, err := c.PostResetTeamUploadsById(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostResetTeamUploadsByIdResponse(rsp)
+}
+
 // GetUsersWithResponse Get a list of users
 //
 // Returns a wrapper object for the known response body format(s).
@@ -2414,6 +4015,19 @@ func (c *ClientWithResponses) GetClosesByUserIdWithResponse(ctx context.Context,
 		return nil, err
 	}
 	return ParseGetClosesByUserIdResponse(rsp)
+}
+
+// GetProjectsUsersByUserIdWithResponse Get a list of projects users by a user Id
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /users/{user_id}/projects_users (the `GetProjectsUsersByUserId` operationId).
+func (c *ClientWithResponses) GetProjectsUsersByUserIdWithResponse(ctx context.Context, userId string, params *GetProjectsUsersByUserIdParams, reqEditors ...RequestEditorFn) (*GetProjectsUsersByUserIdResponse, error) {
+	rsp, err := c.GetProjectsUsersByUserId(ctx, userId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetProjectsUsersByUserIdResponse(rsp)
 }
 
 // ParseGetClosesResponse parses an HTTP response from a GetClosesWithResponse call
@@ -2589,6 +4203,231 @@ func ParseGetLanguageByIdResponse(rsp *http.Response) (*GetLanguageByIdResponse,
 	return response, nil
 }
 
+// ParsePostProjectsUsersResponse parses an HTTP response from a PostProjectsUsersWithResponse call
+func ParsePostProjectsUsersResponse(rsp *http.Response) (*PostProjectsUsersResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PostProjectsUsersResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ProjectUserResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSONDefault = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePatchProjectUserByIdResponse parses an HTTP response from a PatchProjectUserByIdWithResponse call
+func ParsePatchProjectUserByIdResponse(rsp *http.Response) (*PatchProjectUserByIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PatchProjectUserByIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSONDefault = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePutProjectUserByIdResponse parses an HTTP response from a PutProjectUserByIdWithResponse call
+func ParsePutProjectUserByIdResponse(rsp *http.Response) (*PutProjectUserByIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PutProjectUserByIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSONDefault = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetTeamByIdResponse parses an HTTP response from a GetTeamByIdWithResponse call
+func ParseGetTeamByIdResponse(rsp *http.Response) (*GetTeamByIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetTeamByIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest TeamResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSONDefault = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePatchTeamByIdResponse parses an HTTP response from a PatchTeamByIdWithResponse call
+func ParsePatchTeamByIdResponse(rsp *http.Response) (*PatchTeamByIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PatchTeamByIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSONDefault = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePutTeamByIdResponse parses an HTTP response from a PutTeamByIdWithResponse call
+func ParsePutTeamByIdResponse(rsp *http.Response) (*PutTeamByIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PutTeamByIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSONDefault = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePostResetTeamUploadsByIdResponse parses an HTTP response from a PostResetTeamUploadsByIdWithResponse call
+func ParsePostResetTeamUploadsByIdResponse(rsp *http.Response) (*PostResetTeamUploadsByIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PostResetTeamUploadsByIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 201:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSONDefault = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseGetUsersResponse parses an HTTP response from a GetUsersWithResponse call
 func ParseGetUsersResponse(rsp *http.Response) (*GetUsersResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -2750,6 +4589,73 @@ func ParseGetClosesByUserIdResponse(rsp *http.Response) (*GetClosesByUserIdRespo
 		}
 		response.JSONDefault = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseGetProjectsUsersByUserIdResponse parses an HTTP response from a GetProjectsUsersByUserIdWithResponse call
+func ParseGetProjectsUsersByUserIdResponse(rsp *http.Response) (*GetProjectsUsersByUserIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetProjectsUsersByUserIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectUserResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSONDefault = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers GetProjectsUsersByUserIdResponse200Headers
+		if values := rsp.Header.Values("Link"); len(values) > 0 {
+			var value string
+			if err := runtime.BindStyledParameterWithOptions("simple", "Link", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.Link = &value
+		}
+		if values := rsp.Header.Values("X-Page"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "X-Page", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XPage = &value
+		}
+		if values := rsp.Header.Values("X-Per-Page"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "X-Per-Page", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XPerPage = &value
+		}
+		if values := rsp.Header.Values("X-Total"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "X-Total", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XTotal = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil

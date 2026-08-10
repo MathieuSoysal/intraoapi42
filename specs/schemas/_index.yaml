@@ -30,12 +30,32 @@ LightUserResponse:
   $ref: ./user.yaml#/LightUserResponse
 PatronageResponse:
   $ref: ./patronage.yaml#/PatronageResponse
+PostProjectUserBody:
+  $ref: ./project_user.yaml#/PostProjectUserBody
 ProjectUserResponse:
   $ref: ./project_user.yaml#/ProjectUserResponse
+ProjectUserUpdate:
+  $ref: ./project_user.yaml#/ProjectUserUpdate
+QuestionAnswerResponse:
+  $ref: ./scale_teams.yaml#/QuestionAnswerResponse
+QuestionWithAnswersResponse:
+  $ref: ./scale_teams.yaml#/QuestionWithAnswersResponse
 RoleResponse:
   $ref: ./role.yaml#/RoleResponse
+ScaleFlagResponse:
+  $ref: ./scale_teams.yaml#/ScaleFlagResponse
+ScaleTeamResponse:
+  $ref: ./scale_teams.yaml#/ScaleTeamResponse
+ScaleUserResponse:
+  $ref: ./scale_teams.yaml#/ScaleUserResponse
 SkillResponse:
   $ref: ./skill.yaml#/SkillResponse
+TeamResponse:
+  $ref: ./team.yaml#/TeamResponse
+TeamUpdate:
+  $ref: ./team.yaml#/TeamUpdate
+TeamUploadResponse:
+  $ref: ./scale_teams.yaml#/TeamUploadResponse
 TeamUserResponse:
   $ref: ./team.yaml#/TeamUserResponse
 TitleResponse:

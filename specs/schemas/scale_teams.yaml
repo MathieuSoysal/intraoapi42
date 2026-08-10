@@ -1,0 +1,174 @@
+ScaleTeamResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+    scale_id:
+      type: integer
+    comment:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+    updated_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+    feedback:
+      type: string
+    final_mark:
+      type: integer
+      nullable: true
+    flag:
+      $ref: "#/components/schemas/ScaleFlagResponse"
+    begin_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+    correcteds:
+      type: array
+      items:
+        $ref: "#/components/schemas/ScaleUserResponse"
+    corrector:
+      $ref: "#/components/schemas/ScaleUserResponse"
+    truant:
+      type: object
+      additionalProperties: true
+    filled_at:
+      type: string
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
+    questions_with_answers:
+      type: array
+      items:
+        $ref: "#/components/schemas/QuestionWithAnswersResponse"
+    teams_uploads:
+      type: array
+      items:
+        $ref: "#/components/schemas/TeamUploadResponse"
+  required:
+    - id
+    - scale_id
+    - comment
+    - created_at
+    - updated_at
+    - feedback
+    - final_mark
+    - flag
+    - begin_at
+    - correcteds
+    - corrector
+    - truant
+    - filled_at
+    - questions_with_answers
+
+ScaleFlagResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    positive:
+      type: boolean
+    icon:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+    updated_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+  required:
+    - id
+    - name
+    - positive
+    - icon
+    - created_at
+    - updated_at
+
+ScaleUserResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+    login:
+      type: string
+    url:
+      type: string
+      format: uri
+  required:
+    - id
+    - login
+    - url
+
+QuestionWithAnswersResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    guidelines:
+      type: string
+    rating:
+      type: string
+    kind:
+      type: string
+    position:
+      type: integer
+    answers:
+      type: array
+      items:
+        $ref: "#/components/schemas/QuestionAnswerResponse"
+  required:
+    - id
+    - name
+    - guidelines
+    - rating
+    - kind
+    - position
+    - answers
+
+QuestionAnswerResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+    value:
+      type: integer
+      nullable: true
+    answer:
+      type: string
+      nullable: true
+  required:
+    - id
+    - value
+    - answer
+
+TeamUploadResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+    final_mark:
+      type: integer
+      nullable: true
+    comment:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+    upload_id:
+      type: integer
+  required:
+    - id
+    - final_mark
+    - comment
+    - created_at
+    - upload_id

@@ -132,6 +132,7 @@ LightUserResponse:
     anonymize_date:
       type: string
       format: date-time
+      nullable: true
       x-go-type: IntraTime
       description: The date when user data will be anonymized.
     data_erasure_date:
