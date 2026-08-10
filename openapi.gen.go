@@ -237,28 +237,25 @@ type CampusResponse struct {
 // CampusUserResponse defines model for CampusUserResponse.
 type CampusUserResponse struct {
 	CampusId  int       `json:"campus_id"`
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt IntraTime `json:"created_at"`
 	Id        int       `json:"id"`
 	IsPrimary bool      `json:"is_primary"`
-	UpdatedAt time.Time `json:"updated_at"`
+	UpdatedAt IntraTime `json:"updated_at"`
 	UserId    int       `json:"user_id"`
 }
 
 // CloseResponse defines model for CloseResponse.
 type CloseResponse struct {
-	// Closer Example: {"active":true,"alumni?":false,"alumnized_at":null,"anonymize_date":"2025-10-24T00:00:00.000+02:00","correction_point":4,"created_at":"2018-07-17T08:57:33.128Z","data_erasure_date":"2025-10-24T00:00:00.000+02:00","displayname":"Malo Allain","email":"malallai@student.42.fr","first_name":"Malo","id":39962,"image":{"link":"https://cdn.intra.42.fr/users/39a641ed152b654cfbff5c5864eb05c1/malallai.jpg","versions":{"large":"https://cdn.intra.42.fr/users/a818d7a54298d333411557d0b55b61b3/large_malallai.jpg","medium":"https://cdn.intra.42.fr/users/53691acd1e0ea75b782ddbe121c17423/medium_malallai.jpg","micro":"https://cdn.intra.42.fr/users/6f74b46e2016b0e6c41fa05b5952e17c/micro_malallai.jpg","small":"https://cdn.intra.42.fr/users/617de91b59fd7e59ecaf6470a4b37645/small_malallai.jpg"}},"kind":"student","last_name":"Allain","location":null,"login":"malallai","phone":"hidden","pool_month":"august","pool_year":"2018","staff":false,"updated_at":"2022-09-27T18:48:28.207Z","url":"https://api.intra.42.fr/v2/users/malallai","usual_first_name":null,"usual_full_name":"Malo Allain","wallet":290}
 	Closer            LightUserResponse          `json:"closer"`
 	CommunityServices []CommunityServiceResponse `json:"community_services"`
-	CreatedAt         time.Time                  `json:"created_at"`
-	EndAt             *time.Time                 `json:"end_at,omitempty"`
+	CreatedAt         IntraTime                  `json:"created_at"`
+	EndAt             *IntraTime                 `json:"end_at,omitempty"`
 	Id                int                        `json:"id"`
 	Kind              CloseResponseKind          `json:"kind"`
 	Reason            string                     `json:"reason"`
 	State             string                     `json:"state"`
-	UpdatedAt         time.Time                  `json:"updated_at"`
-
-	// User Example: {"active":true,"alumni?":false,"alumnized_at":null,"anonymize_date":"2025-10-24T00:00:00.000+02:00","correction_point":4,"created_at":"2018-07-17T08:57:33.128Z","data_erasure_date":"2025-10-24T00:00:00.000+02:00","displayname":"Malo Allain","email":"malallai@student.42.fr","first_name":"Malo","id":39962,"image":{"link":"https://cdn.intra.42.fr/users/39a641ed152b654cfbff5c5864eb05c1/malallai.jpg","versions":{"large":"https://cdn.intra.42.fr/users/a818d7a54298d333411557d0b55b61b3/large_malallai.jpg","medium":"https://cdn.intra.42.fr/users/53691acd1e0ea75b782ddbe121c17423/medium_malallai.jpg","micro":"https://cdn.intra.42.fr/users/6f74b46e2016b0e6c41fa05b5952e17c/micro_malallai.jpg","small":"https://cdn.intra.42.fr/users/617de91b59fd7e59ecaf6470a4b37645/small_malallai.jpg"}},"kind":"student","last_name":"Allain","location":null,"login":"malallai","phone":"hidden","pool_month":"august","pool_year":"2018","staff":false,"updated_at":"2022-09-27T18:48:28.207Z","url":"https://api.intra.42.fr/v2/users/malallai","usual_first_name":null,"usual_full_name":"Malo Allain","wallet":290}
-	User LightUserResponse `json:"user"`
+	UpdatedAt         IntraTime                  `json:"updated_at"`
+	User              LightUserResponse          `json:"user"`
 }
 
 // CloseResponseKind defines model for CloseResponse.Kind.
@@ -266,18 +263,18 @@ type CloseResponseKind string
 
 // CommunityServiceResponse defines model for CommunityServiceResponse.
 type CommunityServiceResponse struct {
-	CreatedAt  time.Time `json:"created_at"`
+	CreatedAt  IntraTime `json:"created_at"`
 	Duration   int       `json:"duration"`
 	Id         int       `json:"id"`
 	Occupation string    `json:"occupation"`
-	ScheduleAt time.Time `json:"schedule_at"`
+	ScheduleAt IntraTime `json:"schedule_at"`
 	State      string    `json:"state"`
-	UpdatedAt  *string   `json:"updated_at,omitempty"`
+	UpdatedAt  string    `json:"updated_at"`
 }
 
 // CursusResponse defines model for CursusResponse.
 type CursusResponse struct {
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt IntraTime `json:"created_at"`
 	Id        int       `json:"id"`
 	Kind      string    `json:"kind"`
 	Name      string    `json:"name"`
@@ -286,18 +283,18 @@ type CursusResponse struct {
 
 // CursusUserResponse defines model for CursusUserResponse.
 type CursusUserResponse struct {
-	BeginAt      time.Time       `json:"begin_at"`
-	BlackholedAt *time.Time      `json:"blackholed_at,omitempty"`
-	CreatedAt    time.Time       `json:"created_at"`
+	BeginAt      IntraTime       `json:"begin_at"`
+	BlackholedAt *IntraTime      `json:"blackholed_at,omitempty"`
+	CreatedAt    IntraTime       `json:"created_at"`
 	Cursus       CursusResponse  `json:"cursus"`
 	CursusId     int             `json:"cursus_id"`
-	EndAt        *time.Time      `json:"end_at,omitempty"`
+	EndAt        *IntraTime      `json:"end_at,omitempty"`
 	Grade        string          `json:"grade"`
 	HasCoalition bool            `json:"has_coalition"`
 	Id           int             `json:"id"`
 	Level        float64         `json:"level"`
 	Skills       []SkillResponse `json:"skills"`
-	UpdatedAt    time.Time       `json:"updated_at"`
+	UpdatedAt    IntraTime       `json:"updated_at"`
 }
 
 // Error Example: {"error":"The access token is invalid","status":401}
@@ -359,13 +356,11 @@ type InternshipResponse struct {
 	StartAt           time.Time                 `json:"start_at"`
 	State             string                    `json:"state"`
 	Subject           string                    `json:"subject"`
-
-	// User Example: {"active":true,"alumni?":false,"alumnized_at":null,"anonymize_date":"2025-10-24T00:00:00.000+02:00","correction_point":4,"created_at":"2018-07-17T08:57:33.128Z","data_erasure_date":"2025-10-24T00:00:00.000+02:00","displayname":"Malo Allain","email":"malallai@student.42.fr","first_name":"Malo","id":39962,"image":{"link":"https://cdn.intra.42.fr/users/39a641ed152b654cfbff5c5864eb05c1/malallai.jpg","versions":{"large":"https://cdn.intra.42.fr/users/a818d7a54298d333411557d0b55b61b3/large_malallai.jpg","medium":"https://cdn.intra.42.fr/users/53691acd1e0ea75b782ddbe121c17423/medium_malallai.jpg","micro":"https://cdn.intra.42.fr/users/6f74b46e2016b0e6c41fa05b5952e17c/micro_malallai.jpg","small":"https://cdn.intra.42.fr/users/617de91b59fd7e59ecaf6470a4b37645/small_malallai.jpg"}},"kind":"student","last_name":"Allain","location":null,"login":"malallai","phone":"hidden","pool_month":"august","pool_year":"2018","staff":false,"updated_at":"2022-09-27T18:48:28.207Z","url":"https://api.intra.42.fr/v2/users/malallai","usual_first_name":null,"usual_full_name":"Malo Allain","wallet":290}
-	User        LightUserResponse `json:"user"`
-	UserAddress string            `json:"user_address"`
-	UserCity    string            `json:"user_city"`
-	UserCountry string            `json:"user_country"`
-	UserPostal  string            `json:"user_postal"`
+	User              LightUserResponse         `json:"user"`
+	UserAddress       string                    `json:"user_address"`
+	UserCity          string                    `json:"user_city"`
+	UserCountry       string                    `json:"user_country"`
+	UserPostal        string                    `json:"user_postal"`
 }
 
 // InternshipResponseSalary0 defines model for InternshipResponse.Salary.0.
@@ -379,62 +374,90 @@ type InternshipResponse_Salary struct {
 	union json.RawMessage
 }
 
-// IntraDateTime Example: 2017-03-25T13:30:00.000Z
-type IntraDateTime = IntraTime
-
 // LanguageResponse defines model for LanguageResponse.
 type LanguageResponse struct {
-	CreatedAt  time.Time `json:"created_at"`
+	CreatedAt  IntraTime `json:"created_at"`
 	Id         int       `json:"id"`
 	Identifier string    `json:"identifier"`
 	Name       string    `json:"name"`
-	UpdatedAt  time.Time `json:"updated_at"`
+	UpdatedAt  IntraTime `json:"updated_at"`
 }
 
 // LanguageUserResponse defines model for LanguageUserResponse.
 type LanguageUserResponse struct {
-	CreatedAt  time.Time `json:"created_at"`
+	CreatedAt  IntraTime `json:"created_at"`
 	Id         int       `json:"id"`
 	LanguageId int       `json:"language_id"`
 	Position   int       `json:"position"`
 	UserId     int       `json:"user_id"`
 }
 
-// LightUserResponse Example: {"active":true,"alumni?":false,"alumnized_at":null,"anonymize_date":"2025-10-24T00:00:00.000+02:00","correction_point":4,"created_at":"2018-07-17T08:57:33.128Z","data_erasure_date":"2025-10-24T00:00:00.000+02:00","displayname":"Malo Allain","email":"malallai@student.42.fr","first_name":"Malo","id":39962,"image":{"link":"https://cdn.intra.42.fr/users/39a641ed152b654cfbff5c5864eb05c1/malallai.jpg","versions":{"large":"https://cdn.intra.42.fr/users/a818d7a54298d333411557d0b55b61b3/large_malallai.jpg","medium":"https://cdn.intra.42.fr/users/53691acd1e0ea75b782ddbe121c17423/medium_malallai.jpg","micro":"https://cdn.intra.42.fr/users/6f74b46e2016b0e6c41fa05b5952e17c/micro_malallai.jpg","small":"https://cdn.intra.42.fr/users/617de91b59fd7e59ecaf6470a4b37645/small_malallai.jpg"}},"kind":"student","last_name":"Allain","location":null,"login":"malallai","phone":"hidden","pool_month":"august","pool_year":"2018","staff":false,"updated_at":"2022-09-27T18:48:28.207Z","url":"https://api.intra.42.fr/v2/users/malallai","usual_first_name":null,"usual_full_name":"Malo Allain","wallet":290}
+// LightProjectResponse defines model for LightProjectResponse.
+type LightProjectResponse struct {
+	Id       int    `json:"id"`
+	Name     string `json:"name"`
+	ParentId *int   `json:"parent_id"`
+	Slug     string `json:"slug"`
+}
+
+// LightTeamResponse defines model for LightTeamResponse.
+type LightTeamResponse struct {
+	Closed            bool               `json:"closed?"`
+	ClosedAt          *IntraTime         `json:"closed_at"`
+	CreatedAt         IntraTime          `json:"created_at"`
+	FinalMark         *int               `json:"final_mark,omitempty"`
+	Id                int                `json:"id"`
+	Locked            bool               `json:"locked?"`
+	LockedAt          *IntraTime         `json:"locked_at"`
+	Name              string             `json:"name"`
+	ProjectGitlabPath *string            `json:"project_gitlab_path"`
+	ProjectId         int                `json:"project_id"`
+	ProjectSessionId  int                `json:"project_session_id"`
+	RepoUrl           *string            `json:"repo_url"`
+	RepoUuid          string             `json:"repo_uuid"`
+	Status            string             `json:"status"`
+	TerminatingAt     *IntraTime         `json:"terminating_at"`
+	UpdatedAt         IntraTime          `json:"updated_at"`
+	Url               string             `json:"url"`
+	Users             []TeamUserResponse `json:"users"`
+	Validated         bool               `json:"validated?"`
+}
+
+// LightUserResponse defines model for LightUserResponse.
 type LightUserResponse struct {
 	// Active Indicates if the user is active.
-	Active bool `json:"active"`
+	Active bool `json:"active?"`
 
 	// Alumni Indicates if the user is an alumnus.
 	Alumni bool `json:"alumni?"`
 
 	// AlumnizedAt The date when the user became an alumnus.
-	AlumnizedAt *time.Time `json:"alumnized_at,omitempty"`
+	AlumnizedAt IntraTime `json:"alumnized_at"`
 
 	// AnonymizeDate The date when user data will be anonymized.
-	AnonymizeDate time.Time `json:"anonymize_date"`
+	AnonymizeDate IntraTime `json:"anonymize_date"`
 
 	// CorrectionPoint The user's correction points.
 	CorrectionPoint int `json:"correction_point"`
 
 	// CreatedAt The user creation timestamp.
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt IntraTime `json:"created_at"`
 
 	// DataErasureDate The date when user data will be erased.
-	DataErasureDate time.Time `json:"data_erasure_date"`
+	DataErasureDate IntraTime `json:"data_erasure_date"`
 
 	// Displayname The display name of the user.
 	Displayname string `json:"displayname"`
 
 	// Email The email address of the user.
-	Email string `json:"email"`
+	Email openapi_types.Email `json:"email"`
 
 	// FirstName The first name of the user.
 	FirstName string `json:"first_name"`
 
 	// Id The unique identifier of the user.
-	Id    int                `json:"id"`
-	Image *UserImageResponse `json:"image,omitempty"`
+	Id    int               `json:"id"`
+	Image UserImageResponse `json:"image"`
 
 	// Kind The kind of user (e.g., student, admin, external).
 	Kind LightUserResponseKind `json:"kind"`
@@ -458,10 +481,10 @@ type LightUserResponse struct {
 	PoolYear string `json:"pool_year"`
 
 	// Staff Indicates if the user is staff.
-	Staff *bool `json:"staff?,omitempty"`
+	Staff bool `json:"staff?"`
 
 	// UpdatedAt The last user update timestamp.
-	UpdatedAt time.Time `json:"updated_at"`
+	UpdatedAt IntraTime `json:"updated_at"`
 
 	// Url The URL to the user's resource.
 	Url string `json:"url"`
@@ -481,38 +504,32 @@ type LightUserResponseKind string
 
 // PatronageResponse defines model for PatronageResponse.
 type PatronageResponse struct {
-	CreatedAt   time.Time `json:"created_at"`
+	CreatedAt   IntraTime `json:"created_at"`
 	GodfatherId *int      `json:"godfather_id,omitempty"`
 	GodsonId    *int      `json:"godson_id,omitempty"`
 	Id          int       `json:"id"`
 	Ongoing     bool      `json:"ongoing"`
-	UpdatedAt   time.Time `json:"updated_at"`
+	UpdatedAt   IntraTime `json:"updated_at"`
 	UserId      *int      `json:"user_id,omitempty"`
-}
-
-// ProjectLightResponse defines model for ProjectLightResponse.
-type ProjectLightResponse struct {
-	Id       int    `json:"id"`
-	Name     string `json:"name"`
-	ParentId *int   `json:"parent_id,omitempty"`
-	Slug     string `json:"slug"`
 }
 
 // ProjectUserResponse defines model for ProjectUserResponse.
 type ProjectUserResponse struct {
-	CreatedAt     time.Time             `json:"created_at"`
-	CurrentTeamId *int                  `json:"current_team_id,omitempty"`
-	CursusIds     []int                 `json:"cursus_ids"`
-	FinalMark     *int                  `json:"final_mark,omitempty"`
-	Id            int                   `json:"id"`
-	Marked        bool                  `json:"marked"`
-	MarkedAt      *time.Time            `json:"marked_at,omitempty"`
-	Occurrence    int                   `json:"occurrence"`
-	Project       *ProjectLightResponse `json:"project,omitempty"`
-	RetriableAt   *time.Time            `json:"retriable_at,omitempty"`
-	Status        string                `json:"status"`
-	UpdatedAt     time.Time             `json:"updated_at"`
-	Validated     *bool                 `json:"validated,omitempty"`
+	CreatedAt     *IntraTime           `json:"created_at,omitempty"`
+	CurrentTeamId int                  `json:"current_team_id"`
+	CursusIds     []int                `json:"cursus_ids"`
+	FinalMark     *int                 `json:"final_mark,omitempty"`
+	Id            int                  `json:"id"`
+	Marked        *bool                `json:"marked,omitempty"`
+	MarkedAt      *IntraTime           `json:"marked_at,omitempty"`
+	Occurrence    int                  `json:"occurrence"`
+	Project       LightProjectResponse `json:"project"`
+	RetriableAt   *IntraTime           `json:"retriable_at,omitempty"`
+	Status        string               `json:"status"`
+	Teams         []LightTeamResponse  `json:"teams"`
+	UpdatedAt     *IntraTime           `json:"updated_at,omitempty"`
+	User          LightUserResponse    `json:"user"`
+	Validated     *bool                `json:"validated?"`
 }
 
 // RoleResponse defines model for RoleResponse.
@@ -528,6 +545,17 @@ type SkillResponse struct {
 	Name  string  `json:"name"`
 }
 
+// TeamUserResponse defines model for TeamUserResponse.
+type TeamUserResponse struct {
+	Id             int    `json:"id"`
+	Leader         bool   `json:"leader"`
+	Login          string `json:"login"`
+	Occurrence     int    `json:"occurrence"`
+	ProjectsUserId int    `json:"projects_user_id"`
+	Url            string `json:"url"`
+	Validated      bool   `json:"validated"`
+}
+
 // TitleResponse defines model for TitleResponse.
 type TitleResponse struct {
 	Id   int    `json:"id"`
@@ -536,11 +564,11 @@ type TitleResponse struct {
 
 // TitleUserResponse defines model for TitleUserResponse.
 type TitleUserResponse struct {
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt IntraTime `json:"created_at"`
 	Id        int       `json:"id"`
 	Selected  bool      `json:"selected"`
 	TitleId   int       `json:"title_id"`
-	UpdatedAt time.Time `json:"updated_at"`
+	UpdatedAt IntraTime `json:"updated_at"`
 	UserId    int       `json:"user_id"`
 }
 
@@ -555,7 +583,7 @@ type UserCandidatureResponse struct {
 	ContactPhone1      string                         `json:"contact_phone1"`
 	ContactPhone2      *string                        `json:"contact_phone2,omitempty"`
 	Country            *string                        `json:"country,omitempty"`
-	CreatedAt          time.Time                      `json:"created_at"`
+	CreatedAt          IntraTime                      `json:"created_at"`
 	Email              string                         `json:"email"`
 	Gender             *UserCandidatureResponseGender `json:"gender,omitempty"`
 	HiddenPhone        bool                           `json:"hidden_phone"`
@@ -563,18 +591,18 @@ type UserCandidatureResponse struct {
 	Language           string                         `json:"language"`
 	MaxLevelLogic      *float64                       `json:"max_level_logic,omitempty"`
 	MaxLevelMemory     *float64                       `json:"max_level_memory,omitempty"`
-	MeetingDate        *IntraDateTime                 `json:"meeting_date,omitempty"`
+	MeetingDate        *IntraTime                     `json:"meeting_date,omitempty"`
 	OtherInformation   *string                        `json:"other_information,omitempty"`
 	Phone              string                         `json:"phone"`
 	PhoneCountryCode   string                         `json:"phone_country_code"`
 	Pin                string                         `json:"pin"`
-	PiscineDate        *IntraDateTime                 `json:"piscine_date,omitempty"`
+	PiscineDate        *IntraTime                     `json:"piscine_date,omitempty"`
 	PostalCity         string                         `json:"postal_city"`
 	PostalComplement   *string                        `json:"postal_complement,omitempty"`
 	PostalCountry      string                         `json:"postal_country"`
 	PostalStreet       string                         `json:"postal_street"`
 	PostalZipCode      string                         `json:"postal_zip_code"`
-	UpdatedAt          time.Time                      `json:"updated_at"`
+	UpdatedAt          IntraTime                      `json:"updated_at"`
 	UserId             int                            `json:"user_id"`
 	ZipCode            *string                        `json:"zip_code,omitempty"`
 }
@@ -606,16 +634,16 @@ type UserResponse struct {
 	Achievements []AchievementResponse `json:"achievements"`
 
 	// Active Indicates if the user is active.
-	Active bool `json:"active"`
+	Active bool `json:"active?"`
 
 	// Alumni Indicates if the user is an alumnus.
 	Alumni bool `json:"alumni?"`
 
 	// AlumnizedAt The date when the user became an alumnus.
-	AlumnizedAt *time.Time `json:"alumnized_at,omitempty"`
+	AlumnizedAt IntraTime `json:"alumnized_at"`
 
 	// AnonymizeDate The date when user data will be anonymized.
-	AnonymizeDate time.Time            `json:"anonymize_date"`
+	AnonymizeDate IntraTime            `json:"anonymize_date"`
 	Campus        []CampusResponse     `json:"campus"`
 	CampusUsers   []CampusUserResponse `json:"campus_users"`
 
@@ -623,25 +651,25 @@ type UserResponse struct {
 	CorrectionPoint int `json:"correction_point"`
 
 	// CreatedAt The user creation timestamp.
-	CreatedAt   time.Time            `json:"created_at"`
+	CreatedAt   IntraTime            `json:"created_at"`
 	CursusUsers []CursusUserResponse `json:"cursus_users"`
 
 	// DataErasureDate The date when user data will be erased.
-	DataErasureDate time.Time `json:"data_erasure_date"`
+	DataErasureDate IntraTime `json:"data_erasure_date"`
 
 	// Displayname The display name of the user.
 	Displayname string `json:"displayname"`
 
 	// Email The email address of the user.
-	Email string `json:"email"`
+	Email openapi_types.Email `json:"email"`
 
 	// FirstName The first name of the user.
 	FirstName string          `json:"first_name"`
 	Groups    []GroupResponse `json:"groups"`
 
 	// Id The unique identifier of the user.
-	Id    int                `json:"id"`
-	Image *UserImageResponse `json:"image,omitempty"`
+	Id    int               `json:"id"`
+	Image UserImageResponse `json:"image"`
 
 	// Kind The kind of user (e.g., student, admin, external).
 	Kind           UserResponseKind       `json:"kind"`
@@ -670,12 +698,12 @@ type UserResponse struct {
 	Roles         []RoleResponse        `json:"roles"`
 
 	// Staff Indicates if the user is staff.
-	Staff       *bool               `json:"staff?,omitempty"`
+	Staff       bool                `json:"staff?"`
 	Titles      []TitleResponse     `json:"titles"`
 	TitlesUsers []TitleUserResponse `json:"titles_users"`
 
 	// UpdatedAt The last user update timestamp.
-	UpdatedAt time.Time `json:"updated_at"`
+	UpdatedAt IntraTime `json:"updated_at"`
 
 	// Url The URL to the user's resource.
 	Url string `json:"url"`
@@ -1878,6 +1906,8 @@ type GetClosesResponse struct {
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
 	JSON200 *[]CloseResponse
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ErrorResponse
 	// JSONDefault the response for an HTTP default `application/json` response
 	JSONDefault *ErrorResponse
 }
@@ -1885,6 +1915,11 @@ type GetClosesResponse struct {
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
 func (r GetClosesResponse) GetJSON200() *[]CloseResponse {
 	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r GetClosesResponse) GetJSON400() *ErrorResponse {
+	return r.JSON400
 }
 
 // GetJSONDefault returns the response for an HTTP default `application/json` response
@@ -2401,6 +2436,13 @@ func ParseGetClosesResponse(rsp *http.Response) (*GetClosesResponse, error) {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && true:
 		var dest ErrorResponse

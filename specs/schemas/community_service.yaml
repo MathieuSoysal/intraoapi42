@@ -8,6 +8,7 @@ CommunityServiceResponse:
     schedule_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     occupation:
       type: string
     state:
@@ -15,6 +16,7 @@ CommunityServiceResponse:
     created_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     updated_at:
       type: string
   required:
@@ -24,4 +26,4 @@ CommunityServiceResponse:
     - occupation
     - state
     - created_at
-    - updated_a
+    - updated_at

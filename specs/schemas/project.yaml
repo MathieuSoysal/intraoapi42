@@ -1,4 +1,4 @@
-ProjectLightResponse:
+LightProjectResponse:
   type: object
   properties:
     id:
@@ -14,3 +14,4 @@ ProjectLightResponse:
     - id
     - name
     - slug
+    - parent_id

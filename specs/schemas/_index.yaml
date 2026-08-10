@@ -18,24 +18,26 @@ GroupResponse:
   $ref: ./group.yaml#/GroupResponse
 InternshipResponse:
   $ref: ./internship.yaml#/InternshipResponse
-IntraDateTime:
-  $ref: ./intra_date_time.yaml#/IntraDateTime
 LanguageResponse:
   $ref: ./language.yaml#/LanguageResponse
 LanguageUserResponse:
   $ref: ./language_user.yaml#/LanguageUserResponse
+LightProjectResponse:
+  $ref: ./project.yaml#/LightProjectResponse
+LightTeamResponse:
+  $ref: ./team.yaml#/LightTeamResponse
 LightUserResponse:
   $ref: ./user.yaml#/LightUserResponse
 PatronageResponse:
   $ref: ./patronage.yaml#/PatronageResponse
-ProjectLightResponse:
-  $ref: ./project.yaml#/ProjectLightResponse
 ProjectUserResponse:
   $ref: ./project_user.yaml#/ProjectUserResponse
 RoleResponse:
   $ref: ./role.yaml#/RoleResponse
 SkillResponse:
   $ref: ./skill.yaml#/SkillResponse
+TeamUserResponse:
+  $ref: ./team.yaml#/TeamUserResponse
 TitleResponse:
   $ref: ./title.yaml#/TitleResponse
 TitleUserResponse:

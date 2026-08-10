@@ -10,13 +10,16 @@ CloseResponse:
     created_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     updated_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     end_at:
       type: string
       format: date-time
       nullable: true
+      x-go-type: IntraTime
     community_services:
       type: array
       items:

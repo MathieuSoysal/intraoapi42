@@ -6,9 +6,11 @@ CursusUserResponse:
     begin_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     end_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     grade:
       type: string
     level:
@@ -28,12 +30,15 @@ CursusUserResponse:
       type: string
       format: date-time
       nullable: true
+      x-go-type: IntraTime
     created_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     updated_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
   required:
     - id
     - begin_at

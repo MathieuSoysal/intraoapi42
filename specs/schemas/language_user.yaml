@@ -12,6 +12,7 @@ LanguageUserResponse:
     created_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
   required:
     - id
     - language_id

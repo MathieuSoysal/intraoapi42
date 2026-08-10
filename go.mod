@@ -1,6 +1,6 @@
 module github.com/42paris/intraoapi42
 
-go 1.25.1
+go 1.26.5
 
 require (
 	github.com/oapi-codegen/runtime v1.6.0

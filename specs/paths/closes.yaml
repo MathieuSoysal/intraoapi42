@@ -62,6 +62,8 @@
               type: array
               items:
                 $ref: "#/components/schemas/CloseResponse"
+      "400":
+        $ref: '#/components/responses/ErrorResponse'
       default:
         $ref: "#/components/responses/ErrorResponse"
 /users/{user_id}/closes:

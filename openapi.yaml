@@ -70,6 +70,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CloseResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /closes/{id}:
@@ -467,9 +469,11 @@ components:
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         updated_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
       required:
         - id
         - user_id
@@ -489,13 +493,16 @@ components:
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         updated_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         end_at:
           type: string
           format: date-time
           nullable: true
+          x-go-type: IntraTime
         community_services:
           type: array
           items:
@@ -536,6 +543,7 @@ components:
         schedule_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         occupation:
           type: string
         state:
@@ -543,6 +551,7 @@ components:
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         updated_at:
           type: string
       required:
@@ -552,7 +561,7 @@ components:
         - occupation
         - state
         - created_at
-        - updated_a
+        - updated_at
     CursusResponse:
       type: object
       properties:
@@ -561,6 +570,7 @@ components:
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         name:
           type: string
         slug:
@@ -581,9 +591,11 @@ components:
         begin_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         end_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         grade:
           type: string
         level:
@@ -603,12 +615,15 @@ components:
           type: string
           format: date-time
           nullable: true
+          x-go-type: IntraTime
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         updated_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
       required:
         - id
         - begin_at
@@ -798,11 +813,6 @@ components:
         - convention
         - convention_uri
         - user
-    IntraDateTime:
-      type: string
-      format: date-time
-      example: '2017-03-25T13:30:00.000Z'
-      x-go-type: IntraTime
     LanguageResponse:
       type: object
       properties:
@@ -815,9 +825,11 @@ components:
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         updated_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
       required:
         - id
         - name
@@ -838,12 +850,109 @@ components:
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
       required:
         - id
         - language_id
         - user_id
         - position
         - created_at
+    LightProjectResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        parent_id:
+          type: integer
+          nullable: true
+      required:
+        - id
+        - name
+        - slug
+        - parent_id
+    LightTeamResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        final_mark:
+          type: integer
+          nullable: true
+        project_id:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+        updated_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+        status:
+          type: string
+        terminating_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamUserResponse'
+        locked?:
+          type: boolean
+        validated?:
+          type: boolean
+        closed?:
+          type: boolean
+        repo_url:
+          type: string
+          nullable: true
+        repo_uuid:
+          type: string
+        locked_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+        closed_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+        project_session_id:
+          type: integer
+        project_gitlab_path:
+          type: string
+          nullable: true
+      required:
+        - id
+        - name
+        - url
+        - project_id
+        - created_at
+        - updated_at
+        - status
+        - terminating_at
+        - users
+        - locked?
+        - validated?
+        - closed?
+        - repo_url
+        - repo_uuid
+        - locked_at
+        - closed_at
+        - project_session_id
+        - project_gitlab_path
     LightUserResponse:
       type: object
       properties:
@@ -869,6 +978,7 @@ components:
         email:
           type: string
           description: The email address of the user.
+          format: email
         url:
           type: string
           format: uri
@@ -910,28 +1020,32 @@ components:
         anonymize_date:
           type: string
           format: date-time
+          x-go-type: IntraTime
           description: The date when user data will be anonymized.
         data_erasure_date:
           type: string
           format: date-time
+          x-go-type: IntraTime
           description: The date when user data will be erased.
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
           description: The user creation timestamp.
         updated_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
           description: The last user update timestamp.
         alumnized_at:
+          description: The date when the user became an alumnus.
           type: string
           format: date-time
-          description: The date when the user became an alumnus.
-          nullable: true
+          x-go-type: IntraTime
         alumni?:
           type: boolean
           description: Indicates if the user is an alumnus.
-        active:
+        active?:
           type: boolean
           description: Indicates if the user is active.
       required:
@@ -944,6 +1058,8 @@ components:
         - url
         - displayname
         - kind
+        - image
+        - staff?
         - correction_point
         - pool_month
         - pool_year
@@ -952,40 +1068,9 @@ components:
         - data_erasure_date
         - created_at
         - updated_at
+        - alumnized_at
         - alumni?
-        - active
-      example:
-        id: 39962
-        email: malallai@student.42.fr
-        login: malallai
-        first_name: Malo
-        last_name: Allain
-        usual_full_name: Malo Allain
-        usual_first_name: null
-        url: https://api.intra.42.fr/v2/users/malallai
-        phone: hidden
-        displayname: Malo Allain
-        kind: student
-        image:
-          link: https://cdn.intra.42.fr/users/39a641ed152b654cfbff5c5864eb05c1/malallai.jpg
-          versions:
-            large: https://cdn.intra.42.fr/users/a818d7a54298d333411557d0b55b61b3/large_malallai.jpg
-            medium: https://cdn.intra.42.fr/users/53691acd1e0ea75b782ddbe121c17423/medium_malallai.jpg
-            small: https://cdn.intra.42.fr/users/617de91b59fd7e59ecaf6470a4b37645/small_malallai.jpg
-            micro: https://cdn.intra.42.fr/users/6f74b46e2016b0e6c41fa05b5952e17c/micro_malallai.jpg
-        staff: false
-        correction_point: 4
-        pool_month: august
-        pool_year: '2018'
-        location: null
-        wallet: 290
-        anonymize_date: '2025-10-24T00:00:00.000+02:00'
-        data_erasure_date: '2025-10-24T00:00:00.000+02:00'
-        created_at: '2018-07-17T08:57:33.128Z'
-        updated_at: '2022-09-27T18:48:28.207Z'
-        alumnized_at: null
-        alumni?: false
-        active: true
+        - active?
     PatronageResponse:
       type: object
       properties:
@@ -1002,30 +1087,16 @@ components:
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         updated_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
       required:
         - id
         - ongoing
         - created_at
         - updated_at
-    ProjectLightResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        slug:
-          type: string
-        parent_id:
-          type: integer
-          nullable: true
-      required:
-        - id
-        - name
-        - slug
     ProjectUserResponse:
       type: object
       properties:
@@ -1038,41 +1109,54 @@ components:
           nullable: true
         status:
           type: string
-        validated:
+        validated?:
           type: boolean
           nullable: true
         current_team_id:
           type: integer
         project:
-          $ref: '#/components/schemas/ProjectLightResponse'
+          $ref: '#/components/schemas/LightProjectResponse'
         cursus_ids:
           type: array
           items:
             type: integer
+        user:
+          $ref: '#/components/schemas/LightUserResponse'
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/LightTeamResponse'
         marked_at:
           type: string
           format: date-time
           nullable: true
+          x-go-type: IntraTime
         marked:
           type: boolean
+          nullable: true
         retriable_at:
           type: string
           format: date-time
           nullable: true
+          x-go-type: IntraTime
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         updated_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
       required:
         - id
         - occurrence
         - status
-        - marked
+        - validated?
+        - current_team_id
+        - project
         - cursus_ids
-        - created_at
-        - updated_at
+        - user
+        - teams
     RoleResponse:
       type: object
       properties:
@@ -1097,6 +1181,32 @@ components:
         - id
         - name
         - level
+    TeamUserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        login:
+          type: string
+        url:
+          type: string
+          format: uri
+        leader:
+          type: boolean
+        occurrence:
+          type: integer
+        validated:
+          type: boolean
+        projects_user_id:
+          type: integer
+      required:
+        - id
+        - login
+        - url
+        - leader
+        - occurrence
+        - validated
+        - projects_user_id
     TitleResponse:
       type: object
       properties:
@@ -1121,9 +1231,11 @@ components:
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         updated_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
       required:
         - id
         - user_id
@@ -1196,21 +1308,23 @@ components:
         language:
           type: string
         meeting_date:
-          nullable: true
           type: string
-          allOf:
-            - $ref: '#/components/schemas/IntraDateTime'
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
         piscine_date:
-          nullable: true
           type: string
-          allOf:
-            - $ref: '#/components/schemas/IntraDateTime'
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
         created_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         updated_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         phone:
           type: string
         email:
@@ -1373,155 +1487,6 @@ components:
             - roles
             - campus
             - campus_users
-          example:
-            id: 77640
-            email: tmatis@student.42.fr
-            login: tmatis
-            first_name: Theo
-            last_name: Matis
-            usual_full_name: Theo Matis
-            usual_first_name: Theo
-            url: https://api.intra.42.fr/v2/users/tmatis
-            phone: hidden
-            displayname: Theo Matis
-            kind: student
-            image:
-              link: https://cdn.intra.42.fr/users/rand/tmatis.jpg
-              versions:
-                large: https://cdn.intra.42.fr/users/rand/large_tmatis.jpg
-                medium: https://cdn.intra.42.fr/users/rand/medium_tmatis.jpg
-                small: https://cdn.intra.42.fr/users/rand/small_tmatis.jpg
-                micro: https://cdn.intra.42.fr/users/rand/micro_tmatis.jpg
-            staff: false
-            correction_point: -2
-            pool_month: september
-            pool_year: '2020'
-            location: null
-            wallet: 430
-            anonymize_date: '2028-12-10T00:00:00.000+01:00'
-            data_erasure_date: '2028-12-10T00:00:00.000+01:00'
-            created_at: '2020-08-27T07:31:49.397Z'
-            updated_at: '2025-10-03T14:08:47.122Z'
-            alumnized_at: null
-            alumni?: false
-            active: true
-            groups:
-              - id: 72
-                name: Launchpad Alumni
-            cursus_users:
-              - id: 99439
-                begin_at: '2020-09-07T06:42:00.000Z'
-                end_at: '2020-10-02T16:42:00.000Z'
-                grade: Pisciner
-                level: 11.04
-                skills:
-                  - id: 4
-                    name: Unix
-                    level: 12.37
-                cursus_id: 9
-                cursus:
-                  id: 9
-                  created_at: '2015-11-04T10:58:13.979Z'
-                  name: C Piscine
-                  slug: c-piscine
-                  kind: piscine
-                has_coalition: true
-                blackholed_at: null
-                created_at: '2020-08-27T07:31:50.934Z'
-                updated_at: '2020-08-31T17:14:10.779Z'
-            projects_users:
-              - id: 3474475
-                occurrence: 0
-                final_mark: null
-                status: in_progress
-                validated: null
-                current_team_id: 6251895
-                project:
-                  id: 1381
-                  name: taskmaster
-                  slug: 42cursus-taskmaster
-                  parent_id: null
-                cursus_ids:
-                  - 21
-                marked_at: null
-                marked: false
-                retriable_at: null
-                created_at: '2024-01-12T12:03:35.971Z'
-                updated_at: '2025-07-23T17:28:02.142Z'
-            languages_users:
-              - id: 1083223
-                language_id: 1
-                user_id: 77640
-                position: 2
-                created_at: '2024-12-23T12:36:17.805Z'
-            achievements:
-              - id: 41
-                name: All work and no play makes Jack a dull boy
-                description: Logged for a total of 90 hours over a week.
-                tier: none
-                kind: scolarity
-                visible: true
-                image: /uploads/achievement/image/41/SCO001.svg
-                nbr_of_success: null
-                users_url: https://api.intra.42.fr/v2/achievements/41/users
-            titles:
-              - id: 21
-                name: '%login, Khonvoum'
-            titles_users:
-              - id: 42843
-                user_id: 77640
-                title_id: 2098
-                selected: false
-                created_at: '2024-10-11T09:26:25.755Z'
-                updated_at: '2024-10-11T09:26:25.755Z'
-            partnerships: []
-            patroned:
-              - id: 3241
-                user_id: 40284
-                godson_id: 77640
-                ongoing: true
-                created_at: '2020-09-07T06:42:00.000Z'
-                updated_at: '2022-07-14T06:54:47.852Z'
-            patroning:
-              - id: 2347
-                user_id: 60092
-                godfather_id: 40284
-                ongoing: true
-                created_at: '2019-12-10T18:13:46.543Z'
-                updated_at: '2022-07-14T06:54:47.852Z'
-            roles:
-              - id: 5
-                name: Basic Tutor
-            campus:
-              - id: 1
-                name: Paris
-                time_zone: Europe/Paris
-                language:
-                  id: 1
-                  name: Français
-                  identifier: fr
-                  created_at: '2014-11-02T16:43:38.466Z'
-                  updated_at: '2025-12-11T03:00:51.723Z'
-                users_count: 39708
-                vogsphere_id: 1
-                country: France
-                address: 96, boulevard Bessières
-                zip: '75017'
-                city: Paris
-                website: http://www.42.fr/
-                facebook: https://facebook.com/42born2code
-                twitter: https://twitter.com/42born2code
-                active: true
-                public: true
-                email_extension: 42.fr
-                default_hidden_phone: true
-            campus_users:
-              - id: 68938
-                user_id: 77640
-                campus_id: 1
-                is_primary: true
-                created_at: '2020-08-27T07:31:49.419Z'
-                updated_at: '2024-06-06T16:11:52.102Z'
   parameters:
     page:
       name: page

@@ -13,13 +13,15 @@ bundle:
 	docker run --rm --user ${UID}:${GID} \
 		-v ./specs:/spec \
 		-v ./openapi.yaml:/gen/openapi.yaml \
+		-v ./redocly.yaml:/redocly.yaml:ro \
 		redocly/cli:2.40.0 \
-		bundle openapi.yaml --force --ext yaml --lint-config off -o /gen/openapi.yaml 2> /dev/null
+		bundle openapi.yaml --config /redocly.yaml --force --ext yaml -o /gen/openapi.yaml 2> /dev/null
 
 lint:
 	docker run --rm --user ${UID}:${GID} \
 		-v ./openapi.yaml:/spec/openapi.yaml \
+		-v ./redocly.yaml:/redocly.yaml:ro \
 		redocly/cli:2.40.0 \
-		lint --lint-config error openapi.yaml 
+		lint --config /redocly.yaml --lint-config error openapi.yaml 
 
 .PHONY: all indexes bundle

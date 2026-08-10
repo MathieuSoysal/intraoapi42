@@ -63,21 +63,23 @@ UserCandidatureResponse:
     language:
       type: string
     meeting_date:
-      nullable: true
       type: string
-      allOf:
-        - $ref: "#/components/schemas/IntraDateTime"
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
     piscine_date:
-      nullable: true
       type: string
-      allOf:
-        - $ref: "#/components/schemas/IntraDateTime"
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
     created_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     updated_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     phone:
       type: string
     email:

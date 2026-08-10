@@ -12,9 +12,11 @@ TitleUserResponse:
     created_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     updated_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
   required:
     - id
     - user_id

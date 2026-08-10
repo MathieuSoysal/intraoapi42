@@ -1,0 +1,106 @@
+LightTeamResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    url:
+      type: string
+      format: uri
+    final_mark:
+      type: integer
+      nullable: true
+    project_id:
+      type: integer
+    created_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+    updated_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+    status:
+      type: string
+    terminating_at:
+      type: string
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
+    users:
+      type: array
+      items:
+        $ref: "#/components/schemas/TeamUserResponse"
+    locked?:
+      type: boolean
+    validated?:
+      type: boolean
+    closed?:
+      type: boolean
+    repo_url:
+      type: string
+      nullable: true
+    repo_uuid:
+      type: string
+    locked_at:
+      type: string
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
+    closed_at:
+      type: string
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
+    project_session_id:
+      type: integer
+    project_gitlab_path:
+      type: string
+      nullable: true
+  required:
+    - id
+    - name
+    - url
+    - project_id
+    - created_at
+    - updated_at
+    - status
+    - terminating_at
+    - users
+    - locked?
+    - validated?
+    - closed?
+    - repo_url
+    - repo_uuid
+    - locked_at
+    - closed_at
+    - project_session_id
+    - project_gitlab_path
+
+TeamUserResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+    login:
+      type: string
+    url:
+      type: string
+      format: uri
+    leader:
+      type: boolean
+    occurrence:
+      type: integer
+    validated:
+      type: boolean
+    projects_user_id:
+      type: integer
+  required:
+    - id
+    - login
+    - url
+    - leader
+    - occurrence
+    - validated
+    - projects_user_id
