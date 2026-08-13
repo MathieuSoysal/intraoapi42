@@ -1,6 +1,8 @@
 /closes:
   get:
     operationId: getCloses
+    tags:
+        - Closes
     summary: Get a list of closes
     security:
       - OAuth2:
@@ -69,6 +71,8 @@
 /users/{user_id}/closes:
   get:
     operationId: getClosesByUserId
+    tags:
+        - Closes
     summary: Get a list of closes by user id
     security:
       - OAuth2:
@@ -141,6 +145,8 @@
 /closes/{id}:
   get:
     operationId: getCloseById
+    tags:
+        - Closes
     summary: Get a close by ID
     security:
       - OAuth2:

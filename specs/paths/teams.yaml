@@ -1,6 +1,8 @@
 /teams/{id}:
   get:
     operationId: getTeamById
+    tags:
+      - Teams
     summary: Get a team by ID
     security:
       - OAuth2:
@@ -23,6 +25,8 @@
         $ref: "#/components/responses/ErrorResponse"
   patch:
     operationId: PatchTeamById
+    tags:
+      - Teams
     summary: Patch a team by ID
     security:
       - OAuth2:
@@ -55,6 +59,8 @@
         $ref: '#/components/responses/ErrorResponse'
   put:
     operationId: PutTeamById
+    tags:
+      - Teams
     summary: Update a team by ID
     security:
       - OAuth2:
@@ -88,6 +94,8 @@
 /teams/{id}/reset_team_uploads:
   post:
     operationId: PostResetTeamUploadsById
+    tags:
+      - Teams
     summary: Reset team uploads by ID
     security:
       - OAuth2:

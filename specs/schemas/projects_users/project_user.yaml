@@ -1,0 +1,60 @@
+ProjectUserResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+    occurrence:
+      type: integer
+    final_mark:
+      type: integer
+      nullable: true
+    status:
+      type: string
+    validated?:
+      type: boolean
+      nullable: true
+    current_team_id:
+      type: integer
+    project:
+      $ref: "#/components/schemas/LightProjectResponse"
+    cursus_ids:
+      type: array
+      items:
+        type: integer
+    user:
+      $ref: "#/components/schemas/LightUserResponse"
+    teams:
+      type: array
+      items:
+        $ref: "#/components/schemas/LightTeamResponse"
+    marked_at:
+      type: string
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
+    marked:
+      type: boolean
+      nullable: true
+    retriable_at:
+      type: string
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
+    created_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+    updated_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+  required:
+    - id
+    - occurrence
+    - status
+    - validated?
+    - current_team_id
+    - project
+    - cursus_ids
+    - user
+    - teams

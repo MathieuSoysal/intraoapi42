@@ -1,6 +1,8 @@
 /languages/{id}:
   get:
     operationId: getLanguageById
+    tags:
+        - Languages
     summary: Get a language by ID
     security:
       - OAuth2:

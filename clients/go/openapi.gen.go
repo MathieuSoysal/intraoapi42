@@ -436,7 +436,7 @@ type LightUserResponse struct {
 	AlumnizedAt IntraTime `json:"alumnized_at"`
 
 	// AnonymizeDate The date when user data will be anonymized.
-	AnonymizeDate IntraTime `json:"anonymize_date"`
+	AnonymizeDate *IntraTime `json:"anonymize_date"`
 
 	// CorrectionPoint The user's correction points.
 	CorrectionPoint int `json:"correction_point"`
@@ -514,8 +514,8 @@ type PatronageResponse struct {
 	UserId      *int      `json:"user_id,omitempty"`
 }
 
-// PostProjectUserBody defines model for PostProjectUserBody.
-type PostProjectUserBody struct {
+// ProjectUserCreate defines model for ProjectUserCreate.
+type ProjectUserCreate struct {
 	CreatedAt *IntraTime `json:"created_at,omitempty"`
 
 	// FinalMark The final mark.
@@ -841,7 +841,7 @@ type UserResponse struct {
 	AlumnizedAt IntraTime `json:"alumnized_at"`
 
 	// AnonymizeDate The date when user data will be anonymized.
-	AnonymizeDate IntraTime            `json:"anonymize_date"`
+	AnonymizeDate *IntraTime           `json:"anonymize_date"`
 	Campus        []CampusResponse     `json:"campus"`
 	CampusUsers   []CampusUserResponse `json:"campus_users"`
 
@@ -996,7 +996,7 @@ type GetInternshipsParams struct {
 
 // PostProjectsUsersJSONBody defines parameters for PostProjectsUsers.
 type PostProjectsUsersJSONBody struct {
-	ProjectsUser PostProjectUserBody `json:"projects_user"`
+	ProjectsUser ProjectUserCreate `json:"projects_user"`
 }
 
 // PatchProjectUserByIdJSONBody defines parameters for PatchProjectUserById.

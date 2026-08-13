@@ -1,3 +1,5 @@
+OPENAPI_SPEC := openapi.yaml
+
 all: indexes bundle lint
 
 indexes:
@@ -12,16 +14,42 @@ indexes:
 bundle:
 	docker run --rm --user ${UID}:${GID} \
 		-v ./specs:/spec \
-		-v ./openapi.yaml:/gen/openapi.yaml \
+		-v ./$(OPENAPI_SPEC):/gen/$(OPENAPI_SPEC) \
 		-v ./redocly.yaml:/redocly.yaml:ro \
 		redocly/cli:2.40.0 \
-		bundle openapi.yaml --config /redocly.yaml --force --ext yaml -o /gen/openapi.yaml 2> /dev/null
+		bundle $(OPENAPI_SPEC) --config /redocly.yaml --force --ext yaml -o /gen/$(OPENAPI_SPEC) 2> /dev/null
 
 lint:
 	docker run --rm --user ${UID}:${GID} \
-		-v ./openapi.yaml:/spec/openapi.yaml \
+		-v ./$(OPENAPI_SPEC):/spec/$(OPENAPI_SPEC) \
 		-v ./redocly.yaml:/redocly.yaml:ro \
 		redocly/cli:2.40.0 \
-		lint --config /redocly.yaml --lint-config error openapi.yaml 
+		lint --config /redocly.yaml --lint-config error $(OPENAPI_SPEC)
 
-.PHONY: all indexes bundle
+generate-python:
+	docker run --rm \
+		--user "$$(id -u):$$(id -g)" \
+		-v "$(CURDIR):/workspace" \
+		--workdir /workspace \
+		--entrypoint openapi-python-client \
+		openapi-python-client:local \
+		generate \
+		--path "/workspace/$(OPENAPI_SPEC)" \
+		--config /workspace/clients/python/config.yaml \
+		--output-path /workspace/clients/python/intraoapi42 \
+		--overwrite
+
+generate-go:
+	cd clients/go && go generate ./...
+
+generate-typescript:
+	cd clients/typescript && npm run generate:api
+
+generate-clients: generate-go generate-python generate-typescript
+
+docs:
+	docker compose \
+		-f docs/docker-compose.yml \
+		up
+
+.PHONY: all indexes bundle docs generate-python generate-go

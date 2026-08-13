@@ -1,0 +1,69 @@
+ProjectUserCreate:
+  type: object
+  required:
+    - project_id
+    - user_id
+  properties:
+    id:
+      type: integer
+      format: int64
+      nullable: true
+      description: The id.
+
+    project_id:
+      type: integer
+      format: int64
+      description: The project id.
+
+    user_id:
+      type: integer
+      format: int64
+      description: The user id. Must be unique in the scope of a given project.
+
+    created_at:
+      type: string
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
+
+    updated_at:
+      type: string
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
+
+    occurrence:
+      type: integer
+      format: int64
+      nullable: true
+      default: 0
+      description: The occurrence.
+
+    final_mark:
+      type: integer
+      format: int64
+      nullable: true
+      description: The final mark.
+
+    retriable_at:
+      type: string
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
+
+    marked_at:
+      type: string
+      format: date-time
+      nullable: true
+      x-go-type: IntraTime
+
+    status:
+      type: string
+      nullable: true
+      default: unknown
+      description: The status.
+
+    skip_check_permission:
+      type: string
+      nullable: true
+      description: The skip check permission.

@@ -1,26 +1,26 @@
 /closes:
-  $ref: ./closes.yaml#/~1closes
-/closes/{id}:
-  $ref: ./closes.yaml#/~1closes~1{id}
-/internships:
-  $ref: ./internships.yaml#/~1internships
-/languages/{id}:
-  $ref: ./languages.yaml#/~1languages~1{id}
-/projects_users:
-  $ref: ./projects_users.yaml#/~1projects_users
-/projects_users/{id}:
-  $ref: ./projects_users.yaml#/~1projects_users~1{id}
-/teams/{id}:
-  $ref: ./teams.yaml#/~1teams~1{id}
-/teams/{id}/reset_team_uploads:
-  $ref: ./teams.yaml#/~1teams~1{id}~1reset_team_uploads
-/users:
-  $ref: ./users.yaml#/~1users
-/users/{id}:
-  $ref: ./users.yaml#/~1users~1{id}
-/users/{id}/user_candidature:
-  $ref: ./user_candidatures.yaml#/~1users~1{id}~1user_candidature
+  $ref: closes.yaml#/~1closes
 /users/{user_id}/closes:
-  $ref: ./closes.yaml#/~1users~1{user_id}~1closes
+  $ref: closes.yaml#/~1users~1{user_id}~1closes
+/closes/{id}:
+  $ref: closes.yaml#/~1closes~1{id}
+/internships:
+  $ref: internships.yaml#/~1internships
+/languages/{id}:
+  $ref: languages.yaml#/~1languages~1{id}
 /users/{user_id}/projects_users:
-  $ref: ./projects_users.yaml#/~1users~1{user_id}~1projects_users
+  $ref: projects_users.yaml#/~1users~1{user_id}~1projects_users
+/projects_users:
+  $ref: projects_users.yaml#/~1projects_users
+/projects_users/{id}:
+  $ref: projects_users.yaml#/~1projects_users~1{id}
+/teams/{id}:
+  $ref: teams.yaml#/~1teams~1{id}
+/teams/{id}/reset_team_uploads:
+  $ref: teams.yaml#/~1teams~1{id}~1reset_team_uploads
+/users/{id}/user_candidature:
+  $ref: user_candidatures.yaml#/~1users~1{id}~1user_candidature
+/users:
+  $ref: users.yaml#/~1users
+/users/{id}:
+  $ref: users.yaml#/~1users~1{id}

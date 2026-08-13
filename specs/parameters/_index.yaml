@@ -1,8 +1,8 @@
 page:
-  $ref: ./pages.yaml#/page
-page_number:
-  $ref: ./pages.yaml#/page_number
-page_size:
-  $ref: ./pages.yaml#/page_size
+  $ref: pages.yaml#/page
 per_page:
-  $ref: ./pages.yaml#/per_page
+  $ref: pages.yaml#/per_page
+page_number:
+  $ref: pages.yaml#/page_number
+page_size:
+  $ref: pages.yaml#/page_size

@@ -1,0 +1,15 @@
+services:
+  scalar:
+    image: node:22-alpine
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../openapi.yaml:/app/openapi.yaml:ro
+    command:
+      - sh
+      - -c
+      - |
+        npx --yes @scalar/cli document serve \
+          /app/openapi.yaml \
+          --port 8080

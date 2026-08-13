@@ -1,9 +1,9 @@
 module github.com/42paris/intraoapi42
 
-go 1.26.5
+go 1.25.1
 
 require (
-	github.com/oapi-codegen/runtime v1.6.0
+	github.com/oapi-codegen/runtime v1.7.0
 	golang.org/x/oauth2 v0.36.0
 )
 

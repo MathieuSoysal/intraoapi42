@@ -1,6 +1,8 @@
 /users/{id}/user_candidature:
   get:
     operationId: getUserCandidatureById
+    tags:
+      - User Candidatures
     summary: Get user candidature information
     security:
       - OAuth2:

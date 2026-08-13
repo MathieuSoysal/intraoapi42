@@ -11,6 +11,8 @@ paths:
   /closes:
     get:
       operationId: getCloses
+      tags:
+        - Closes
       summary: Get a list of closes
       security:
         - OAuth2:
@@ -74,443 +76,11 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
-  /closes/{id}:
-    get:
-      operationId: getCloseById
-      summary: Get a close by ID
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the close
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: A close object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CloseResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /internships:
-    get:
-      operationId: getInternships
-      summary: Get a list of internships
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: sort
-          in: query
-          description: |
-            The sort field. Sorted by id desc by default.
-            Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at, anti_grav_units_user_id.
-            Example: -updated_at,anti_grav_units_user_id (to sort by updated_at descending and anti_grav_units_user_id ascending)
-          required: false
-          schema:
-            type: string
-        - name: filter
-          in: query
-          description: |
-            Filtering on one or more fields.
-            Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at, anti_grav_units_user_id.
-            Example: filter[id]=a_value,another_value (to filter on internships with id matching a_value or another_value)
-          required: false
-          schema:
-            type: object
-            additionalProperties:
-              type: string
-          style: deepObject
-          explode: true
-        - name: range
-          in: query
-          description: |
-            Select on a particular range.
-            Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at.
-            Example: range[status]=min_value,max_value (to range on internships with status field between min_value and max_value)
-          required: false
-          schema:
-            type: object
-            additionalProperties:
-              type: string
-          style: deepObject
-          explode: true
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/per_page'
-        - $ref: '#/components/parameters/page_number'
-        - $ref: '#/components/parameters/page_size'
-      responses:
-        '200':
-          description: A list of internships
-          headers:
-            Link:
-              $ref: '#/components/headers/Link'
-            X-Page:
-              $ref: '#/components/headers/X-Page'
-            X-Per-Page:
-              $ref: '#/components/headers/X-Per-Page'
-            X-Total:
-              $ref: '#/components/headers/X-Total'
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/InternshipResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /languages/{id}:
-    get:
-      operationId: getLanguageById
-      summary: Get a language by ID
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the language
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: A language object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LanguageResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /projects_users:
-    post:
-      operationId: PostProjectsUsers
-      summary: Create a project user
-      security:
-        - OAuth2:
-            - public
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - projects_user
-              properties:
-                projects_user:
-                  $ref: '#/components/schemas/PostProjectUserBody'
-            example:
-              projects_user:
-                project_id: 1
-                user_id: 1
-      responses:
-        '201':
-          description: Project user created successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProjectUserResponse'
-        '400':
-          $ref: '#/components/responses/ErrorResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /projects_users/{id}:
-    patch:
-      operationId: PatchProjectUserById
-      summary: Update a project user
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the project user
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - projects_user
-              properties:
-                projects_user:
-                  $ref: '#/components/schemas/ProjectUserUpdate'
-            example:
-              projects_user:
-                project_id: 1
-                user_id: 1
-      responses:
-        '204':
-          description: Project user updated successfully
-        '400':
-          $ref: '#/components/responses/ErrorResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-    put:
-      operationId: PutProjectUserById
-      summary: Update a project user
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the project user
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - projects_user
-              properties:
-                projects_user:
-                  $ref: '#/components/schemas/ProjectUserUpdate'
-            example:
-              projects_user:
-                project_id: 1
-                user_id: 1
-      responses:
-        '204':
-          description: Project user updated successfully
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /teams/{id}:
-    get:
-      operationId: getTeamById
-      summary: Get a team by ID
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the team
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: A team object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TeamResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-    patch:
-      operationId: PatchTeamById
-      summary: Patch a team by ID
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the team
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - team
-              properties:
-                team:
-                  $ref: '#/components/schemas/TeamUpdate'
-            example:
-              team:
-                project_id: 5
-      responses:
-        '204':
-          description: Team has been patched
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-    put:
-      operationId: PutTeamById
-      summary: Update a team by ID
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the team
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - team
-              properties:
-                team:
-                  $ref: '#/components/schemas/TeamUpdate'
-            example:
-              team:
-                project_id: 5
-      responses:
-        '204':
-          description: Team has been updated
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /teams/{id}/reset_team_uploads:
-    post:
-      operationId: PostResetTeamUploadsById
-      summary: Reset team uploads by ID
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the team
-          schema:
-            type: string
-      responses:
-        '201':
-          description: Team Uploads as been reset
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /users:
-    get:
-      operationId: getUsers
-      summary: Get a list of users
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: sort
-          in: query
-          description: |
-            The sort field. Sorted by id desc by default.
-            Must be one of: id, login, email, encrypted_password, reset_password_token, reset_password_sent_at, created_at, updated_at, image, first_name, last_name, pool_year, pool_month, kind, status, otp_secret_key, otp_tmp, otp_activated, otp_backup_passwords, slack_team, slack_login, slack_mail, slack_code_validation, slack_validated_at, token_id, email_stop, linked_user_id, usual_first_name, last_seen_at, password_changed_at, encrypted_single_usage_password, first_warn_anon_sent_at, second_warn_anon_sent_at, alumnized_at, anonymized_at.
-            Example: -alumnized_at,anonymized_at (to sort on alumnized_at descending and anonymized_at ascending)
-          required: false
-          schema:
-            type: string
-        - name: filter
-          in: query
-          description: |
-            Filtering on one or more fields.
-            Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status, primary_campus_id, first_name, last_name, alumni?, staff?.
-            Example: filter[id]=a_value,another_value (to filter on users with id matching a_value or another_value)
-          required: false
-          schema:
-            type: object
-            additionalProperties:
-              type: string
-          style: deepObject
-          explode: true
-        - name: range
-          in: query
-          description: |
-            Select on a particular range.
-            Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status.
-            Example: range[status]=min_value,max_value (to range on users with status field between min_value and max_value)
-          required: false
-          schema:
-            type: object
-            additionalProperties:
-              type: string
-          style: deepObject
-          explode: true
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/per_page'
-        - $ref: '#/components/parameters/page_number'
-        - $ref: '#/components/parameters/page_size'
-      responses:
-        '200':
-          description: A list of users
-          headers:
-            Link:
-              $ref: '#/components/headers/Link'
-            X-Page:
-              $ref: '#/components/headers/X-Page'
-            X-Per-Page:
-              $ref: '#/components/headers/X-Per-Page'
-            X-Total:
-              $ref: '#/components/headers/X-Total'
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/LightUserResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /users/{id}:
-    get:
-      operationId: getUserById
-      summary: Get a user by ID
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the user
-          schema:
-            type: string
-      responses:
-        '200':
-          description: A user object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
-  /users/{id}/user_candidature:
-    get:
-      operationId: getUserCandidatureById
-      summary: Get user candidature information
-      security:
-        - OAuth2:
-            - public
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: The ID of the user
-          schema:
-            type: string
-      responses:
-        '200':
-          description: User candidature information
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserCandidatureResponse'
-        default:
-          $ref: '#/components/responses/ErrorResponse'
   /users/{user_id}/closes:
     get:
       operationId: getClosesByUserId
+      tags:
+        - Closes
       summary: Get a list of closes by user id
       security:
         - OAuth2:
@@ -578,9 +148,130 @@ paths:
                   $ref: '#/components/schemas/CloseResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
+  /closes/{id}:
+    get:
+      operationId: getCloseById
+      tags:
+        - Closes
+      summary: Get a close by ID
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the close
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A close object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloseResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /internships:
+    get:
+      operationId: getInternships
+      tags:
+        - Internships
+      summary: Get a list of internships
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: sort
+          in: query
+          description: |
+            The sort field. Sorted by id desc by default.
+            Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at, anti_grav_units_user_id.
+            Example: -updated_at,anti_grav_units_user_id (to sort by updated_at descending and anti_grav_units_user_id ascending)
+          required: false
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: |
+            Filtering on one or more fields.
+            Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at, anti_grav_units_user_id.
+            Example: filter[id]=a_value,another_value (to filter on internships with id matching a_value or another_value)
+          required: false
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+          style: deepObject
+          explode: true
+        - name: range
+          in: query
+          description: |
+            Select on a particular range.
+            Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at.
+            Example: range[status]=min_value,max_value (to range on internships with status field between min_value and max_value)
+          required: false
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+          style: deepObject
+          explode: true
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/per_page'
+        - $ref: '#/components/parameters/page_number'
+        - $ref: '#/components/parameters/page_size'
+      responses:
+        '200':
+          description: A list of internships
+          headers:
+            Link:
+              $ref: '#/components/headers/Link'
+            X-Page:
+              $ref: '#/components/headers/X-Page'
+            X-Per-Page:
+              $ref: '#/components/headers/X-Per-Page'
+            X-Total:
+              $ref: '#/components/headers/X-Total'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InternshipResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /languages/{id}:
+    get:
+      operationId: getLanguageById
+      tags:
+        - Languages
+      summary: Get a language by ID
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the language
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A language object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LanguageResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
   /users/{user_id}/projects_users:
     get:
       operationId: GetProjectsUsersByUserId
+      tags:
+        - Projects Users
       summary: Get a list of projects users by a user Id
       security:
         - OAuth2:
@@ -640,6 +331,347 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ProjectUserResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /projects_users:
+    post:
+      operationId: PostProjectsUsers
+      tags:
+        - Projects Users
+      summary: Create a project user
+      security:
+        - OAuth2:
+            - public
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - projects_user
+              properties:
+                projects_user:
+                  $ref: '#/components/schemas/ProjectUserCreate'
+            example:
+              projects_user:
+                project_id: 1
+                user_id: 1
+      responses:
+        '201':
+          description: Project user created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectUserResponse'
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /projects_users/{id}:
+    patch:
+      operationId: PatchProjectUserById
+      tags:
+        - Projects Users
+      summary: Update a project user
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the project user
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - projects_user
+              properties:
+                projects_user:
+                  $ref: '#/components/schemas/ProjectUserUpdate'
+            example:
+              projects_user:
+                project_id: 1
+                user_id: 1
+      responses:
+        '204':
+          description: Project user updated successfully
+        '400':
+          $ref: '#/components/responses/ErrorResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    put:
+      operationId: PutProjectUserById
+      tags:
+        - Projects Users
+      summary: Update a project user
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the project user
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - projects_user
+              properties:
+                projects_user:
+                  $ref: '#/components/schemas/ProjectUserUpdate'
+            example:
+              projects_user:
+                project_id: 1
+                user_id: 1
+      responses:
+        '204':
+          description: Project user updated successfully
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /teams/{id}:
+    get:
+      operationId: getTeamById
+      tags:
+        - Teams
+      summary: Get a team by ID
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the team
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A team object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    patch:
+      operationId: PatchTeamById
+      tags:
+        - Teams
+      summary: Patch a team by ID
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the team
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - team
+              properties:
+                team:
+                  $ref: '#/components/schemas/TeamUpdate'
+            example:
+              team:
+                project_id: 5
+      responses:
+        '204':
+          description: Team has been patched
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    put:
+      operationId: PutTeamById
+      tags:
+        - Teams
+      summary: Update a team by ID
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the team
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - team
+              properties:
+                team:
+                  $ref: '#/components/schemas/TeamUpdate'
+            example:
+              team:
+                project_id: 5
+      responses:
+        '204':
+          description: Team has been updated
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /teams/{id}/reset_team_uploads:
+    post:
+      operationId: PostResetTeamUploadsById
+      tags:
+        - Teams
+      summary: Reset team uploads by ID
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the team
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Team Uploads as been reset
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /users/{id}/user_candidature:
+    get:
+      operationId: getUserCandidatureById
+      tags:
+        - User Candidatures
+      summary: Get user candidature information
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the user
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User candidature information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCandidatureResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /users:
+    get:
+      operationId: getUsers
+      tags:
+        - Users
+      summary: Get a list of users
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: sort
+          in: query
+          description: |
+            The sort field. Sorted by id desc by default.
+            Must be one of: id, login, email, encrypted_password, reset_password_token, reset_password_sent_at, created_at, updated_at, image, first_name, last_name, pool_year, pool_month, kind, status, otp_secret_key, otp_tmp, otp_activated, otp_backup_passwords, slack_team, slack_login, slack_mail, slack_code_validation, slack_validated_at, token_id, email_stop, linked_user_id, usual_first_name, last_seen_at, password_changed_at, encrypted_single_usage_password, first_warn_anon_sent_at, second_warn_anon_sent_at, alumnized_at, anonymized_at.
+            Example: -alumnized_at,anonymized_at (to sort on alumnized_at descending and anonymized_at ascending)
+          required: false
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: |
+            Filtering on one or more fields.
+            Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status, primary_campus_id, first_name, last_name, alumni?, staff?.
+            Example: filter[id]=a_value,another_value (to filter on users with id matching a_value or another_value)
+          required: false
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+          style: deepObject
+          explode: true
+        - name: range
+          in: query
+          description: |
+            Select on a particular range.
+            Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status.
+            Example: range[status]=min_value,max_value (to range on users with status field between min_value and max_value)
+          required: false
+          schema:
+            type: object
+            additionalProperties:
+              type: string
+          style: deepObject
+          explode: true
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/per_page'
+        - $ref: '#/components/parameters/page_number'
+        - $ref: '#/components/parameters/page_size'
+      responses:
+        '200':
+          description: A list of users
+          headers:
+            Link:
+              $ref: '#/components/headers/Link'
+            X-Page:
+              $ref: '#/components/headers/X-Page'
+            X-Per-Page:
+              $ref: '#/components/headers/X-Per-Page'
+            X-Total:
+              $ref: '#/components/headers/X-Total'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LightUserResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+  /users/{id}:
+    get:
+      operationId: getUserById
+      tags:
+        - Users
+      summary: Get a user by ID
+      security:
+        - OAuth2:
+            - public
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the user
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
         default:
           $ref: '#/components/responses/ErrorResponse'
 components:
@@ -1129,6 +1161,32 @@ components:
         - user_id
         - position
         - created_at
+    PatronageResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: integer
+        godson_id:
+          type: integer
+        godfather_id:
+          type: integer
+        ongoing:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+        updated_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+      required:
+        - id
+        - ongoing
+        - created_at
+        - updated_at
     LightProjectResponse:
       type: object
       properties:
@@ -1146,6 +1204,380 @@ components:
         - name
         - slug
         - parent_id
+    ProjectUserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        occurrence:
+          type: integer
+        final_mark:
+          type: integer
+          nullable: true
+        status:
+          type: string
+        validated?:
+          type: boolean
+          nullable: true
+        current_team_id:
+          type: integer
+        project:
+          $ref: '#/components/schemas/LightProjectResponse'
+        cursus_ids:
+          type: array
+          items:
+            type: integer
+        user:
+          $ref: '#/components/schemas/LightUserResponse'
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/LightTeamResponse'
+        marked_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+        marked:
+          type: boolean
+          nullable: true
+        retriable_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+        created_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+        updated_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+      required:
+        - id
+        - occurrence
+        - status
+        - validated?
+        - current_team_id
+        - project
+        - cursus_ids
+        - user
+        - teams
+    ProjectUserCreate:
+      type: object
+      required:
+        - project_id
+        - user_id
+      properties:
+        id:
+          type: integer
+          format: int64
+          nullable: true
+          description: The id.
+        project_id:
+          type: integer
+          format: int64
+          description: The project id.
+        user_id:
+          type: integer
+          format: int64
+          description: The user id. Must be unique in the scope of a given project.
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+        occurrence:
+          type: integer
+          format: int64
+          nullable: true
+          default: 0
+          description: The occurrence.
+        final_mark:
+          type: integer
+          format: int64
+          nullable: true
+          description: The final mark.
+        retriable_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+        marked_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+        status:
+          type: string
+          nullable: true
+          default: unknown
+          description: The status.
+        skip_check_permission:
+          type: string
+          nullable: true
+          description: The skip check permission.
+    ProjectUserUpdate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          nullable: true
+          description: The id.
+        project_id:
+          type: integer
+          format: int64
+          nullable: true
+          description: The project id.
+        user_id:
+          type: integer
+          format: int64
+          nullable: true
+          description: The user id. Must be unique in the scope of a given project.
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+          description: The created at.
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+          description: The updated at.
+        occurrence:
+          type: integer
+          format: int64
+          nullable: true
+          default: 0
+          description: The occurrence. Default to 0.
+        final_mark:
+          type: integer
+          format: int64
+          nullable: true
+          description: The final mark.
+        retriable_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+          description: The retriable at.
+        marked_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+          description: The marked at.
+        status:
+          type: string
+          nullable: true
+          default: unknown
+          description: The status. Default to unknown.
+        skip_check_permission:
+          type: string
+          nullable: true
+          description: The skip check permission.
+    RoleResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      required:
+        - id
+        - name
+    ScaleTeamResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        scale_id:
+          type: integer
+        comment:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+        updated_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+        feedback:
+          type: string
+        final_mark:
+          type: integer
+          nullable: true
+        flag:
+          $ref: '#/components/schemas/ScaleFlagResponse'
+        begin_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+        correcteds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScaleUserResponse'
+        corrector:
+          $ref: '#/components/schemas/ScaleUserResponse'
+        truant:
+          type: object
+          additionalProperties: true
+        filled_at:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+        questions_with_answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionWithAnswersResponse'
+        teams_uploads:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamUploadResponse'
+      required:
+        - id
+        - scale_id
+        - comment
+        - created_at
+        - updated_at
+        - feedback
+        - final_mark
+        - flag
+        - begin_at
+        - correcteds
+        - corrector
+        - truant
+        - filled_at
+        - questions_with_answers
+    ScaleFlagResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        positive:
+          type: boolean
+        icon:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+        updated_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+      required:
+        - id
+        - name
+        - positive
+        - icon
+        - created_at
+        - updated_at
+    ScaleUserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        login:
+          type: string
+        url:
+          type: string
+          format: uri
+      required:
+        - id
+        - login
+        - url
+    QuestionWithAnswersResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        guidelines:
+          type: string
+        rating:
+          type: string
+        kind:
+          type: string
+        position:
+          type: integer
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionAnswerResponse'
+      required:
+        - id
+        - name
+        - guidelines
+        - rating
+        - kind
+        - position
+        - answers
+    QuestionAnswerResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        value:
+          type: integer
+          nullable: true
+        answer:
+          type: string
+          nullable: true
+      required:
+        - id
+        - value
+        - answer
+    TeamUploadResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        final_mark:
+          type: integer
+          nullable: true
+        comment:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+        upload_id:
+          type: integer
+      required:
+        - id
+        - final_mark
+        - comment
+        - created_at
+        - upload_id
+    SkillResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        level:
+          type: number
+          format: double
+      required:
+        - id
+        - name
+        - level
     LightTeamResponse:
       type: object
       properties:
@@ -1225,503 +1657,32 @@ components:
         - closed_at
         - project_session_id
         - project_gitlab_path
-    LightUserResponse:
+    TeamUserResponse:
       type: object
       properties:
         id:
           type: integer
-          description: The unique identifier of the user.
         login:
           type: string
-          description: The login name of the user.
-        first_name:
-          type: string
-          description: The first name of the user.
-        usual_first_name:
-          type: string
-          description: The usual first name of the user, first_name if none.
-          nullable: true
-        usual_full_name:
-          type: string
-          description: The usual full name of the user, usually usual_first_name or first_name + last_name.
-        last_name:
-          type: string
-          description: The last name of the user.
-        email:
-          type: string
-          description: The email address of the user.
-          format: email
         url:
           type: string
           format: uri
-          description: The URL to the user's resource.
-        phone:
-          type: string
-          description: The phone number of the user (always hidden).
-        displayname:
-          type: string
-          description: The display name of the user.
-        kind:
-          type: string
-          description: The kind of user (e.g., student, admin, external).
-          enum:
-            - student
-            - admin
-            - external
-        image:
-          $ref: '#/components/schemas/UserImageResponse'
-        staff?:
+        leader:
           type: boolean
-          description: Indicates if the user is staff.
-        correction_point:
+        occurrence:
           type: integer
-          description: The user's correction points.
-        pool_month:
-          type: string
-          description: The month of the user's pool.
-        pool_year:
-          type: string
-          description: The year of the user's pool.
-        location:
-          type: string
-          description: The location of the user.
-          nullable: true
-        wallet:
+        validated:
+          type: boolean
+        projects_user_id:
           type: integer
-          description: The user's wallet balance.
-        anonymize_date:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-          description: The date when user data will be anonymized.
-        data_erasure_date:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-          description: The date when user data will be erased.
-        created_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-          description: The user creation timestamp.
-        updated_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-          description: The last user update timestamp.
-        alumnized_at:
-          description: The date when the user became an alumnus.
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-        alumni?:
-          type: boolean
-          description: Indicates if the user is an alumnus.
-        active?:
-          type: boolean
-          description: Indicates if the user is active.
       required:
         - id
         - login
-        - first_name
-        - last_name
-        - usual_full_name
-        - email
         - url
-        - displayname
-        - kind
-        - image
-        - staff?
-        - correction_point
-        - pool_month
-        - pool_year
-        - wallet
-        - anonymize_date
-        - data_erasure_date
-        - created_at
-        - updated_at
-        - alumnized_at
-        - alumni?
-        - active?
-    PatronageResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        user_id:
-          type: integer
-        godson_id:
-          type: integer
-        godfather_id:
-          type: integer
-        ongoing:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-        updated_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-      required:
-        - id
-        - ongoing
-        - created_at
-        - updated_at
-    PostProjectUserBody:
-      type: object
-      required:
-        - project_id
-        - user_id
-      properties:
-        id:
-          type: integer
-          format: int64
-          nullable: true
-          description: The id.
-        project_id:
-          type: integer
-          format: int64
-          description: The project id.
-        user_id:
-          type: integer
-          format: int64
-          description: The user id. Must be unique in the scope of a given project.
-        created_at:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-        updated_at:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-        occurrence:
-          type: integer
-          format: int64
-          nullable: true
-          default: 0
-          description: The occurrence.
-        final_mark:
-          type: integer
-          format: int64
-          nullable: true
-          description: The final mark.
-        retriable_at:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-        marked_at:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-        status:
-          type: string
-          nullable: true
-          default: unknown
-          description: The status.
-        skip_check_permission:
-          type: string
-          nullable: true
-          description: The skip check permission.
-    ProjectUserResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        occurrence:
-          type: integer
-        final_mark:
-          type: integer
-          nullable: true
-        status:
-          type: string
-        validated?:
-          type: boolean
-          nullable: true
-        current_team_id:
-          type: integer
-        project:
-          $ref: '#/components/schemas/LightProjectResponse'
-        cursus_ids:
-          type: array
-          items:
-            type: integer
-        user:
-          $ref: '#/components/schemas/LightUserResponse'
-        teams:
-          type: array
-          items:
-            $ref: '#/components/schemas/LightTeamResponse'
-        marked_at:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-        marked:
-          type: boolean
-          nullable: true
-        retriable_at:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-        created_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-        updated_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-      required:
-        - id
+        - leader
         - occurrence
-        - status
-        - validated?
-        - current_team_id
-        - project
-        - cursus_ids
-        - user
-        - teams
-    ProjectUserUpdate:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          nullable: true
-          description: The id.
-        project_id:
-          type: integer
-          format: int64
-          nullable: true
-          description: The project id.
-        user_id:
-          type: integer
-          format: int64
-          nullable: true
-          description: The user id. Must be unique in the scope of a given project.
-        created_at:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-          description: The created at.
-        updated_at:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-          description: The updated at.
-        occurrence:
-          type: integer
-          format: int64
-          nullable: true
-          default: 0
-          description: The occurrence. Default to 0.
-        final_mark:
-          type: integer
-          format: int64
-          nullable: true
-          description: The final mark.
-        retriable_at:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-          description: The retriable at.
-        marked_at:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-          description: The marked at.
-        status:
-          type: string
-          nullable: true
-          default: unknown
-          description: The status. Default to unknown.
-        skip_check_permission:
-          type: string
-          nullable: true
-          description: The skip check permission.
-    QuestionAnswerResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        value:
-          type: integer
-          nullable: true
-        answer:
-          type: string
-          nullable: true
-      required:
-        - id
-        - value
-        - answer
-    QuestionWithAnswersResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        guidelines:
-          type: string
-        rating:
-          type: string
-        kind:
-          type: string
-        position:
-          type: integer
-        answers:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuestionAnswerResponse'
-      required:
-        - id
-        - name
-        - guidelines
-        - rating
-        - kind
-        - position
-        - answers
-    RoleResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-      required:
-        - id
-        - name
-    ScaleFlagResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        positive:
-          type: boolean
-        icon:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-        updated_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-      required:
-        - id
-        - name
-        - positive
-        - icon
-        - created_at
-        - updated_at
-    ScaleTeamResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        scale_id:
-          type: integer
-        comment:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-        updated_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-        feedback:
-          type: string
-        final_mark:
-          type: integer
-          nullable: true
-        flag:
-          $ref: '#/components/schemas/ScaleFlagResponse'
-        begin_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-        correcteds:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScaleUserResponse'
-        corrector:
-          $ref: '#/components/schemas/ScaleUserResponse'
-        truant:
-          type: object
-          additionalProperties: true
-        filled_at:
-          type: string
-          format: date-time
-          nullable: true
-          x-go-type: IntraTime
-        questions_with_answers:
-          type: array
-          items:
-            $ref: '#/components/schemas/QuestionWithAnswersResponse'
-        teams_uploads:
-          type: array
-          items:
-            $ref: '#/components/schemas/TeamUploadResponse'
-      required:
-        - id
-        - scale_id
-        - comment
-        - created_at
-        - updated_at
-        - feedback
-        - final_mark
-        - flag
-        - begin_at
-        - correcteds
-        - corrector
-        - truant
-        - filled_at
-        - questions_with_answers
-    ScaleUserResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        login:
-          type: string
-        url:
-          type: string
-          format: uri
-      required:
-        - id
-        - login
-        - url
-    SkillResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        level:
-          type: number
-          format: double
-      required:
-        - id
-        - name
-        - level
+        - validated
+        - projects_user_id
     TeamResponse:
       allOf:
         - $ref: '#/components/schemas/LightTeamResponse'
@@ -1903,54 +1864,6 @@ components:
                 nullable: true
                 default: 0
                 description: The occurrence.
-    TeamUploadResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        final_mark:
-          type: integer
-          nullable: true
-        comment:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-          x-go-type: IntraTime
-        upload_id:
-          type: integer
-      required:
-        - id
-        - final_mark
-        - comment
-        - created_at
-        - upload_id
-    TeamUserResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-        login:
-          type: string
-        url:
-          type: string
-          format: uri
-        leader:
-          type: boolean
-        occurrence:
-          type: integer
-        validated:
-          type: boolean
-        projects_user_id:
-          type: integer
-      required:
-        - id
-        - login
-        - url
-        - leader
-        - occurrence
-        - validated
-        - projects_user_id
     TitleResponse:
       type: object
       properties:
@@ -1987,6 +1900,225 @@ components:
         - selected
         - created_at
         - updated_at
+    UserResponse:
+      allOf:
+        - $ref: '#/components/schemas/LightUserResponse'
+        - type: object
+          properties:
+            groups:
+              type: array
+              items:
+                $ref: '#/components/schemas/GroupResponse'
+            cursus_users:
+              type: array
+              items:
+                $ref: '#/components/schemas/CursusUserResponse'
+            projects_users:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProjectUserResponse'
+            languages_users:
+              type: array
+              items:
+                $ref: '#/components/schemas/LanguageUserResponse'
+            achievements:
+              type: array
+              items:
+                $ref: '#/components/schemas/AchievementResponse'
+            titles:
+              type: array
+              items:
+                $ref: '#/components/schemas/TitleResponse'
+            titles_users:
+              type: array
+              items:
+                $ref: '#/components/schemas/TitleUserResponse'
+            patroned:
+              type: array
+              items:
+                $ref: '#/components/schemas/PatronageResponse'
+            patroning:
+              type: array
+              items:
+                $ref: '#/components/schemas/PatronageResponse'
+            roles:
+              type: array
+              items:
+                $ref: '#/components/schemas/RoleResponse'
+            campus:
+              type: array
+              items:
+                $ref: '#/components/schemas/CampusResponse'
+            campus_users:
+              type: array
+              items:
+                $ref: '#/components/schemas/CampusUserResponse'
+          required:
+            - groups
+            - cursus_users
+            - projects_users
+            - languages_users
+            - achievements
+            - titles
+            - titles_users
+            - patroned
+            - patroning
+            - roles
+            - campus
+            - campus_users
+    LightUserResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the user.
+        login:
+          type: string
+          description: The login name of the user.
+        first_name:
+          type: string
+          description: The first name of the user.
+        usual_first_name:
+          type: string
+          description: The usual first name of the user, first_name if none.
+          nullable: true
+        usual_full_name:
+          type: string
+          description: The usual full name of the user, usually usual_first_name or first_name + last_name.
+        last_name:
+          type: string
+          description: The last name of the user.
+        email:
+          type: string
+          description: The email address of the user.
+          format: email
+        url:
+          type: string
+          format: uri
+          description: The URL to the user's resource.
+        phone:
+          type: string
+          description: The phone number of the user (always hidden).
+        displayname:
+          type: string
+          description: The display name of the user.
+        kind:
+          type: string
+          description: The kind of user (e.g., student, admin, external).
+          enum:
+            - student
+            - admin
+            - external
+        image:
+          $ref: '#/components/schemas/UserImageResponse'
+        staff?:
+          type: boolean
+          description: Indicates if the user is staff.
+        correction_point:
+          type: integer
+          description: The user's correction points.
+        pool_month:
+          type: string
+          description: The month of the user's pool.
+        pool_year:
+          type: string
+          description: The year of the user's pool.
+        location:
+          type: string
+          description: The location of the user.
+          nullable: true
+        wallet:
+          type: integer
+          description: The user's wallet balance.
+        anonymize_date:
+          type: string
+          format: date-time
+          nullable: true
+          x-go-type: IntraTime
+          description: The date when user data will be anonymized.
+        data_erasure_date:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+          description: The date when user data will be erased.
+        created_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+          description: The user creation timestamp.
+        updated_at:
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+          description: The last user update timestamp.
+        alumnized_at:
+          description: The date when the user became an alumnus.
+          type: string
+          format: date-time
+          x-go-type: IntraTime
+        alumni?:
+          type: boolean
+          description: Indicates if the user is an alumnus.
+        active?:
+          type: boolean
+          description: Indicates if the user is active.
+      required:
+        - id
+        - login
+        - first_name
+        - last_name
+        - usual_full_name
+        - email
+        - url
+        - displayname
+        - kind
+        - image
+        - staff?
+        - correction_point
+        - pool_month
+        - pool_year
+        - wallet
+        - anonymize_date
+        - data_erasure_date
+        - created_at
+        - updated_at
+        - alumnized_at
+        - alumni?
+        - active?
+    UserImageResponse:
+      type: object
+      properties:
+        link:
+          type: string
+          format: uri
+          description: The URL to the user's image.
+        versions:
+          type: object
+          properties:
+            large:
+              type: string
+              format: uri
+              description: URL to the large version of the user's image.
+            medium:
+              type: string
+              format: uri
+              description: URL to the medium version of the user's image.
+            small:
+              type: string
+              format: uri
+              description: URL to the small version of the user's image.
+            micro:
+              type: string
+              format: uri
+              description: URL to the micro version of the user's image.
+          required:
+            - large
+            - medium
+            - small
+            - micro
+      required:
+        - link
+        - versions
     UserCandidatureResponse:
       type: object
       properties:
@@ -2131,106 +2263,6 @@ components:
         pin: '7777'
         phone_country_code: FR
         hidden_phone: false
-    UserImageResponse:
-      type: object
-      properties:
-        link:
-          type: string
-          format: uri
-          description: The URL to the user's image.
-        versions:
-          type: object
-          properties:
-            large:
-              type: string
-              format: uri
-              description: URL to the large version of the user's image.
-            medium:
-              type: string
-              format: uri
-              description: URL to the medium version of the user's image.
-            small:
-              type: string
-              format: uri
-              description: URL to the small version of the user's image.
-            micro:
-              type: string
-              format: uri
-              description: URL to the micro version of the user's image.
-          required:
-            - large
-            - medium
-            - small
-            - micro
-      required:
-        - link
-        - versions
-    UserResponse:
-      allOf:
-        - $ref: '#/components/schemas/LightUserResponse'
-        - type: object
-          properties:
-            groups:
-              type: array
-              items:
-                $ref: '#/components/schemas/GroupResponse'
-            cursus_users:
-              type: array
-              items:
-                $ref: '#/components/schemas/CursusUserResponse'
-            projects_users:
-              type: array
-              items:
-                $ref: '#/components/schemas/ProjectUserResponse'
-            languages_users:
-              type: array
-              items:
-                $ref: '#/components/schemas/LanguageUserResponse'
-            achievements:
-              type: array
-              items:
-                $ref: '#/components/schemas/AchievementResponse'
-            titles:
-              type: array
-              items:
-                $ref: '#/components/schemas/TitleResponse'
-            titles_users:
-              type: array
-              items:
-                $ref: '#/components/schemas/TitleUserResponse'
-            patroned:
-              type: array
-              items:
-                $ref: '#/components/schemas/PatronageResponse'
-            patroning:
-              type: array
-              items:
-                $ref: '#/components/schemas/PatronageResponse'
-            roles:
-              type: array
-              items:
-                $ref: '#/components/schemas/RoleResponse'
-            campus:
-              type: array
-              items:
-                $ref: '#/components/schemas/CampusResponse'
-            campus_users:
-              type: array
-              items:
-                $ref: '#/components/schemas/CampusUserResponse'
-          required:
-            - groups
-            - cursus_users
-            - projects_users
-            - languages_users
-            - achievements
-            - titles
-            - titles_users
-            - patroned
-            - patroning
-            - roles
-            - campus
-            - campus_users
   parameters:
     page:
       name: page
@@ -2242,6 +2274,16 @@ components:
       schema:
         type: integer
         minimum: 1
+    per_page:
+      name: per_page
+      in: query
+      description: |
+        Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
     page_number:
       name: page[number]
       in: query
@@ -2256,16 +2298,6 @@ components:
       in: query
       description: |
         Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100).
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-    per_page:
-      name: per_page
-      in: query
-      description: |
-        Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons.
       required: false
       schema:
         type: integer

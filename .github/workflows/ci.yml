@@ -1,0 +1,34 @@
+name: Verify Generated Code
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-generated:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.25.1'
+
+      - name: Change to Go Client
+        run: cd clients/go
+
+      - name: Run go generate
+        run: |
+            go generate ./...
+            go mod tidy
+
+      - name: Check for modifications
+        run: |
+          git diff --exit-code --shortstat
+          if [ $? -ne 0 ]; then
+            echo "Error: Generated files are not up to date. Please run 'go generate ./...' and commit the changes."
+            exit 1
+          fi   

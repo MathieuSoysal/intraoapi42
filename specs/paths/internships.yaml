@@ -1,6 +1,8 @@
 /internships:
   get:
     operationId: getInternships
+    tags:
+        - Internships
     summary: Get a list of internships
     security:
       - OAuth2:
