@@ -36,12 +36,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    #   - name: Release Python
-    #     working-directory: clients/python
-    #     run: npx --no-install semantic-release -e semantic-release-monorepo
-    #     env:
-    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #       PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+      - name: Release Python
+        working-directory: clients/python
+        run: npx --no-install semantic-release -e semantic-release-monorepo
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
 
     #   - name: Release TypeScript
     #     working-directory: clients/typescript
