@@ -1,4 +1,4 @@
-# intraoapi42-client
+# intraoapi42
 A client library for accessing Intra 42 API
 
 ## Usage

@@ -1,4 +1,4 @@
-project_name_override: generated-client
+project_name_override: intraoapi42
 package_name_override: intraoapi42
 field_prefix: field_
 generate_all_tags: false

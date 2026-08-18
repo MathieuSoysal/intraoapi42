@@ -7,7 +7,7 @@ from threading import Lock
 
 import httpx
 
-from intraoapi42.client import AuthenticatedClient
+from .client import AuthenticatedClient
 
 
 @dataclass(frozen=True)
@@ -175,7 +175,7 @@ class RetryTransport(httpx.BaseTransport):
         self._transport.close()
 
 
-def new(config: Config) -> AuthenticatedClient:
+def NewClient(config: Config) -> AuthenticatedClient:
     token_source = RefreshableTokenSource(config)
     auth = OAuth2ClientCredentials(token_source)
 

@@ -27,6 +27,8 @@ lint:
 		lint --config /redocly.yaml --lint-config error $(OPENAPI_SPEC)
 
 generate-python:
+	rm -rf clients/python/intraoapi42
+
 	docker run --rm \
 		--user "$$(id -u):$$(id -g)" \
 		-v "$(CURDIR):/workspace" \
@@ -36,8 +38,11 @@ generate-python:
 		generate \
 		--path "/workspace/$(OPENAPI_SPEC)" \
 		--config /workspace/clients/python/config.yaml \
-		--output-path /workspace/clients/python/intraoapi42 \
+		--output-path /workspace/clients/python \
+		--custom-template-path /workspace/clients/python/custom-templates \
 		--overwrite
+	
+	cp clients/python/custom_client.py.txt clients/python/intraoapi42/custom_client.py
 
 generate-go:
 	cd clients/go && go generate ./...
