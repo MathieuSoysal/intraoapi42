@@ -1,6 +1,6 @@
 [project]
 name = "intraoapi42"
-version = "0.0.0"
+version = "1.0.0"
 description = "42 Intra API client for Python"
 readme = "README.md"
 requires-python = ">=3.10"
