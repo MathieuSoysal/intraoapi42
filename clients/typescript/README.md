@@ -1,20 +1,35 @@
-intraoapi42
-Typed TypeScript client for the 42 Intra API, built on openapi-fetch.
-Features:
-    • Fully typed requests and responses generated from the OpenAPI spec.
-    • Automatic OAuth2 client credentials flow with token refresh.
-    • Built‑in retry logic for transient failures.
-    • Ready‑made configs for production and staging environments.
+# intraoapi42
 
-Installation
+Typed TypeScript client for the [42 Intra API](https://api.intra.42.fr/), built on [`openapi-fetch`](https://openapi-ts.dev/packages/openapi-fetch/).
+
+Features:
+
+- Fully typed requests and responses generated from the OpenAPI spec.
+- Automatic OAuth2 client credentials flow with token refresh.
+- Built‑in retry logic for transient failures.
+- Ready‑made configs for production and staging environments.
+
+---
+
+## Installation
+
+```bash
 npm install intraoapi42
+```
 
 or with a scoped name if you publish as such:
+
+```bash
 npm install @your-username/intraoapi42
+```
 
-Requires Node.js with ESM support (your package.json should have "type": "module" or use .mjs extensions).
+Requires Node.js with ESM support (your `package.json` should have `"type": "module"` or use `.mjs` extensions).
 
-Quick start
+---
+
+## Quick start
+
+```ts
 import {
   createApiClient,
   ProductionConfig,
@@ -51,12 +66,19 @@ if (error) {
 }
 
 console.log(data);
+```
 
 Types for paths, parameters, and responses are inferred from the OpenAPI spec, so you get full TypeScript autocomplete and type checking.
 
-Configuration
-Environments
+---
+
+## Configuration
+
+### Environments
+
 Two built‑in configs are provided:
+
+```ts
 import { ProductionConfig, StagingConfig } from "intraoapi42";
 
 ProductionConfig;
@@ -70,9 +92,13 @@ StagingConfig;
 //   tokenUrl: "https://api.intra-staging.42.fr/oauth/token",
 //   serverUrl: "https://api.intra-staging.42.fr/v2",
 // }
+```
 
-Adding credentials
-Use withClientCredentials to attach your OAuth2 client ID and secret:
+### Adding credentials
+
+Use `withClientCredentials` to attach your OAuth2 client ID and secret:
+
+```ts
 import {
   ProductionConfig,
   withClientCredentials,
@@ -86,9 +112,13 @@ const config = withClientCredentials(
 );
 
 const api = createApiClient(config);
+```
 
-Adding scopes
+### Adding scopes
+
 Optionally restrict the token’s scopes:
+
+```ts
 import { withScopes } from "intraoapi42";
 
 const config = withScopes(
@@ -97,22 +127,33 @@ const config = withScopes(
   "projects",
   "activities",
 );
+```
 
 Scopes are passed to the token endpoint as a space‑separated string.
 
-How authentication works
-createApiClient sets up:
-    • A refreshable token source that:
-        ◦ Requests a new access token using client credentials when needed.
-        ◦ Caches the token until close to expiry (with a 60s safety margin).
-        ◦ Deduplicates concurrent token requests.
-    • An auth middleware that:
-        ◦ Adds Authorization: Bearer <token> to every request.
-        ◦ On 401 Unauthorized, invalidates the cached token, fetches a fresh one, and retries the request once.
+---
+
+## How authentication works
+
+`createApiClient` sets up:
+
+- A **refreshable token source** that:
+  - Requests a new access token using client credentials when needed.
+  - Caches the token until close to expiry (with a 60s safety margin).
+  - Deduplicates concurrent token requests.
+- An **auth middleware** that:
+  - Adds `Authorization: Bearer <token>` to every request.
+  - On `401 Unauthorized`, invalidates the cached token, fetches a fresh one, and retries the request once.
+
 You don’t need to manage tokens manually; just use the client.
 
-Usage patterns
-List users with pagination
+---
+
+## Usage patterns
+
+### List users with pagination
+
+```ts
 const { data, error } = await api.GET("/users", {
   params: {
     query: {
@@ -128,8 +169,11 @@ if (error) {
 
 // data is typed according to the OpenAPI spec
 console.log(data);
+```
 
-POST / PATCH / DELETE
+### POST / PATCH / DELETE
+
+```ts
 // Example: update a user
 const { data, error } = await api.PATCH("/users/{id}", {
   params: {
@@ -140,13 +184,20 @@ const { data, error } = await api.PATCH("/users/{id}", {
     displayname: "New Name",
   },
 });
+```
 
-All HTTP methods (GET, POST, PUT, PATCH, DELETE, etc.) are available with full typing.
+All HTTP methods (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`, etc.) are available with full typing.
 
-Error handling
-Each call returns { data, error }:
-    • data is defined when the request succeeds.
-    • error is defined when the request fails (network error, non‑2xx response, etc.).
+---
+
+## Error handling
+
+Each call returns `{ data, error }`:
+
+- `data` is defined when the request succeeds.
+- `error` is defined when the request fails (network error, non‑2xx response, etc.).
+
+```ts
 const { data, error } = await api.GET("/users/{id}", {
   params: { path: { id: 12345 } },
 });
@@ -160,20 +211,32 @@ if (error) {
 
 // Use data safely
 console.log(data.id, data.login);
+```
 
-Refer to openapi-fetch docs for the exact error shape and advanced patterns.
+Refer to `openapi-fetch` docs for the exact error shape and advanced patterns.
 
-TypeScript usage
+---
+
+## TypeScript usage
+
 The package exports types generated from the OpenAPI spec:
+
+```ts
 import type { paths } from "intraoapi42";
 
 // paths describes all available endpoints and their shapes
 type UsersEndpoint = paths["/users"];
+```
 
-Your IDE will infer types automatically from api.GET, api.POST, etc., so you usually don’t need to import these manually.
+Your IDE will infer types automatically from `api.GET`, `api.POST`, etc., so you usually don’t need to import these manually.
 
-Development / Contributing
+---
+
+## Development / Contributing
+
 If you’re working on the client itself:
+
+```bash
 cd clients/typescript
 
 # Install dependencies
@@ -190,7 +253,10 @@ npm run build
 
 # Run tests
 npm test
+```
 
+---
 
-License
+## License
+
 MIT
