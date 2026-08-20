@@ -44,12 +44,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
 
-      - name: Install TypeScript client dependencies
-        working-directory: clients/typescript
-        run: npm ci
-
       - name: Release TypeScript
         working-directory: clients/typescript
-        run: npx --no-install semantic-release -e semantic-release-monorepo
+        run: npx semantic-release -e semantic-release-monorepo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
