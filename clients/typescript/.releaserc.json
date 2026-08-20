@@ -14,5 +14,5 @@
     ],
     "@semantic-release/github"
   ],
-  "tagFormat": "typescript-client/v${version}"
+  "tagFormat": "clients/typescript/v${version}"
 }

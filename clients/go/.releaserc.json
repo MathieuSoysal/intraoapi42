@@ -19,5 +19,5 @@
     ],
     "@semantic-release/github"
   ],
-  "tagFormat": "go-client/v${version}"
+  "tagFormat": "clients/go/v${version}"
 }

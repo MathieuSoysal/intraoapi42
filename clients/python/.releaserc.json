@@ -19,5 +19,5 @@
     ],
     "@semantic-release/github"
   ],
-  "tagFormat": "python-client/v${version}"
+  "tagFormat": "clients/python/v${version}"
 }
