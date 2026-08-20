@@ -1,4 +1,4 @@
-module github.com/42paris/intraoapi42
+module github.com/42paris/intraoapi42/clients/go
 
 go 1.26.6
 
