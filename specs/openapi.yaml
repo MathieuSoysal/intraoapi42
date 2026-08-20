@@ -4,7 +4,7 @@ info:
   title: Intra 42 API
   description: |
     This is the OpenAPI specification for the Intra 42 API v2.
-  version: 2.0.0
+  version: v1.0.0
 
 servers:
   - url: https://api.intra.42.fr/v2
@@ -13,7 +13,7 @@ servers:
 components:
   schemas:
     $ref: "./schemas/_index.yaml"
-  
+
   parameters:
     $ref: "./parameters/_index.yaml"
 

@@ -4,1699 +4,1669 @@
  */
 
 export interface paths {
-	'/closes': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get a list of closes */
-		get: operations['getCloses'];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	'/users/{user_id}/closes': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get a list of closes by user id */
-		get: operations['getClosesByUserId'];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	'/closes/{id}': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get a close by ID */
-		get: operations['getCloseById'];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	'/internships': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get a list of internships */
-		get: operations['getInternships'];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	'/languages/{id}': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get a language by ID */
-		get: operations['getLanguageById'];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	'/users/{user_id}/projects_users': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get a list of projects users by a user Id */
-		get: operations['GetProjectsUsersByUserId'];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	'/projects_users': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		put?: never;
-		/** Create a project user */
-		post: operations['PostProjectsUsers'];
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	'/projects_users/{id}': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		/** Update a project user */
-		put: operations['PutProjectUserById'];
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		/** Update a project user */
-		patch: operations['PatchProjectUserById'];
-		trace?: never;
-	};
-	'/teams/{id}': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get a team by ID */
-		get: operations['getTeamById'];
-		/** Update a team by ID */
-		put: operations['PutTeamById'];
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		/** Patch a team by ID */
-		patch: operations['PatchTeamById'];
-		trace?: never;
-	};
-	'/teams/{id}/reset_team_uploads': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		get?: never;
-		put?: never;
-		/** Reset team uploads by ID */
-		post: operations['PostResetTeamUploadsById'];
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	'/users/{id}/user_candidature': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get user candidature information */
-		get: operations['getUserCandidatureById'];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	'/users': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get a list of users */
-		get: operations['getUsers'];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	'/users/{id}': {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/** Get a user by ID */
-		get: operations['getUserById'];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
+    "/closes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a list of closes */
+        get: operations["getCloses"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users/{user_id}/closes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a list of closes by user id */
+        get: operations["getClosesByUserId"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/closes/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a close by ID */
+        get: operations["getCloseById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/internships": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a list of internships */
+        get: operations["getInternships"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/languages/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a language by ID */
+        get: operations["getLanguageById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users/{user_id}/projects_users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a list of projects users by a user Id */
+        get: operations["GetProjectsUsersByUserId"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/projects_users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create a project user */
+        post: operations["PostProjectsUsers"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/projects_users/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Update a project user */
+        put: operations["PutProjectUserById"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update a project user */
+        patch: operations["PatchProjectUserById"];
+        trace?: never;
+    };
+    "/teams/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a team by ID */
+        get: operations["getTeamById"];
+        /** Update a team by ID */
+        put: operations["PutTeamById"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Patch a team by ID */
+        patch: operations["PatchTeamById"];
+        trace?: never;
+    };
+    "/teams/{id}/reset_team_uploads": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Reset team uploads by ID */
+        post: operations["PostResetTeamUploadsById"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users/{id}/user_candidature": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get user candidature information */
+        get: operations["getUserCandidatureById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a list of users */
+        get: operations["getUsers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/users/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a user by ID */
+        get: operations["getUserById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-	schemas: {
-		AchievementResponse: {
-			id: number;
-			name: string;
-			description: string;
-			tier: string;
-			kind: string;
-			visible: boolean;
-			image: string;
-			nbr_of_success?: number | null;
-			/** Format: uri */
-			users_url: string;
-		};
-		CampusResponse: {
-			id: number;
-			name: string;
-			time_zone: string;
-			language?: components['schemas']['LanguageResponse'];
-			users_count: number;
-			vogsphere_id: number;
-			country: string;
-			address?: string;
-			zip?: string;
-			city: string;
-			/** Format: uri */
-			website?: string;
-			/** Format: uri */
-			facebook?: string;
-			/** Format: uri */
-			twitter?: string;
-			active: boolean;
-			public: boolean;
-			email_extension: string;
-			default_hidden_phone?: boolean;
-		};
-		CampusUserResponse: {
-			id: number;
-			user_id: number;
-			campus_id: number;
-			is_primary: boolean;
-			/** Format: date-time */
-			created_at: string;
-			/** Format: date-time */
-			updated_at: string;
-		};
-		CloseResponse: {
-			id: number;
-			reason: string;
-			state: string;
-			/** Format: date-time */
-			created_at: string;
-			/** Format: date-time */
-			updated_at: string;
-			/** Format: date-time */
-			end_at?: string | null;
-			community_services: components['schemas']['CommunityServiceResponse'][];
-			/** @enum {string} */
-			kind:
-				| 'agu'
-				| 'other'
-				| 'deserter'
-				| 'pace_unknown'
-				| 'black_hole'
-				| 'serious_misconduct'
-				| 'social_security'
-				| 'non_admitted';
-			user: components['schemas']['LightUserResponse'];
-			closer: components['schemas']['LightUserResponse'];
-		};
-		CommunityServiceResponse: {
-			id: number;
-			duration: number;
-			/** Format: date-time */
-			schedule_at: string;
-			occupation: string;
-			state: string;
-			/** Format: date-time */
-			created_at: string;
-			updated_at: string;
-		};
-		CursusResponse: {
-			id: number;
-			/** Format: date-time */
-			created_at: string;
-			name: string;
-			slug: string;
-			kind: string;
-		};
-		CursusUserResponse: {
-			id: number;
-			/** Format: date-time */
-			begin_at: string;
-			/** Format: date-time */
-			end_at?: string;
-			grade: string;
-			/** Format: double */
-			level: number;
-			skills: components['schemas']['SkillResponse'][];
-			cursus_id: number;
-			cursus: components['schemas']['CursusResponse'];
-			has_coalition: boolean;
-			/** Format: date-time */
-			blackholed_at?: string | null;
-			/** Format: date-time */
-			created_at: string;
-			/** Format: date-time */
-			updated_at: string;
-		};
-		/**
-		 * @example {
-		 *       "status": 401,
-		 *       "error": "The access token is invalid"
-		 *     }
-		 */
-		Error: {
-			/** @description HTTP status code */
-			status: number;
-			/** @description Error message */
-			error: string;
-		};
-		GroupResponse: {
-			id: number;
-			name: string;
-		};
-		InternshipResponse: {
-			id: number;
-			administration_id: number;
-			offer_id: number | null;
-			language_id: number;
-			state: string;
-			days: string;
-			user_address: string;
-			user_postal: string;
-			user_city: string;
-			user_country: string;
-			company_name: string;
-			company_boss_user_first_name: string;
-			company_boss_user_last_name: string;
-			company_boss_user_email: string;
-			company_boss_user_phone: string;
-			company_user_first_name: string;
-			company_user_last_name: string;
-			company_user_post: string;
-			company_user_email: string;
-			company_user_phone: string;
-			company_address: string;
-			company_postal: string;
-			company_city: string;
-			company_country: string;
-			company_siret: string;
-			internship_address: string;
-			internship_postal: string;
-			internship_city: string;
-			internship_country: string;
-			contract_type: string;
-			subject: string;
-			/** Format: date-time */
-			start_at: string;
-			/** Format: date-time */
-			end_at: string;
-			duration: number;
-			nb_days: number;
-			nb_hours: number;
-			salary: number;
-			currency: string;
-			/** Format: date-time */
-			breach_at: string | null;
-			convention: {
-				convention: {
-					url: string | null;
-				};
-			};
-			/** Format: url */
-			convention_uri: string | null;
-			projects_user?: number | null;
-			user: components['schemas']['LightUserResponse'];
-		};
-		LanguageResponse: {
-			id: number;
-			name: string;
-			identifier: string;
-			/** Format: date-time */
-			created_at: string;
-			/** Format: date-time */
-			updated_at: string;
-		};
-		LanguageUserResponse: {
-			id: number;
-			language_id: number;
-			user_id: number;
-			position: number;
-			/** Format: date-time */
-			created_at: string;
-		};
-		PatronageResponse: {
-			id: number;
-			user_id?: number;
-			godson_id?: number;
-			godfather_id?: number;
-			ongoing: boolean;
-			/** Format: date-time */
-			created_at: string;
-			/** Format: date-time */
-			updated_at: string;
-		};
-		LightProjectResponse: {
-			id: number;
-			name: string;
-			slug: string;
-			parent_id: number | null;
-		};
-		ProjectUserResponse: {
-			id: number;
-			occurrence: number;
-			final_mark?: number | null;
-			status: string;
-			'validated?': boolean | null;
-			current_team_id: number;
-			project: components['schemas']['LightProjectResponse'];
-			cursus_ids: number[];
-			user: components['schemas']['LightUserResponse'];
-			teams: components['schemas']['LightTeamResponse'][];
-			/** Format: date-time */
-			marked_at?: string | null;
-			marked?: boolean | null;
-			/** Format: date-time */
-			retriable_at?: string | null;
-			/** Format: date-time */
-			created_at?: string;
-			/** Format: date-time */
-			updated_at?: string;
-		};
-		ProjectUserCreate: {
-			/**
-			 * Format: int64
-			 * @description The id.
-			 */
-			id?: number | null;
-			/**
-			 * Format: int64
-			 * @description The project id.
-			 */
-			project_id: number;
-			/**
-			 * Format: int64
-			 * @description The user id. Must be unique in the scope of a given project.
-			 */
-			user_id: number;
-			/** Format: date-time */
-			created_at?: string | null;
-			/** Format: date-time */
-			updated_at?: string | null;
-			/**
-			 * Format: int64
-			 * @description The occurrence.
-			 * @default 0
-			 */
-			occurrence: number | null;
-			/**
-			 * Format: int64
-			 * @description The final mark.
-			 */
-			final_mark?: number | null;
-			/** Format: date-time */
-			retriable_at?: string | null;
-			/** Format: date-time */
-			marked_at?: string | null;
-			/**
-			 * @description The status.
-			 * @default unknown
-			 */
-			status: string | null;
-			/** @description The skip check permission. */
-			skip_check_permission?: string | null;
-		};
-		ProjectUserUpdate: {
-			/**
-			 * Format: int64
-			 * @description The id.
-			 */
-			id?: number | null;
-			/**
-			 * Format: int64
-			 * @description The project id.
-			 */
-			project_id?: number | null;
-			/**
-			 * Format: int64
-			 * @description The user id. Must be unique in the scope of a given project.
-			 */
-			user_id?: number | null;
-			/**
-			 * Format: date-time
-			 * @description The created at.
-			 */
-			created_at?: string | null;
-			/**
-			 * Format: date-time
-			 * @description The updated at.
-			 */
-			updated_at?: string | null;
-			/**
-			 * Format: int64
-			 * @description The occurrence. Default to 0.
-			 * @default 0
-			 */
-			occurrence: number | null;
-			/**
-			 * Format: int64
-			 * @description The final mark.
-			 */
-			final_mark?: number | null;
-			/**
-			 * Format: date-time
-			 * @description The retriable at.
-			 */
-			retriable_at?: string | null;
-			/**
-			 * Format: date-time
-			 * @description The marked at.
-			 */
-			marked_at?: string | null;
-			/**
-			 * @description The status. Default to unknown.
-			 * @default unknown
-			 */
-			status: string | null;
-			/** @description The skip check permission. */
-			skip_check_permission?: string | null;
-		};
-		RoleResponse: {
-			id: number;
-			name: string;
-		};
-		ScaleTeamResponse: {
-			id: number;
-			scale_id: number;
-			comment: string;
-			/** Format: date-time */
-			created_at: string;
-			/** Format: date-time */
-			updated_at: string;
-			feedback: string;
-			final_mark: number | null;
-			flag: components['schemas']['ScaleFlagResponse'];
-			/** Format: date-time */
-			begin_at: string;
-			correcteds: components['schemas']['ScaleUserResponse'][];
-			corrector: components['schemas']['ScaleUserResponse'];
-			truant: {
-				[key: string]: unknown;
-			};
-			/** Format: date-time */
-			filled_at: string | null;
-			questions_with_answers: components['schemas']['QuestionWithAnswersResponse'][];
-			teams_uploads?: components['schemas']['TeamUploadResponse'][];
-		};
-		ScaleFlagResponse: {
-			id: number;
-			name: string;
-			positive: boolean;
-			icon: string;
-			/** Format: date-time */
-			created_at: string;
-			/** Format: date-time */
-			updated_at: string;
-		};
-		ScaleUserResponse: {
-			id: number;
-			login: string;
-			/** Format: uri */
-			url: string;
-		};
-		QuestionWithAnswersResponse: {
-			id: number;
-			name: string;
-			guidelines: string;
-			rating: string;
-			kind: string;
-			position: number;
-			answers: components['schemas']['QuestionAnswerResponse'][];
-		};
-		QuestionAnswerResponse: {
-			id: number;
-			value: number | null;
-			answer: string | null;
-		};
-		TeamUploadResponse: {
-			id: number;
-			final_mark: number | null;
-			comment: string;
-			/** Format: date-time */
-			created_at: string;
-			upload_id: number;
-		};
-		SkillResponse: {
-			id: number;
-			name: string;
-			/** Format: double */
-			level: number;
-		};
-		LightTeamResponse: {
-			id: number;
-			name: string;
-			/** Format: uri */
-			url: string;
-			final_mark?: number | null;
-			project_id: number;
-			/** Format: date-time */
-			created_at: string;
-			/** Format: date-time */
-			updated_at: string;
-			status: string;
-			/** Format: date-time */
-			terminating_at: string | null;
-			users: components['schemas']['TeamUserResponse'][];
-			'locked?': boolean;
-			'validated?': boolean;
-			'closed?': boolean;
-			repo_url: string | null;
-			repo_uuid: string;
-			/** Format: date-time */
-			locked_at: string | null;
-			/** Format: date-time */
-			closed_at: string | null;
-			project_session_id: number;
-			project_gitlab_path: string | null;
-		};
-		TeamUserResponse: {
-			id: number;
-			login: string;
-			/** Format: uri */
-			url: string;
-			leader: boolean;
-			occurrence: number;
-			validated: boolean;
-			projects_user_id: number;
-		};
-		/**
-		 * @example {
-		 *       "id": 1000001,
-		 *       "name": "example-team",
-		 *       "url": "https://api.example.com/v2/teams/1000001",
-		 *       "final_mark": 80,
-		 *       "project_id": 2000001,
-		 *       "created_at": "2024-01-10T10:00:00.000Z",
-		 *       "updated_at": "2024-01-10T12:00:00.000Z",
-		 *       "status": "finished",
-		 *       "terminating_at": "2024-01-11T12:00:00.000Z",
-		 *       "users": [
-		 *         {
-		 *           "id": 1000002,
-		 *           "login": "example-user",
-		 *           "url": "https://api.example.com/v2/users/example-user",
-		 *           "leader": true,
-		 *           "occurrence": 0,
-		 *           "validated": true,
-		 *           "projects_user_id": 3000001
-		 *         }
-		 *       ],
-		 *       "locked?": true,
-		 *       "validated?": true,
-		 *       "closed?": true,
-		 *       "repo_url": "git@example.com:example/project.git",
-		 *       "repo_uuid": "example-repository-uuid",
-		 *       "locked_at": "2024-01-10T10:00:00.000Z",
-		 *       "closed_at": "2024-01-11T12:00:00.000Z",
-		 *       "project_session_id": 4000001,
-		 *       "project_gitlab_path": "example/project",
-		 *       "scale_teams": [
-		 *         {
-		 *           "id": 5000001,
-		 *           "scale_id": 6000001,
-		 *           "comment": "Example evaluation comment.",
-		 *           "created_at": "2024-01-10T10:05:00.000Z",
-		 *           "updated_at": "2024-01-10T11:00:00.000Z",
-		 *           "feedback": "Example feedback.",
-		 *           "final_mark": 75,
-		 *           "flag": {
-		 *             "id": 1,
-		 *             "name": "Approved",
-		 *             "positive": true,
-		 *             "icon": "check",
-		 *             "created_at": "2024-01-01T00:00:00.000Z",
-		 *             "updated_at": "2024-01-01T00:00:00.000Z"
-		 *           },
-		 *           "begin_at": "2024-01-10T10:30:00.000Z",
-		 *           "correcteds": [
-		 *             {
-		 *               "id": 1000002,
-		 *               "login": "example-user",
-		 *               "url": "https://api.example.com/v2/users/example-user"
-		 *             }
-		 *           ],
-		 *           "corrector": {
-		 *             "id": 1000003,
-		 *             "login": "evaluator",
-		 *             "url": "https://api.example.com/v2/users/evaluator"
-		 *           },
-		 *           "truant": {},
-		 *           "filled_at": "2024-01-10T11:00:00.000Z",
-		 *           "questions_with_answers": []
-		 *         },
-		 *         {
-		 *           "id": 5000002,
-		 *           "scale_id": 6000001,
-		 *           "comment": "Another example evaluation comment.",
-		 *           "created_at": "2024-01-10T10:05:00.000Z",
-		 *           "updated_at": "2024-01-10T11:05:00.000Z",
-		 *           "feedback": "Another example feedback.",
-		 *           "final_mark": 85,
-		 *           "flag": {
-		 *             "id": 1,
-		 *             "name": "Approved",
-		 *             "positive": true,
-		 *             "icon": "check",
-		 *             "created_at": "2024-01-01T00:00:00.000Z",
-		 *             "updated_at": "2024-01-01T00:00:00.000Z"
-		 *           },
-		 *           "begin_at": "2024-01-10T11:00:00.000Z",
-		 *           "correcteds": [
-		 *             {
-		 *               "id": 1000002,
-		 *               "login": "example-user",
-		 *               "url": "https://api.example.com/v2/users/example-user"
-		 *             }
-		 *           ],
-		 *           "corrector": {
-		 *             "id": 1000004,
-		 *             "login": "second-evaluator",
-		 *             "url": "https://api.example.com/v2/users/second-evaluator"
-		 *           },
-		 *           "truant": {},
-		 *           "filled_at": "2024-01-10T11:05:00.000Z",
-		 *           "questions_with_answers": []
-		 *         }
-		 *       ]
-		 *     }
-		 */
-		TeamResponse: components['schemas']['LightTeamResponse'] & {
-			scale_teams: components['schemas']['ScaleTeamResponse'][];
-		};
-		TeamUpdate: {
-			/**
-			 * Format: int64
-			 * @description The project id.
-			 */
-			project_id?: number | null;
-			/** @description The name. */
-			name?: string | null;
-			/** Format: date-time */
-			created_at?: string | null;
-			/** Format: date-time */
-			updated_at?: string | null;
-			/** Format: date-time */
-			locked_at?: string | null;
-			/** Format: date-time */
-			closed_at?: string | null;
-			/**
-			 * Format: int64
-			 * @description The final mark.
-			 */
-			final_mark?: number | null;
-			/** @description The repo url. */
-			repo_url?: string | null;
-			/** @description The repo uuid. */
-			repo_uuid?: string | null;
-			/**
-			 * Format: int64
-			 * @description The deadline at. Must be after today.
-			 */
-			deadline_at?: number | null;
-			/** Format: date-time */
-			terminating_at?: string | null;
-			/**
-			 * Format: int64
-			 * @description The project session id.
-			 */
-			project_session_id?: number | null;
-			/** @description The teams users attributes. */
-			teams_users_attributes?:
-				| {
-						/**
-						 * Format: int64
-						 * @description The user id. Must be unique in the scope of a given team.
-						 */
-						user_id: number;
-						/**
-						 * @description Is it leader?
-						 * @default false
-						 */
-						leader: boolean | null;
-						/**
-						 * @description Is it validated?
-						 * @default false
-						 */
-						validated: boolean | null;
-						/**
-						 * Format: int64
-						 * @description The occurrence.
-						 * @default 0
-						 */
-						occurrence: number | null;
-				  }[]
-				| null;
-		};
-		TitleResponse: {
-			id: number;
-			name: string;
-		};
-		TitleUserResponse: {
-			id: number;
-			user_id: number;
-			title_id: number;
-			selected: boolean;
-			/** Format: date-time */
-			created_at: string;
-			/** Format: date-time */
-			updated_at: string;
-		};
-		UserResponse: components['schemas']['LightUserResponse'] & {
-			groups: components['schemas']['GroupResponse'][];
-			cursus_users: components['schemas']['CursusUserResponse'][];
-			projects_users: components['schemas']['ProjectUserResponse'][];
-			languages_users: components['schemas']['LanguageUserResponse'][];
-			achievements: components['schemas']['AchievementResponse'][];
-			titles: components['schemas']['TitleResponse'][];
-			titles_users: components['schemas']['TitleUserResponse'][];
-			patroned: components['schemas']['PatronageResponse'][];
-			patroning: components['schemas']['PatronageResponse'][];
-			roles: components['schemas']['RoleResponse'][];
-			campus: components['schemas']['CampusResponse'][];
-			campus_users: components['schemas']['CampusUserResponse'][];
-		};
-		LightUserResponse: {
-			/** @description The unique identifier of the user. */
-			id: number;
-			/** @description The login name of the user. */
-			login: string;
-			/** @description The first name of the user. */
-			first_name: string;
-			/** @description The usual first name of the user, first_name if none. */
-			usual_first_name?: string | null;
-			/** @description The usual full name of the user, usually usual_first_name or first_name + last_name. */
-			usual_full_name: string;
-			/** @description The last name of the user. */
-			last_name: string;
-			/**
-			 * Format: email
-			 * @description The email address of the user.
-			 */
-			email: string;
-			/**
-			 * Format: uri
-			 * @description The URL to the user's resource.
-			 */
-			url: string;
-			/** @description The phone number of the user (always hidden). */
-			phone?: string;
-			/** @description The display name of the user. */
-			displayname: string;
-			/**
-			 * @description The kind of user (e.g., student, admin, external).
-			 * @enum {string}
-			 */
-			kind: 'student' | 'admin' | 'external';
-			image: components['schemas']['UserImageResponse'];
-			/** @description Indicates if the user is staff. */
-			'staff?': boolean;
-			/** @description The user's correction points. */
-			correction_point: number;
-			/** @description The month of the user's pool. */
-			pool_month: string;
-			/** @description The year of the user's pool. */
-			pool_year: string;
-			/** @description The location of the user. */
-			location?: string | null;
-			/** @description The user's wallet balance. */
-			wallet: number;
-			/**
-			 * Format: date-time
-			 * @description The date when user data will be anonymized.
-			 */
-			anonymize_date: string | null;
-			/**
-			 * Format: date-time
-			 * @description The date when user data will be erased.
-			 */
-			data_erasure_date: string;
-			/**
-			 * Format: date-time
-			 * @description The user creation timestamp.
-			 */
-			created_at: string;
-			/**
-			 * Format: date-time
-			 * @description The last user update timestamp.
-			 */
-			updated_at: string;
-			/**
-			 * Format: date-time
-			 * @description The date when the user became an alumnus.
-			 */
-			alumnized_at: string;
-			/** @description Indicates if the user is an alumnus. */
-			'alumni?': boolean;
-			/** @description Indicates if the user is active. */
-			'active?': boolean;
-		};
-		UserImageResponse: {
-			/**
-			 * Format: uri
-			 * @description The URL to the user's image.
-			 */
-			link: string;
-			versions: {
-				/**
-				 * Format: uri
-				 * @description URL to the large version of the user's image.
-				 */
-				large: string;
-				/**
-				 * Format: uri
-				 * @description URL to the medium version of the user's image.
-				 */
-				medium: string;
-				/**
-				 * Format: uri
-				 * @description URL to the small version of the user's image.
-				 */
-				small: string;
-				/**
-				 * Format: uri
-				 * @description URL to the micro version of the user's image.
-				 */
-				micro: string;
-			};
-		};
-		/**
-		 * @example {
-		 *       "id": 42,
-		 *       "user_id": 42,
-		 *       "birth_date": "2013-01-01",
-		 *       "gender": "male",
-		 *       "zip_code": "75017",
-		 *       "country": "France",
-		 *       "birth_city": "Paris",
-		 *       "birth_country": "France",
-		 *       "postal_street": "96 boulevard Bessières",
-		 *       "postal_complement": null,
-		 *       "postal_city": "Paris",
-		 *       "postal_zip_code": "75017",
-		 *       "postal_country": "France",
-		 *       "contact_affiliation": "Parent",
-		 *       "contact_last_name": "Moulinette",
-		 *       "contact_first_name": "Norminette",
-		 *       "contact_phone1": "+33600000000",
-		 *       "contact_phone2": null,
-		 *       "max_level_memory": null,
-		 *       "max_level_logic": null,
-		 *       "other_information": null,
-		 *       "language": "fr",
-		 *       "meeting_date": "2020-08-27T07:31:49.431Z",
-		 *       "piscine_date": null,
-		 *       "created_at": "2020-08-27T07:31:49.431Z",
-		 *       "updated_at": "2025-07-10T16:16:34.238Z",
-		 *       "phone": "+33600000000",
-		 *       "email": "tmatis@example.com",
-		 *       "pin": "7777",
-		 *       "phone_country_code": "FR",
-		 *       "hidden_phone": false
-		 *     }
-		 */
-		UserCandidatureResponse: {
-			id: number;
-			user_id: number;
-			/** Format: date */
-			birth_date?: string;
-			/** @enum {string|null} */
-			gender?: 'male' | 'female' | 'other' | null;
-			zip_code?: string | null;
-			country?: string | null;
-			birth_city: string;
-			birth_country?: string | null;
-			postal_street: string;
-			postal_complement?: string | null;
-			postal_city: string;
-			postal_zip_code: string;
-			postal_country: string;
-			contact_affiliation: string;
-			contact_last_name: string;
-			contact_first_name: string;
-			contact_phone1: string;
-			contact_phone2?: string | null;
-			/** Format: double */
-			max_level_memory?: number | null;
-			/** Format: double */
-			max_level_logic?: number | null;
-			other_information?: string | null;
-			language: string;
-			/** Format: date-time */
-			meeting_date?: string | null;
-			/** Format: date-time */
-			piscine_date?: string | null;
-			/** Format: date-time */
-			created_at: string;
-			/** Format: date-time */
-			updated_at: string;
-			phone: string;
-			email: string;
-			pin: string;
-			phone_country_code: string;
-			hidden_phone: boolean;
-		};
-	};
-	responses: {
-		/** @description Error response */
-		ErrorResponse: {
-			headers: {
-				[name: string]: unknown;
-			};
-			content: {
-				'application/json': components['schemas']['Error'];
-			};
-		};
-	};
-	parameters: {
-		/**
-		 * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
-		 *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
-		 */
-		page: number;
-		/** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
-		per_page: number;
-		/** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
-		page_number: number;
-		/** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
-		page_size: number;
-	};
-	requestBodies: never;
-	headers: {
-		/**
-		 * @description RFC5988 Web Linking header containing `first`, `prev`, `next` and `last` links when available.
-		 *     Example: <https://api.intra.42.fr/v2/Users?page=2>; rel="next", <https://api.intra.42.fr/v2/Users?page=1>; rel="prev"
-		 */
-		Link: string;
-		/** @description The current page number. */
-		'X-Page': number;
-		/** @description The current pagination length (items per page). */
-		'X-Per-Page': number;
-		/** @description The total number of pages available for the resource. */
-		'X-Total': number;
-	};
-	pathItems: never;
+    schemas: {
+        AchievementResponse: {
+            id: number;
+            name: string;
+            description: string;
+            tier: string;
+            kind: string;
+            visible: boolean;
+            image: string;
+            nbr_of_success?: number | null;
+            /** Format: uri */
+            users_url: string;
+        };
+        CampusResponse: {
+            id: number;
+            name: string;
+            time_zone: string;
+            language?: components["schemas"]["LanguageResponse"];
+            users_count: number;
+            vogsphere_id: number;
+            country: string;
+            address?: string;
+            zip?: string;
+            city: string;
+            /** Format: uri */
+            website?: string;
+            /** Format: uri */
+            facebook?: string;
+            /** Format: uri */
+            twitter?: string;
+            active: boolean;
+            public: boolean;
+            email_extension: string;
+            default_hidden_phone?: boolean;
+        };
+        CampusUserResponse: {
+            id: number;
+            user_id: number;
+            campus_id: number;
+            is_primary: boolean;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+        };
+        CloseResponse: {
+            id: number;
+            reason: string;
+            state: string;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            /** Format: date-time */
+            end_at?: string | null;
+            community_services: components["schemas"]["CommunityServiceResponse"][];
+            /** @enum {string} */
+            kind: "agu" | "other" | "deserter" | "pace_unknown" | "black_hole" | "serious_misconduct" | "social_security" | "non_admitted";
+            user: components["schemas"]["LightUserResponse"];
+            closer: components["schemas"]["LightUserResponse"];
+        };
+        CommunityServiceResponse: {
+            id: number;
+            duration: number;
+            /** Format: date-time */
+            schedule_at: string;
+            occupation: string;
+            state: string;
+            /** Format: date-time */
+            created_at: string;
+            updated_at: string;
+        };
+        CursusResponse: {
+            id: number;
+            /** Format: date-time */
+            created_at: string;
+            name: string;
+            slug: string;
+            kind: string;
+        };
+        CursusUserResponse: {
+            id: number;
+            /** Format: date-time */
+            begin_at: string;
+            /** Format: date-time */
+            end_at?: string;
+            grade: string;
+            /** Format: double */
+            level: number;
+            skills: components["schemas"]["SkillResponse"][];
+            cursus_id: number;
+            cursus: components["schemas"]["CursusResponse"];
+            has_coalition: boolean;
+            /** Format: date-time */
+            blackholed_at?: string | null;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+        };
+        /**
+         * @example {
+         *       "status": 401,
+         *       "error": "The access token is invalid"
+         *     }
+         */
+        Error: {
+            /** @description HTTP status code */
+            status: number;
+            /** @description Error message */
+            error: string;
+        };
+        GroupResponse: {
+            id: number;
+            name: string;
+        };
+        InternshipResponse: {
+            id: number;
+            administration_id: number;
+            offer_id: number | null;
+            language_id: number;
+            state: string;
+            days: string;
+            user_address: string;
+            user_postal: string;
+            user_city: string;
+            user_country: string;
+            company_name: string;
+            company_boss_user_first_name: string;
+            company_boss_user_last_name: string;
+            company_boss_user_email: string;
+            company_boss_user_phone: string;
+            company_user_first_name: string;
+            company_user_last_name: string;
+            company_user_post: string;
+            company_user_email: string;
+            company_user_phone: string;
+            company_address: string;
+            company_postal: string;
+            company_city: string;
+            company_country: string;
+            company_siret: string;
+            internship_address: string;
+            internship_postal: string;
+            internship_city: string;
+            internship_country: string;
+            contract_type: string;
+            subject: string;
+            /** Format: date-time */
+            start_at: string;
+            /** Format: date-time */
+            end_at: string;
+            duration: number;
+            nb_days: number;
+            nb_hours: number;
+            salary: number;
+            currency: string;
+            /** Format: date-time */
+            breach_at: string | null;
+            convention: {
+                convention: {
+                    url: string | null;
+                };
+            };
+            /** Format: url */
+            convention_uri: string | null;
+            projects_user?: number | null;
+            user: components["schemas"]["LightUserResponse"];
+        };
+        LanguageResponse: {
+            id: number;
+            name: string;
+            identifier: string;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+        };
+        LanguageUserResponse: {
+            id: number;
+            language_id: number;
+            user_id: number;
+            position: number;
+            /** Format: date-time */
+            created_at: string;
+        };
+        PatronageResponse: {
+            id: number;
+            user_id?: number;
+            godson_id?: number;
+            godfather_id?: number;
+            ongoing: boolean;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+        };
+        LightProjectResponse: {
+            id: number;
+            name: string;
+            slug: string;
+            parent_id: number | null;
+        };
+        ProjectUserResponse: {
+            id: number;
+            occurrence: number;
+            final_mark?: number | null;
+            status: string;
+            "validated?": boolean | null;
+            current_team_id: number;
+            project: components["schemas"]["LightProjectResponse"];
+            cursus_ids: number[];
+            user: components["schemas"]["LightUserResponse"];
+            teams: components["schemas"]["LightTeamResponse"][];
+            /** Format: date-time */
+            marked_at?: string | null;
+            marked?: boolean | null;
+            /** Format: date-time */
+            retriable_at?: string | null;
+            /** Format: date-time */
+            created_at?: string;
+            /** Format: date-time */
+            updated_at?: string;
+        };
+        ProjectUserCreate: {
+            /**
+             * Format: int64
+             * @description The id.
+             */
+            id?: number | null;
+            /**
+             * Format: int64
+             * @description The project id.
+             */
+            project_id: number;
+            /**
+             * Format: int64
+             * @description The user id. Must be unique in the scope of a given project.
+             */
+            user_id: number;
+            /** Format: date-time */
+            created_at?: string | null;
+            /** Format: date-time */
+            updated_at?: string | null;
+            /**
+             * Format: int64
+             * @description The occurrence.
+             * @default 0
+             */
+            occurrence: number | null;
+            /**
+             * Format: int64
+             * @description The final mark.
+             */
+            final_mark?: number | null;
+            /** Format: date-time */
+            retriable_at?: string | null;
+            /** Format: date-time */
+            marked_at?: string | null;
+            /**
+             * @description The status.
+             * @default unknown
+             */
+            status: string | null;
+            /** @description The skip check permission. */
+            skip_check_permission?: string | null;
+        };
+        ProjectUserUpdate: {
+            /**
+             * Format: int64
+             * @description The id.
+             */
+            id?: number | null;
+            /**
+             * Format: int64
+             * @description The project id.
+             */
+            project_id?: number | null;
+            /**
+             * Format: int64
+             * @description The user id. Must be unique in the scope of a given project.
+             */
+            user_id?: number | null;
+            /**
+             * Format: date-time
+             * @description The created at.
+             */
+            created_at?: string | null;
+            /**
+             * Format: date-time
+             * @description The updated at.
+             */
+            updated_at?: string | null;
+            /**
+             * Format: int64
+             * @description The occurrence. Default to 0.
+             * @default 0
+             */
+            occurrence: number | null;
+            /**
+             * Format: int64
+             * @description The final mark.
+             */
+            final_mark?: number | null;
+            /**
+             * Format: date-time
+             * @description The retriable at.
+             */
+            retriable_at?: string | null;
+            /**
+             * Format: date-time
+             * @description The marked at.
+             */
+            marked_at?: string | null;
+            /**
+             * @description The status. Default to unknown.
+             * @default unknown
+             */
+            status: string | null;
+            /** @description The skip check permission. */
+            skip_check_permission?: string | null;
+        };
+        RoleResponse: {
+            id: number;
+            name: string;
+        };
+        ScaleTeamResponse: {
+            id: number;
+            scale_id: number;
+            comment: string;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            feedback: string;
+            final_mark: number | null;
+            flag: components["schemas"]["ScaleFlagResponse"];
+            /** Format: date-time */
+            begin_at: string;
+            correcteds: components["schemas"]["ScaleUserResponse"][];
+            corrector: components["schemas"]["ScaleUserResponse"];
+            truant: {
+                [key: string]: unknown;
+            };
+            /** Format: date-time */
+            filled_at: string | null;
+            questions_with_answers: components["schemas"]["QuestionWithAnswersResponse"][];
+            teams_uploads?: components["schemas"]["TeamUploadResponse"][];
+        };
+        ScaleFlagResponse: {
+            id: number;
+            name: string;
+            positive: boolean;
+            icon: string;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+        };
+        ScaleUserResponse: {
+            id: number;
+            login: string;
+            /** Format: uri */
+            url: string;
+        };
+        QuestionWithAnswersResponse: {
+            id: number;
+            name: string;
+            guidelines: string;
+            rating: string;
+            kind: string;
+            position: number;
+            answers: components["schemas"]["QuestionAnswerResponse"][];
+        };
+        QuestionAnswerResponse: {
+            id: number;
+            value: number | null;
+            answer: string | null;
+        };
+        TeamUploadResponse: {
+            id: number;
+            final_mark: number | null;
+            comment: string;
+            /** Format: date-time */
+            created_at: string;
+            upload_id: number;
+        };
+        SkillResponse: {
+            id: number;
+            name: string;
+            /** Format: double */
+            level: number;
+        };
+        LightTeamResponse: {
+            id: number;
+            name: string;
+            /** Format: uri */
+            url: string;
+            final_mark?: number | null;
+            project_id: number;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            status: string;
+            /** Format: date-time */
+            terminating_at: string | null;
+            users: components["schemas"]["TeamUserResponse"][];
+            "locked?": boolean;
+            "validated?": boolean;
+            "closed?": boolean;
+            repo_url: string | null;
+            repo_uuid: string;
+            /** Format: date-time */
+            locked_at: string | null;
+            /** Format: date-time */
+            closed_at: string | null;
+            project_session_id: number;
+            project_gitlab_path: string | null;
+        };
+        TeamUserResponse: {
+            id: number;
+            login: string;
+            /** Format: uri */
+            url: string;
+            leader: boolean;
+            occurrence: number;
+            validated: boolean;
+            projects_user_id: number;
+        };
+        /**
+         * @example {
+         *       "id": 1000001,
+         *       "name": "example-team",
+         *       "url": "https://api.example.com/v2/teams/1000001",
+         *       "final_mark": 80,
+         *       "project_id": 2000001,
+         *       "created_at": "2024-01-10T10:00:00.000Z",
+         *       "updated_at": "2024-01-10T12:00:00.000Z",
+         *       "status": "finished",
+         *       "terminating_at": "2024-01-11T12:00:00.000Z",
+         *       "users": [
+         *         {
+         *           "id": 1000002,
+         *           "login": "example-user",
+         *           "url": "https://api.example.com/v2/users/example-user",
+         *           "leader": true,
+         *           "occurrence": 0,
+         *           "validated": true,
+         *           "projects_user_id": 3000001
+         *         }
+         *       ],
+         *       "locked?": true,
+         *       "validated?": true,
+         *       "closed?": true,
+         *       "repo_url": "git@example.com:example/project.git",
+         *       "repo_uuid": "example-repository-uuid",
+         *       "locked_at": "2024-01-10T10:00:00.000Z",
+         *       "closed_at": "2024-01-11T12:00:00.000Z",
+         *       "project_session_id": 4000001,
+         *       "project_gitlab_path": "example/project",
+         *       "scale_teams": [
+         *         {
+         *           "id": 5000001,
+         *           "scale_id": 6000001,
+         *           "comment": "Example evaluation comment.",
+         *           "created_at": "2024-01-10T10:05:00.000Z",
+         *           "updated_at": "2024-01-10T11:00:00.000Z",
+         *           "feedback": "Example feedback.",
+         *           "final_mark": 75,
+         *           "flag": {
+         *             "id": 1,
+         *             "name": "Approved",
+         *             "positive": true,
+         *             "icon": "check",
+         *             "created_at": "2024-01-01T00:00:00.000Z",
+         *             "updated_at": "2024-01-01T00:00:00.000Z"
+         *           },
+         *           "begin_at": "2024-01-10T10:30:00.000Z",
+         *           "correcteds": [
+         *             {
+         *               "id": 1000002,
+         *               "login": "example-user",
+         *               "url": "https://api.example.com/v2/users/example-user"
+         *             }
+         *           ],
+         *           "corrector": {
+         *             "id": 1000003,
+         *             "login": "evaluator",
+         *             "url": "https://api.example.com/v2/users/evaluator"
+         *           },
+         *           "truant": {},
+         *           "filled_at": "2024-01-10T11:00:00.000Z",
+         *           "questions_with_answers": []
+         *         },
+         *         {
+         *           "id": 5000002,
+         *           "scale_id": 6000001,
+         *           "comment": "Another example evaluation comment.",
+         *           "created_at": "2024-01-10T10:05:00.000Z",
+         *           "updated_at": "2024-01-10T11:05:00.000Z",
+         *           "feedback": "Another example feedback.",
+         *           "final_mark": 85,
+         *           "flag": {
+         *             "id": 1,
+         *             "name": "Approved",
+         *             "positive": true,
+         *             "icon": "check",
+         *             "created_at": "2024-01-01T00:00:00.000Z",
+         *             "updated_at": "2024-01-01T00:00:00.000Z"
+         *           },
+         *           "begin_at": "2024-01-10T11:00:00.000Z",
+         *           "correcteds": [
+         *             {
+         *               "id": 1000002,
+         *               "login": "example-user",
+         *               "url": "https://api.example.com/v2/users/example-user"
+         *             }
+         *           ],
+         *           "corrector": {
+         *             "id": 1000004,
+         *             "login": "second-evaluator",
+         *             "url": "https://api.example.com/v2/users/second-evaluator"
+         *           },
+         *           "truant": {},
+         *           "filled_at": "2024-01-10T11:05:00.000Z",
+         *           "questions_with_answers": []
+         *         }
+         *       ]
+         *     }
+         */
+        TeamResponse: components["schemas"]["LightTeamResponse"] & {
+            scale_teams: components["schemas"]["ScaleTeamResponse"][];
+        };
+        TeamUpdate: {
+            /**
+             * Format: int64
+             * @description The project id.
+             */
+            project_id?: number | null;
+            /** @description The name. */
+            name?: string | null;
+            /** Format: date-time */
+            created_at?: string | null;
+            /** Format: date-time */
+            updated_at?: string | null;
+            /** Format: date-time */
+            locked_at?: string | null;
+            /** Format: date-time */
+            closed_at?: string | null;
+            /**
+             * Format: int64
+             * @description The final mark.
+             */
+            final_mark?: number | null;
+            /** @description The repo url. */
+            repo_url?: string | null;
+            /** @description The repo uuid. */
+            repo_uuid?: string | null;
+            /**
+             * Format: int64
+             * @description The deadline at. Must be after today.
+             */
+            deadline_at?: number | null;
+            /** Format: date-time */
+            terminating_at?: string | null;
+            /**
+             * Format: int64
+             * @description The project session id.
+             */
+            project_session_id?: number | null;
+            /** @description The teams users attributes. */
+            teams_users_attributes?: {
+                /**
+                 * Format: int64
+                 * @description The user id. Must be unique in the scope of a given team.
+                 */
+                user_id: number;
+                /**
+                 * @description Is it leader?
+                 * @default false
+                 */
+                leader: boolean | null;
+                /**
+                 * @description Is it validated?
+                 * @default false
+                 */
+                validated: boolean | null;
+                /**
+                 * Format: int64
+                 * @description The occurrence.
+                 * @default 0
+                 */
+                occurrence: number | null;
+            }[] | null;
+        };
+        TitleResponse: {
+            id: number;
+            name: string;
+        };
+        TitleUserResponse: {
+            id: number;
+            user_id: number;
+            title_id: number;
+            selected: boolean;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+        };
+        UserResponse: components["schemas"]["LightUserResponse"] & {
+            groups: components["schemas"]["GroupResponse"][];
+            cursus_users: components["schemas"]["CursusUserResponse"][];
+            projects_users: components["schemas"]["ProjectUserResponse"][];
+            languages_users: components["schemas"]["LanguageUserResponse"][];
+            achievements: components["schemas"]["AchievementResponse"][];
+            titles: components["schemas"]["TitleResponse"][];
+            titles_users: components["schemas"]["TitleUserResponse"][];
+            patroned: components["schemas"]["PatronageResponse"][];
+            patroning: components["schemas"]["PatronageResponse"][];
+            roles: components["schemas"]["RoleResponse"][];
+            campus: components["schemas"]["CampusResponse"][];
+            campus_users: components["schemas"]["CampusUserResponse"][];
+        };
+        LightUserResponse: {
+            /** @description The unique identifier of the user. */
+            id: number;
+            /** @description The login name of the user. */
+            login: string;
+            /** @description The first name of the user. */
+            first_name: string;
+            /** @description The usual first name of the user, first_name if none. */
+            usual_first_name?: string | null;
+            /** @description The usual full name of the user, usually usual_first_name or first_name + last_name. */
+            usual_full_name: string;
+            /** @description The last name of the user. */
+            last_name: string;
+            /**
+             * Format: email
+             * @description The email address of the user.
+             */
+            email: string;
+            /**
+             * Format: uri
+             * @description The URL to the user's resource.
+             */
+            url: string;
+            /** @description The phone number of the user (always hidden). */
+            phone?: string;
+            /** @description The display name of the user. */
+            displayname: string;
+            /**
+             * @description The kind of user (e.g., student, admin, external).
+             * @enum {string}
+             */
+            kind: "student" | "admin" | "external";
+            image: components["schemas"]["UserImageResponse"];
+            /** @description Indicates if the user is staff. */
+            "staff?": boolean;
+            /** @description The user's correction points. */
+            correction_point: number;
+            /** @description The month of the user's pool. */
+            pool_month: string;
+            /** @description The year of the user's pool. */
+            pool_year: string;
+            /** @description The location of the user. */
+            location?: string | null;
+            /** @description The user's wallet balance. */
+            wallet: number;
+            /**
+             * Format: date-time
+             * @description The date when user data will be anonymized.
+             */
+            anonymize_date: string | null;
+            /**
+             * Format: date-time
+             * @description The date when user data will be erased.
+             */
+            data_erasure_date: string;
+            /**
+             * Format: date-time
+             * @description The user creation timestamp.
+             */
+            created_at: string;
+            /**
+             * Format: date-time
+             * @description The last user update timestamp.
+             */
+            updated_at: string;
+            /**
+             * Format: date-time
+             * @description The date when the user became an alumnus.
+             */
+            alumnized_at: string;
+            /** @description Indicates if the user is an alumnus. */
+            "alumni?": boolean;
+            /** @description Indicates if the user is active. */
+            "active?": boolean;
+        };
+        UserImageResponse: {
+            /**
+             * Format: uri
+             * @description The URL to the user's image.
+             */
+            link: string;
+            versions: {
+                /**
+                 * Format: uri
+                 * @description URL to the large version of the user's image.
+                 */
+                large: string;
+                /**
+                 * Format: uri
+                 * @description URL to the medium version of the user's image.
+                 */
+                medium: string;
+                /**
+                 * Format: uri
+                 * @description URL to the small version of the user's image.
+                 */
+                small: string;
+                /**
+                 * Format: uri
+                 * @description URL to the micro version of the user's image.
+                 */
+                micro: string;
+            };
+        };
+        /**
+         * @example {
+         *       "id": 42,
+         *       "user_id": 42,
+         *       "birth_date": "2013-01-01",
+         *       "gender": "male",
+         *       "zip_code": "75017",
+         *       "country": "France",
+         *       "birth_city": "Paris",
+         *       "birth_country": "France",
+         *       "postal_street": "96 boulevard Bessières",
+         *       "postal_complement": null,
+         *       "postal_city": "Paris",
+         *       "postal_zip_code": "75017",
+         *       "postal_country": "France",
+         *       "contact_affiliation": "Parent",
+         *       "contact_last_name": "Moulinette",
+         *       "contact_first_name": "Norminette",
+         *       "contact_phone1": "+33600000000",
+         *       "contact_phone2": null,
+         *       "max_level_memory": null,
+         *       "max_level_logic": null,
+         *       "other_information": null,
+         *       "language": "fr",
+         *       "meeting_date": "2020-08-27T07:31:49.431Z",
+         *       "piscine_date": null,
+         *       "created_at": "2020-08-27T07:31:49.431Z",
+         *       "updated_at": "2025-07-10T16:16:34.238Z",
+         *       "phone": "+33600000000",
+         *       "email": "tmatis@example.com",
+         *       "pin": "7777",
+         *       "phone_country_code": "FR",
+         *       "hidden_phone": false
+         *     }
+         */
+        UserCandidatureResponse: {
+            id: number;
+            user_id: number;
+            /** Format: date */
+            birth_date?: string;
+            /** @enum {string|null} */
+            gender?: "male" | "female" | "other" | null;
+            zip_code?: string | null;
+            country?: string | null;
+            birth_city: string;
+            birth_country?: string | null;
+            postal_street: string;
+            postal_complement?: string | null;
+            postal_city: string;
+            postal_zip_code: string;
+            postal_country: string;
+            contact_affiliation: string;
+            contact_last_name: string;
+            contact_first_name: string;
+            contact_phone1: string;
+            contact_phone2?: string | null;
+            /** Format: double */
+            max_level_memory?: number | null;
+            /** Format: double */
+            max_level_logic?: number | null;
+            other_information?: string | null;
+            language: string;
+            /** Format: date-time */
+            meeting_date?: string | null;
+            /** Format: date-time */
+            piscine_date?: string | null;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            phone: string;
+            email: string;
+            pin: string;
+            phone_country_code: string;
+            hidden_phone: boolean;
+        };
+    };
+    responses: {
+        /** @description Error response */
+        ErrorResponse: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["Error"];
+            };
+        };
+    };
+    parameters: {
+        /**
+         * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
+         *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
+         */
+        page: number;
+        /** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
+        per_page: number;
+        /** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
+        page_number: number;
+        /** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
+        page_size: number;
+    };
+    requestBodies: never;
+    headers: {
+        /**
+         * @description RFC5988 Web Linking header containing `first`, `prev`, `next` and `last` links when available.
+         *     Example: <https://api.intra.42.fr/v2/Users?page=2>; rel="next", <https://api.intra.42.fr/v2/Users?page=1>; rel="prev"
+         */
+        Link: string;
+        /** @description The current page number. */
+        "X-Page": number;
+        /** @description The current pagination length (items per page). */
+        "X-Per-Page": number;
+        /** @description The total number of pages available for the resource. */
+        "X-Total": number;
+    };
+    pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-	getCloses: {
-		parameters: {
-			query?: {
-				/**
-				 * @description The sort field. Sorted by created_at desc, id desc by default.
-				 *     Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid.
-				 */
-				sort?:
-					| 'id'
-					| 'user_id'
-					| 'closer_id'
-					| 'reason'
-					| 'state'
-					| 'created_at'
-					| 'updated_at'
-					| 'kind'
-					| 'end_at'
-					| 'jid';
-				/** @description Filtering on one or more fields. Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid, campus_id, end. */
-				filter?: {
-					[key: string]: string;
-				};
-				/** @description Select on a particular range. Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid. */
-				range?: {
-					[key: string]: string;
-				};
-				/**
-				 * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
-				 *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
-				 */
-				page?: components['parameters']['page'];
-				/** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
-				per_page?: components['parameters']['per_page'];
-				/** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
-				'page[number]'?: components['parameters']['page_number'];
-				/** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
-				'page[size]'?: components['parameters']['page_size'];
-			};
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description A list of closes */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					'application/json': components['schemas']['CloseResponse'][];
-				};
-			};
-			400: components['responses']['ErrorResponse'];
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	getClosesByUserId: {
-		parameters: {
-			query?: {
-				/**
-				 * @description The sort field. Sorted by created_at desc, id desc by default.
-				 *     Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid.
-				 */
-				sort?:
-					| 'id'
-					| 'user_id'
-					| 'closer_id'
-					| 'reason'
-					| 'state'
-					| 'created_at'
-					| 'updated_at'
-					| 'kind'
-					| 'end_at'
-					| 'jid';
-				/** @description Filtering on one or more fields. Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid, campus_id, end. */
-				filter?: {
-					[key: string]: string;
-				};
-				/** @description Select on a particular range. Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid. */
-				range?: {
-					[key: string]: string;
-				};
-				/**
-				 * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
-				 *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
-				 */
-				page?: components['parameters']['page'];
-				/** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
-				per_page?: components['parameters']['per_page'];
-				/** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
-				'page[number]'?: components['parameters']['page_number'];
-				/** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
-				'page[size]'?: components['parameters']['page_size'];
-			};
-			header?: never;
-			path: {
-				/** @description The user id */
-				user_id: number;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description A list of closes */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					'application/json': components['schemas']['CloseResponse'][];
-				};
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	getCloseById: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The ID of the close */
-				id: number;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description A close object */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					'application/json': components['schemas']['CloseResponse'];
-				};
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	getInternships: {
-		parameters: {
-			query?: {
-				/**
-				 * @description The sort field. Sorted by id desc by default.
-				 *     Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at, anti_grav_units_user_id.
-				 *     Example: -updated_at,anti_grav_units_user_id (to sort by updated_at descending and anti_grav_units_user_id ascending)
-				 */
-				sort?: string;
-				/**
-				 * @description Filtering on one or more fields.
-				 *     Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at, anti_grav_units_user_id.
-				 *     Example: filter[id]=a_value,another_value (to filter on internships with id matching a_value or another_value)
-				 */
-				filter?: {
-					[key: string]: string;
-				};
-				/**
-				 * @description Select on a particular range.
-				 *     Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at.
-				 *     Example: range[status]=min_value,max_value (to range on internships with status field between min_value and max_value)
-				 */
-				range?: {
-					[key: string]: string;
-				};
-				/**
-				 * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
-				 *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
-				 */
-				page?: components['parameters']['page'];
-				/** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
-				per_page?: components['parameters']['per_page'];
-				/** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
-				'page[number]'?: components['parameters']['page_number'];
-				/** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
-				'page[size]'?: components['parameters']['page_size'];
-			};
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description A list of internships */
-			200: {
-				headers: {
-					Link: components['headers']['Link'];
-					'X-Page': components['headers']['X-Page'];
-					'X-Per-Page': components['headers']['X-Per-Page'];
-					'X-Total': components['headers']['X-Total'];
-					[name: string]: unknown;
-				};
-				content: {
-					'application/json': components['schemas']['InternshipResponse'][];
-				};
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	getLanguageById: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The ID of the language */
-				id: number;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description A language object */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					'application/json': components['schemas']['LanguageResponse'];
-				};
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	GetProjectsUsersByUserId: {
-		parameters: {
-			query?: {
-				/**
-				 * @description Filtering on one or more fields.
-				 *     Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status, primary_campus_id, first_name, last_name, alumni?, staff?.
-				 *     Example: filter[id]=a_value,another_value (to filter on users with id matching a_value or another_value)
-				 */
-				filter?: {
-					[key: string]: string;
-				};
-				/**
-				 * @description Select on a particular range.
-				 *     Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status.
-				 *     Example: range[status]=min_value,max_value (to range on users with status field between min_value and max_value)
-				 */
-				range?: {
-					[key: string]: string;
-				};
-				/**
-				 * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
-				 *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
-				 */
-				page?: components['parameters']['page'];
-				/** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
-				per_page?: components['parameters']['per_page'];
-				/** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
-				'page[number]'?: components['parameters']['page_number'];
-				/** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
-				'page[size]'?: components['parameters']['page_size'];
-			};
-			header?: never;
-			path: {
-				/** @description The ID of the user */
-				user_id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description A list of projects users */
-			200: {
-				headers: {
-					Link: components['headers']['Link'];
-					'X-Page': components['headers']['X-Page'];
-					'X-Per-Page': components['headers']['X-Per-Page'];
-					'X-Total': components['headers']['X-Total'];
-					[name: string]: unknown;
-				};
-				content: {
-					'application/json': components['schemas']['ProjectUserResponse'][];
-				};
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	PostProjectsUsers: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				/**
-				 * @example {
-				 *       "projects_user": {
-				 *         "project_id": 1,
-				 *         "user_id": 1
-				 *       }
-				 *     }
-				 */
-				'application/json': {
-					projects_user: components['schemas']['ProjectUserCreate'];
-				};
-			};
-		};
-		responses: {
-			/** @description Project user created successfully */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					'application/json': components['schemas']['ProjectUserResponse'];
-				};
-			};
-			400: components['responses']['ErrorResponse'];
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	PutProjectUserById: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The ID of the project user */
-				id: string;
-			};
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				/**
-				 * @example {
-				 *       "projects_user": {
-				 *         "project_id": 1,
-				 *         "user_id": 1
-				 *       }
-				 *     }
-				 */
-				'application/json': {
-					projects_user: components['schemas']['ProjectUserUpdate'];
-				};
-			};
-		};
-		responses: {
-			/** @description Project user updated successfully */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	PatchProjectUserById: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The ID of the project user */
-				id: string;
-			};
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				/**
-				 * @example {
-				 *       "projects_user": {
-				 *         "project_id": 1,
-				 *         "user_id": 1
-				 *       }
-				 *     }
-				 */
-				'application/json': {
-					projects_user: components['schemas']['ProjectUserUpdate'];
-				};
-			};
-		};
-		responses: {
-			/** @description Project user updated successfully */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			400: components['responses']['ErrorResponse'];
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	getTeamById: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The ID of the team */
-				id: number;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description A team object */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					'application/json': components['schemas']['TeamResponse'];
-				};
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	PutTeamById: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The ID of the team */
-				id: string;
-			};
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				/**
-				 * @example {
-				 *       "team": {
-				 *         "project_id": 5
-				 *       }
-				 *     }
-				 */
-				'application/json': {
-					team: components['schemas']['TeamUpdate'];
-				};
-			};
-		};
-		responses: {
-			/** @description Team has been updated */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	PatchTeamById: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The ID of the team */
-				id: string;
-			};
-			cookie?: never;
-		};
-		requestBody: {
-			content: {
-				/**
-				 * @example {
-				 *       "team": {
-				 *         "project_id": 5
-				 *       }
-				 *     }
-				 */
-				'application/json': {
-					team: components['schemas']['TeamUpdate'];
-				};
-			};
-		};
-		responses: {
-			/** @description Team has been patched */
-			204: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	PostResetTeamUploadsById: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The ID of the team */
-				id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description Team Uploads as been reset */
-			201: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	getUserCandidatureById: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The ID of the user */
-				id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description User candidature information */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					'application/json': components['schemas']['UserCandidatureResponse'];
-				};
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	getUsers: {
-		parameters: {
-			query?: {
-				/**
-				 * @description The sort field. Sorted by id desc by default.
-				 *     Must be one of: id, login, email, encrypted_password, reset_password_token, reset_password_sent_at, created_at, updated_at, image, first_name, last_name, pool_year, pool_month, kind, status, otp_secret_key, otp_tmp, otp_activated, otp_backup_passwords, slack_team, slack_login, slack_mail, slack_code_validation, slack_validated_at, token_id, email_stop, linked_user_id, usual_first_name, last_seen_at, password_changed_at, encrypted_single_usage_password, first_warn_anon_sent_at, second_warn_anon_sent_at, alumnized_at, anonymized_at.
-				 *     Example: -alumnized_at,anonymized_at (to sort on alumnized_at descending and anonymized_at ascending)
-				 */
-				sort?: string;
-				/**
-				 * @description Filtering on one or more fields.
-				 *     Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status, primary_campus_id, first_name, last_name, alumni?, staff?.
-				 *     Example: filter[id]=a_value,another_value (to filter on users with id matching a_value or another_value)
-				 */
-				filter?: {
-					[key: string]: string;
-				};
-				/**
-				 * @description Select on a particular range.
-				 *     Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status.
-				 *     Example: range[status]=min_value,max_value (to range on users with status field between min_value and max_value)
-				 */
-				range?: {
-					[key: string]: string;
-				};
-				/**
-				 * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
-				 *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
-				 */
-				page?: components['parameters']['page'];
-				/** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
-				per_page?: components['parameters']['per_page'];
-				/** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
-				'page[number]'?: components['parameters']['page_number'];
-				/** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
-				'page[size]'?: components['parameters']['page_size'];
-			};
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description A list of users */
-			200: {
-				headers: {
-					Link: components['headers']['Link'];
-					'X-Page': components['headers']['X-Page'];
-					'X-Per-Page': components['headers']['X-Per-Page'];
-					'X-Total': components['headers']['X-Total'];
-					[name: string]: unknown;
-				};
-				content: {
-					'application/json': components['schemas']['LightUserResponse'][];
-				};
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
-	getUserById: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The ID of the user */
-				id: string;
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			/** @description A user object */
-			200: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content: {
-					'application/json': components['schemas']['UserResponse'];
-				};
-			};
-			default: components['responses']['ErrorResponse'];
-		};
-	};
+    getCloses: {
+        parameters: {
+            query?: {
+                /**
+                 * @description The sort field. Sorted by created_at desc, id desc by default.
+                 *     Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid.
+                 */
+                sort?: "id" | "user_id" | "closer_id" | "reason" | "state" | "created_at" | "updated_at" | "kind" | "end_at" | "jid";
+                /** @description Filtering on one or more fields. Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid, campus_id, end. */
+                filter?: {
+                    [key: string]: string;
+                };
+                /** @description Select on a particular range. Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid. */
+                range?: {
+                    [key: string]: string;
+                };
+                /**
+                 * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
+                 *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
+                 */
+                page?: components["parameters"]["page"];
+                /** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
+                per_page?: components["parameters"]["per_page"];
+                /** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
+                "page[number]"?: components["parameters"]["page_number"];
+                /** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
+                "page[size]"?: components["parameters"]["page_size"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A list of closes */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CloseResponse"][];
+                };
+            };
+            400: components["responses"]["ErrorResponse"];
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    getClosesByUserId: {
+        parameters: {
+            query?: {
+                /**
+                 * @description The sort field. Sorted by created_at desc, id desc by default.
+                 *     Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid.
+                 */
+                sort?: "id" | "user_id" | "closer_id" | "reason" | "state" | "created_at" | "updated_at" | "kind" | "end_at" | "jid";
+                /** @description Filtering on one or more fields. Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid, campus_id, end. */
+                filter?: {
+                    [key: string]: string;
+                };
+                /** @description Select on a particular range. Must be one of: id, user_id, closer_id, reason, state, created_at, updated_at, kind, end_at, jid. */
+                range?: {
+                    [key: string]: string;
+                };
+                /**
+                 * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
+                 *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
+                 */
+                page?: components["parameters"]["page"];
+                /** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
+                per_page?: components["parameters"]["per_page"];
+                /** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
+                "page[number]"?: components["parameters"]["page_number"];
+                /** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
+                "page[size]"?: components["parameters"]["page_size"];
+            };
+            header?: never;
+            path: {
+                /** @description The user id */
+                user_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A list of closes */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CloseResponse"][];
+                };
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    getCloseById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the close */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A close object */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CloseResponse"];
+                };
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    getInternships: {
+        parameters: {
+            query?: {
+                /**
+                 * @description The sort field. Sorted by id desc by default.
+                 *     Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at, anti_grav_units_user_id.
+                 *     Example: -updated_at,anti_grav_units_user_id (to sort by updated_at descending and anti_grav_units_user_id ascending)
+                 */
+                sort?: string;
+                /**
+                 * @description Filtering on one or more fields.
+                 *     Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at, anti_grav_units_user_id.
+                 *     Example: filter[id]=a_value,another_value (to filter on internships with id matching a_value or another_value)
+                 */
+                filter?: {
+                    [key: string]: string;
+                };
+                /**
+                 * @description Select on a particular range.
+                 *     Must be one of: id, user_id, administration_id, offer_id, language_id, state, days, user_address, user_postal, user_city, user_country, company_name, company_boss_user_first_name, company_boss_user_last_name, company_boss_user_email, company_boss_user_phone, company_user_first_name, company_user_last_name, company_user_post, company_user_email, company_user_phone, company_address, company_postal, company_city, company_country, company_siret, internship_address, internship_postal, internship_city, internship_country, contract_type, subject, start_at, end_at, duration, nb_days, nb_hours, movement, salary, currency, breach_at, convention, created_at, updated_at.
+                 *     Example: range[status]=min_value,max_value (to range on internships with status field between min_value and max_value)
+                 */
+                range?: {
+                    [key: string]: string;
+                };
+                /**
+                 * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
+                 *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
+                 */
+                page?: components["parameters"]["page"];
+                /** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
+                per_page?: components["parameters"]["per_page"];
+                /** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
+                "page[number]"?: components["parameters"]["page_number"];
+                /** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
+                "page[size]"?: components["parameters"]["page_size"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A list of internships */
+            200: {
+                headers: {
+                    Link: components["headers"]["Link"];
+                    "X-Page": components["headers"]["X-Page"];
+                    "X-Per-Page": components["headers"]["X-Per-Page"];
+                    "X-Total": components["headers"]["X-Total"];
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["InternshipResponse"][];
+                };
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    getLanguageById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the language */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A language object */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LanguageResponse"];
+                };
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    GetProjectsUsersByUserId: {
+        parameters: {
+            query?: {
+                /**
+                 * @description Filtering on one or more fields.
+                 *     Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status, primary_campus_id, first_name, last_name, alumni?, staff?.
+                 *     Example: filter[id]=a_value,another_value (to filter on users with id matching a_value or another_value)
+                 */
+                filter?: {
+                    [key: string]: string;
+                };
+                /**
+                 * @description Select on a particular range.
+                 *     Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status.
+                 *     Example: range[status]=min_value,max_value (to range on users with status field between min_value and max_value)
+                 */
+                range?: {
+                    [key: string]: string;
+                };
+                /**
+                 * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
+                 *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
+                 */
+                page?: components["parameters"]["page"];
+                /** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
+                per_page?: components["parameters"]["per_page"];
+                /** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
+                "page[number]"?: components["parameters"]["page_number"];
+                /** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
+                "page[size]"?: components["parameters"]["page_size"];
+            };
+            header?: never;
+            path: {
+                /** @description The ID of the user */
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A list of projects users */
+            200: {
+                headers: {
+                    Link: components["headers"]["Link"];
+                    "X-Page": components["headers"]["X-Page"];
+                    "X-Per-Page": components["headers"]["X-Per-Page"];
+                    "X-Total": components["headers"]["X-Total"];
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProjectUserResponse"][];
+                };
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    PostProjectsUsers: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                /**
+                 * @example {
+                 *       "projects_user": {
+                 *         "project_id": 1,
+                 *         "user_id": 1
+                 *       }
+                 *     }
+                 */
+                "application/json": {
+                    projects_user: components["schemas"]["ProjectUserCreate"];
+                };
+            };
+        };
+        responses: {
+            /** @description Project user created successfully */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProjectUserResponse"];
+                };
+            };
+            400: components["responses"]["ErrorResponse"];
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    PutProjectUserById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the project user */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                /**
+                 * @example {
+                 *       "projects_user": {
+                 *         "project_id": 1,
+                 *         "user_id": 1
+                 *       }
+                 *     }
+                 */
+                "application/json": {
+                    projects_user: components["schemas"]["ProjectUserUpdate"];
+                };
+            };
+        };
+        responses: {
+            /** @description Project user updated successfully */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    PatchProjectUserById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the project user */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                /**
+                 * @example {
+                 *       "projects_user": {
+                 *         "project_id": 1,
+                 *         "user_id": 1
+                 *       }
+                 *     }
+                 */
+                "application/json": {
+                    projects_user: components["schemas"]["ProjectUserUpdate"];
+                };
+            };
+        };
+        responses: {
+            /** @description Project user updated successfully */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            400: components["responses"]["ErrorResponse"];
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    getTeamById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the team */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A team object */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TeamResponse"];
+                };
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    PutTeamById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the team */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                /**
+                 * @example {
+                 *       "team": {
+                 *         "project_id": 5
+                 *       }
+                 *     }
+                 */
+                "application/json": {
+                    team: components["schemas"]["TeamUpdate"];
+                };
+            };
+        };
+        responses: {
+            /** @description Team has been updated */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    PatchTeamById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the team */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                /**
+                 * @example {
+                 *       "team": {
+                 *         "project_id": 5
+                 *       }
+                 *     }
+                 */
+                "application/json": {
+                    team: components["schemas"]["TeamUpdate"];
+                };
+            };
+        };
+        responses: {
+            /** @description Team has been patched */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    PostResetTeamUploadsById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the team */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Team Uploads as been reset */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    getUserCandidatureById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the user */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description User candidature information */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserCandidatureResponse"];
+                };
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    getUsers: {
+        parameters: {
+            query?: {
+                /**
+                 * @description The sort field. Sorted by id desc by default.
+                 *     Must be one of: id, login, email, encrypted_password, reset_password_token, reset_password_sent_at, created_at, updated_at, image, first_name, last_name, pool_year, pool_month, kind, status, otp_secret_key, otp_tmp, otp_activated, otp_backup_passwords, slack_team, slack_login, slack_mail, slack_code_validation, slack_validated_at, token_id, email_stop, linked_user_id, usual_first_name, last_seen_at, password_changed_at, encrypted_single_usage_password, first_warn_anon_sent_at, second_warn_anon_sent_at, alumnized_at, anonymized_at.
+                 *     Example: -alumnized_at,anonymized_at (to sort on alumnized_at descending and anonymized_at ascending)
+                 */
+                sort?: string;
+                /**
+                 * @description Filtering on one or more fields.
+                 *     Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status, primary_campus_id, first_name, last_name, alumni?, staff?.
+                 *     Example: filter[id]=a_value,another_value (to filter on users with id matching a_value or another_value)
+                 */
+                filter?: {
+                    [key: string]: string;
+                };
+                /**
+                 * @description Select on a particular range.
+                 *     Must be one of: id, login, email, created_at, updated_at, pool_year, pool_month, kind, status.
+                 *     Example: range[status]=min_value,max_value (to range on users with status field between min_value and max_value)
+                 */
+                range?: {
+                    [key: string]: string;
+                };
+                /**
+                 * @description Page number (1-based). The 42 API paginates index endpoints and defaults to 30 items per page.
+                 *     You can also use the `per_page` parameter to set the page size (up to 100 for many endpoints).
+                 */
+                page?: components["parameters"]["page"];
+                /** @description Number of items per page. Maximum is generally 100 but some endpoints limit this for technical reasons. */
+                per_page?: components["parameters"]["per_page"];
+                /** @description Alternate pagination style using `page[number]` (1-based page index). Can be used together with `page[size]`. */
+                "page[number]"?: components["parameters"]["page_number"];
+                /** @description Alternate pagination style to set the page size (maximum depends on endpoint, commonly up to 100). */
+                "page[size]"?: components["parameters"]["page_size"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A list of users */
+            200: {
+                headers: {
+                    Link: components["headers"]["Link"];
+                    "X-Page": components["headers"]["X-Page"];
+                    "X-Per-Page": components["headers"]["X-Per-Page"];
+                    "X-Total": components["headers"]["X-Total"];
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LightUserResponse"][];
+                };
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
+    getUserById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the user */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A user object */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserResponse"];
+                };
+            };
+            default: components["responses"]["ErrorResponse"];
+        };
+    };
 }

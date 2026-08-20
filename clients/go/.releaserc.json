@@ -5,12 +5,6 @@
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
-      "@semantic-release/exec",
-      {
-        "publishCmd": "go mod tidy && echo 'Go module published via tag ${nextRelease.version}'"
-      }
-    ],
-    [
       "@semantic-release/git",
       {
         "message": "chore(release): go-client ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",

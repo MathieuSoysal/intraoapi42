@@ -15,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "generate:api": "openapi-typescript ../../openapi.yaml --output ./src/types.ts",
+    "generate:api": "openapi-typescript openapi.yaml --output ./src/types.ts",
     "typecheck": "tsc --noEmit",
     "build": "tsc",
     "test": "vitest run",

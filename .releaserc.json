@@ -1,0 +1,25 @@
+{
+  "extends": "semantic-release-monorepo",
+  "branches": ["main"],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "npm run openapi:version ${nextRelease.version}"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "message": "chore(release): api ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+        "assets": [
+          "openapi.yaml"
+        ]
+      }
+    ],
+    "@semantic-release/github"
+  ],
+  "tagFormat": "openapi/v${version}"
+}

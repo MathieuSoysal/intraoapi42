@@ -1,18 +1,20 @@
-OPENAPI_SPEC := openapi.yaml
+OPENAPI_SPEC ?= openapi.yaml
+USER_ID := $(shell id -u)
+GROUP_ID := $(shell id -g)
 
 all: indexes bundle lint
 
 indexes:
-	# we need to install the python deps (tool/requirements.txt) and run tool/generate_indexes.py
-	docker run --rm --user ${UID}:${GID} \
+	docker run --rm --user $(USER_ID):$(GROUP_ID) \
+		-e HOME=/tmp \
 		-w / \
 		-v ./specs:/specs \
 		-v ./tool:/tool \
 		python:3.11-slim \
-		bash -c "pip install -r /tool/requirements.txt && python /tool/generate_indexes.py"
+		bash -c "pip install --no-cache-dir --user -r /tool/requirements.txt && PATH=/tmp/.local/bin:\$$PATH python /tool/generate_indexes.py"
 
 bundle:
-	docker run --rm --user ${UID}:${GID} \
+	docker run --rm --user $(USER_ID):$(GROUP_ID) \
 		-v ./specs:/spec \
 		-v ./$(OPENAPI_SPEC):/gen/$(OPENAPI_SPEC) \
 		-v ./redocly.yaml:/redocly.yaml:ro \
@@ -20,41 +22,38 @@ bundle:
 		bundle $(OPENAPI_SPEC) --config /redocly.yaml --force --ext yaml -o /gen/$(OPENAPI_SPEC) 2> /dev/null
 
 lint:
-	docker run --rm --user ${UID}:${GID} \
+	docker run --rm --user $(USER_ID):$(GROUP_ID) \
 		-v ./$(OPENAPI_SPEC):/spec/$(OPENAPI_SPEC) \
 		-v ./redocly.yaml:/redocly.yaml:ro \
 		redocly/cli:2.40.0 \
 		lint --config /redocly.yaml --lint-config error $(OPENAPI_SPEC)
 
 generate-python:
+	docker build -f clients/python/Dockerfile -t oapi-gen-py .
 	rm -rf clients/python/intraoapi42
-
-	docker run --rm \
-		--user "$$(id -u):$$(id -g)" \
-		-v "$(CURDIR):/workspace" \
-		--workdir /workspace \
-		--entrypoint openapi-python-client \
-		openapi-python-client:local \
-		generate \
-		--path "/workspace/$(OPENAPI_SPEC)" \
-		--config /workspace/clients/python/config.yaml \
-		--output-path /workspace/clients/python \
-		--custom-template-path /workspace/clients/python/custom-templates \
-		--overwrite
-	
-	cp clients/python/custom_client.py.txt clients/python/intraoapi42/custom_client.py
+	docker run --rm --user $(USER_ID):$(GROUP_ID) -v ./clients/python:/out oapi-gen-py \
+		sh -c "cp -r /src/intraoapi42 /out/ && cp /src/custom-templates/custom_client.py.txt /out/intraoapi42/custom_client.py"
 
 generate-go:
-	cd clients/go && go generate ./...
+	docker build -f clients/go/Dockerfile -t oapi-gen-go .
+	docker run --rm --user $(USER_ID):$(GROUP_ID) -v ./clients/go:/out oapi-gen-go \
+		sh -c "cp /src/openapi.gen.go /out/openapi.gen.go"
 
 generate-typescript:
-	cd clients/typescript && npm run generate:api
+	docker build -f clients/typescript/Dockerfile -t oapi-gen-ts .
+	docker run --rm --user $(USER_ID):$(GROUP_ID) -v ./clients/typescript:/out oapi-gen-ts \
+		sh -c "cp /src/src/types.ts /out/src/types.ts"
 
 generate-clients: generate-go generate-python generate-typescript
 
-docs:
-	docker compose \
-		-f docs/docker-compose.yml \
-		up
-
-.PHONY: all indexes bundle docs generate-python generate-go
+ci-check:
+	$(MAKE) all
+	$(MAKE) generate-clients
+	@status=$$(git status --porcelain); \
+	if [ -n "$$status" ]; then \
+		echo "ERROR: generated files are out of date."; \
+		echo "$$status"; \
+		echo ""; \
+		echo "Run 'make all generate-clients' locally and commit the changes."; \
+		exit 1; \
+	fi

@@ -1,6 +1,6 @@
 module github.com/blast42/intraoapi42/clients/go
 
-go 1.26.6
+go 1.25.1
 
 require (
 	github.com/oapi-codegen/runtime v1.7.0
