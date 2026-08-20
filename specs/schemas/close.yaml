@@ -16,15 +16,13 @@ CloseResponse:
       format: date-time
       x-go-type: IntraTime
     end_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     community_services:
       type: array
       items:
         $ref: "#/components/schemas/CommunityServiceResponse"
-      nullable: false
     kind:
       type: string
       enum:

@@ -27,9 +27,8 @@ CursusUserResponse:
     has_coalition:
       type: boolean
     blackholed_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     created_at:
       type: string

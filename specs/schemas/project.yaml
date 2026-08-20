@@ -8,8 +8,7 @@ LightProjectResponse:
     slug:
       type: string
     parent_id:
-      type: integer
-      nullable: true
+      type: [integer, "null"]
   required:
     - id
     - name

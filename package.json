@@ -1,17 +1,6 @@
 {
   "name": "intraoapi42",
-  "version": "1.0.0",
-  "description": "Openapi 3 specs for the [42 Intranet API](https://api.intra.42.fr), with 3 clients go, python, typescript generate from the specs, plus a thin wrapper handling OAuth2 client-credentials auth and automatic retries.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/42paris/intraoapi42.git"
-  },
-  "scripts": {
-    "openapi:version": "node tool/write-api-version.cjs"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "private": true,
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",

@@ -1,7 +1,6 @@
 {
   "name": "python-client",
   "private": true,
-  "description": "Python client for 42 Intra API",
   "devDependencies": {
     "semantic-release": "^24.0.0",
     "@semantic-release/commit-analyzer": "^13.0.0",

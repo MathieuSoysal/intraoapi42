@@ -61,6 +61,7 @@ jobs:
         run: npm ci
 
       - name: Release API contract
+        working-directory: openapi
         run: npx --no-install semantic-release -e semantic-release-monorepo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

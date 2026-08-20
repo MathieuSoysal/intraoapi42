@@ -18,8 +18,7 @@ ScaleTeamResponse:
     feedback:
       type: string
     final_mark:
-      type: integer
-      nullable: true
+      type: [integer, "null"]
     flag:
       $ref: "#/components/schemas/ScaleFlagResponse"
     begin_at:
@@ -36,9 +35,8 @@ ScaleTeamResponse:
       type: object
       additionalProperties: true
     filled_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     questions_with_answers:
       type: array
@@ -140,11 +138,9 @@ QuestionAnswerResponse:
     id:
       type: integer
     value:
-      type: integer
-      nullable: true
+      type: [integer, "null"]
     answer:
-      type: string
-      nullable: true
+      type: [string, "null"]
   required:
     - id
     - value
@@ -156,8 +152,7 @@ TeamUploadResponse:
     id:
       type: integer
     final_mark:
-      type: integer
-      nullable: true
+      type: [integer, "null"]
     comment:
       type: string
     created_at:

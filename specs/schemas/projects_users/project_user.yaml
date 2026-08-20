@@ -6,13 +6,11 @@ ProjectUserResponse:
     occurrence:
       type: integer
     final_mark:
-      type: integer
-      nullable: true
+      type: [integer, "null"]
     status:
       type: string
     validated?:
-      type: boolean
-      nullable: true
+      type: [boolean, "null"]
     current_team_id:
       type: integer
     project:
@@ -28,17 +26,14 @@ ProjectUserResponse:
       items:
         $ref: "#/components/schemas/LightTeamResponse"
     marked_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     marked:
-      type: boolean
-      nullable: true
+      type: [boolean, "null"]
     retriable_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     created_at:
       type: string

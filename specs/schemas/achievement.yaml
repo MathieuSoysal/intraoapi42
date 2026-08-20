@@ -16,8 +16,7 @@ AchievementResponse:
     image:
       type: string
     nbr_of_success:
-      type: integer
-      nullable: true
+      type: [integer, "null"]
     users_url:
       type: string
       format: uri

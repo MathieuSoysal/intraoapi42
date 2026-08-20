@@ -1,4 +1,4 @@
-OPENAPI_SPEC ?= openapi.yaml
+OPENAPI_SPEC ?= openapi/openapi.yaml
 USER_ID := $(shell id -u)
 GROUP_ID := $(shell id -g)
 
@@ -16,17 +16,18 @@ indexes:
 bundle:
 	docker run --rm --user $(USER_ID):$(GROUP_ID) \
 		-v ./specs:/spec \
-		-v ./$(OPENAPI_SPEC):/gen/$(OPENAPI_SPEC) \
+		-v ./$(OPENAPI_SPEC):/gen/openapi.yaml \
 		-v ./redocly.yaml:/redocly.yaml:ro \
 		redocly/cli:2.40.0 \
-		bundle $(OPENAPI_SPEC) --config /redocly.yaml --force --ext yaml -o /gen/$(OPENAPI_SPEC) 2> /dev/null
+		bundle openapi.yaml --config /redocly.yaml --force --ext yaml -o /gen/openapi.yaml 2> /dev/null
+
 
 lint:
 	docker run --rm --user $(USER_ID):$(GROUP_ID) \
-		-v ./$(OPENAPI_SPEC):/spec/$(OPENAPI_SPEC) \
+		-v ./$(OPENAPI_SPEC):/spec/openapi.yaml \
 		-v ./redocly.yaml:/redocly.yaml:ro \
 		redocly/cli:2.40.0 \
-		lint --config /redocly.yaml --lint-config error $(OPENAPI_SPEC)
+		lint --config /redocly.yaml --lint-config error openapi.yaml
 
 generate-python:
 	docker build -f clients/python/Dockerfile -t oapi-gen-py .

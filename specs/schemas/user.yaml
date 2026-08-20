@@ -78,9 +78,8 @@ LightUserResponse:
       type: string
       description: The first name of the user.
     usual_first_name:
-      type: string
+      type: [string, "null"]
       description: The usual first name of the user, first_name if none.
-      nullable: true
     usual_full_name:
       type: string
       description: The usual full name of the user, usually usual_first_name or first_name + last_name.
@@ -123,16 +122,14 @@ LightUserResponse:
       type: string
       description: The year of the user's pool.
     location:
-      type: string
+      type: [string, "null"]
       description: The location of the user.
-      nullable: true
     wallet:
       type: integer
       description: The user's wallet balance.
     anonymize_date:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
       description: The date when user data will be anonymized.
     data_erasure_date:

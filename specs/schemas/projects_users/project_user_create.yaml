@@ -5,9 +5,8 @@ ProjectUserCreate:
     - user_id
   properties:
     id:
-      type: integer
+      type: [integer, "null"]
       format: int64
-      nullable: true
       description: The id.
 
     project_id:
@@ -21,49 +20,41 @@ ProjectUserCreate:
       description: The user id. Must be unique in the scope of a given project.
 
     created_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
 
     updated_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
 
     occurrence:
-      type: integer
+      type: [integer, "null"]
       format: int64
-      nullable: true
       default: 0
       description: The occurrence.
 
     final_mark:
-      type: integer
+      type: [integer, "null"]
       format: int64
-      nullable: true
       description: The final mark.
 
     retriable_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
 
     marked_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
 
     status:
-      type: string
-      nullable: true
+      type: [string, "null"]
       default: unknown
       description: The status.
 
     skip_check_permission:
-      type: string
-      nullable: true
+      type: [string, "null"]
       description: The skip check permission.

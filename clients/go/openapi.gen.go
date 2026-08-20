@@ -298,7 +298,7 @@ type CursusUserResponse struct {
 	UpdatedAt    IntraTime       `json:"updated_at"`
 }
 
-// Error Example: {"error":"The access token is invalid","status":401}
+// Error defines model for Error.
 type Error struct {
 	// Error Error message
 	Error string `json:"error"`
@@ -770,7 +770,7 @@ type TitleUserResponse struct {
 	UserId    int       `json:"user_id"`
 }
 
-// UserCandidatureResponse Example: {"birth_city":"Paris","birth_country":"France","birth_date":"2013-01-01","contact_affiliation":"Parent","contact_first_name":"Norminette","contact_last_name":"Moulinette","contact_phone1":"+33600000000","contact_phone2":null,"country":"France","created_at":"2020-08-27T07:31:49.431Z","email":"tmatis@example.com","gender":"male","hidden_phone":false,"id":42,"language":"fr","max_level_logic":null,"max_level_memory":null,"meeting_date":"2020-08-27T07:31:49.431Z","other_information":null,"phone":"+33600000000","phone_country_code":"FR","pin":"7777","piscine_date":null,"postal_city":"Paris","postal_complement":null,"postal_country":"France","postal_street":"96 boulevard Bessières","postal_zip_code":"75017","updated_at":"2025-07-10T16:16:34.238Z","user_id":42,"zip_code":"75017"}
+// UserCandidatureResponse defines model for UserCandidatureResponse.
 type UserCandidatureResponse struct {
 	BirthCity          string                         `json:"birth_city"`
 	BirthCountry       *string                        `json:"birth_country,omitempty"`
@@ -931,7 +931,7 @@ type PageSize = int
 // PerPage defines model for per_page.
 type PerPage = int
 
-// ErrorResponse Example: {"error":"The access token is invalid","status":401}
+// ErrorResponse defines model for ErrorResponse.
 type ErrorResponse = Error
 
 // GetClosesParams defines parameters for GetCloses.

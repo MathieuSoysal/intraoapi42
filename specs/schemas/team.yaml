@@ -9,8 +9,7 @@ LightTeamResponse:
       type: string
       format: uri
     final_mark:
-      type: integer
-      nullable: true
+      type: [integer, "null"]
     project_id:
       type: integer
     created_at:
@@ -24,9 +23,8 @@ LightTeamResponse:
     status:
       type: string
     terminating_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     users:
       type: array
@@ -39,25 +37,21 @@ LightTeamResponse:
     closed?:
       type: boolean
     repo_url:
-      type: string
-      nullable: true
+      type: [string, "null"]
     repo_uuid:
       type: string
     locked_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     closed_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     project_session_id:
       type: integer
     project_gitlab_path:
-      type: string
-      nullable: true
+      type: [string, "null"]
   required:
     - id
     - name
@@ -205,66 +199,53 @@ TeamUpdate:
   type: object
   properties:
     project_id:
-      type: integer
+      type: [integer, "null"]
       format: int64
-      nullable: true
       description: The project id.
     name:
-      type: string
+      type: [string, "null"]
       maxLength: 255
-      nullable: true
       description: The name.
     created_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     updated_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     locked_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     closed_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     final_mark:
-      type: integer
+      type: [integer, "null"]
       format: int64
-      nullable: true
       description: The final mark.
     repo_url:
-      type: string
-      nullable: true
+      type: [string, "null"]
       description: The repo url.
     repo_uuid:
-      type: string
-      nullable: true
+      type: [string, "null"]
       description: The repo uuid.
     deadline_at:
-      type: integer
+      type: [integer, "null"]
       format: int64
-      nullable: true
       description: The deadline at. Must be after today.
     terminating_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     project_session_id:
-      type: integer
+      type: [integer, "null"]
       format: int64
-      nullable: true
       description: The project session id.
     teams_users_attributes:
-      type: array
-      nullable: true
+      type: [array, "null"]
       description: The teams users attributes.
       items:
         type: object
@@ -276,18 +257,15 @@ TeamUpdate:
             format: int64
             description: The user id. Must be unique in the scope of a given team.
           leader:
-            type: boolean
-            nullable: true
+            type: [boolean, "null"]
             default: false
             description: Is it leader?
           validated:
-            type: boolean
-            nullable: true
+            type: [boolean, "null"]
             default: false
             description: Is it validated?
           occurrence:
-            type: integer
+            type: [integer, "null"]
             format: int64
-            nullable: true
             default: 0
             description: The occurrence.

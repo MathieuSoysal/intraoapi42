@@ -1,12 +1,14 @@
-openapi: 3.0.0
+openapi: 3.1.2
 info:
   title: Intra 42 API
   description: |
     This is the OpenAPI specification for the Intra 42 API v2.
-  version: v1.0.0
+  version: v1.1.0
 servers:
   - url: https://api.intra.42.fr/v2
     description: Production
+  - url: https://api.intra-staging.42.fr/v2
+    description: Staging
 paths:
   /closes:
     get:
@@ -694,8 +696,9 @@ components:
         image:
           type: string
         nbr_of_success:
-          type: integer
-          nullable: true
+          type:
+            - integer
+            - 'null'
         users_url:
           type: string
           format: uri
@@ -803,15 +806,15 @@ components:
           format: date-time
           x-go-type: IntraTime
         end_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         community_services:
           type: array
           items:
             $ref: '#/components/schemas/CommunityServiceResponse'
-          nullable: false
         kind:
           type: string
           enum:
@@ -916,9 +919,10 @@ components:
         has_coalition:
           type: boolean
         blackholed_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         created_at:
           type: string
@@ -972,8 +976,9 @@ components:
         administration_id:
           type: integer
         offer_id:
-          type: integer
-          nullable: true
+          type:
+            - integer
+            - 'null'
         language_id:
           type: integer
         state:
@@ -1049,9 +1054,10 @@ components:
         currency:
           type: string
         breach_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
         convention:
           type: object
           properties:
@@ -1059,19 +1065,22 @@ components:
               type: object
               properties:
                 url:
-                  type: string
-                  nullable: true
+                  type:
+                    - string
+                    - 'null'
               required:
                 - url
           required:
             - convention
         convention_uri:
-          type: string
+          type:
+            - string
+            - 'null'
           format: url
-          nullable: true
         projects_user:
-          type: integer
-          nullable: true
+          type:
+            - integer
+            - 'null'
         user:
           $ref: '#/components/schemas/LightUserResponse'
       required:
@@ -1197,8 +1206,9 @@ components:
         slug:
           type: string
         parent_id:
-          type: integer
-          nullable: true
+          type:
+            - integer
+            - 'null'
       required:
         - id
         - name
@@ -1212,13 +1222,15 @@ components:
         occurrence:
           type: integer
         final_mark:
-          type: integer
-          nullable: true
+          type:
+            - integer
+            - 'null'
         status:
           type: string
         validated?:
-          type: boolean
-          nullable: true
+          type:
+            - boolean
+            - 'null'
         current_team_id:
           type: integer
         project:
@@ -1234,17 +1246,20 @@ components:
           items:
             $ref: '#/components/schemas/LightTeamResponse'
         marked_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         marked:
-          type: boolean
-          nullable: true
+          type:
+            - boolean
+            - 'null'
         retriable_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         created_at:
           type: string
@@ -1271,9 +1286,10 @@ components:
         - user_id
       properties:
         id:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           description: The id.
         project_id:
           type: integer
@@ -1284,106 +1300,125 @@ components:
           format: int64
           description: The user id. Must be unique in the scope of a given project.
         created_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         updated_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         occurrence:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           default: 0
           description: The occurrence.
         final_mark:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           description: The final mark.
         retriable_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         marked_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         status:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
           default: unknown
           description: The status.
         skip_check_permission:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
           description: The skip check permission.
     ProjectUserUpdate:
       type: object
       properties:
         id:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           description: The id.
         project_id:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           description: The project id.
         user_id:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           description: The user id. Must be unique in the scope of a given project.
         created_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
           description: The created at.
         updated_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
           description: The updated at.
         occurrence:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           default: 0
           description: The occurrence. Default to 0.
         final_mark:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           description: The final mark.
         retriable_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
           description: The retriable at.
         marked_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
           description: The marked at.
         status:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
           default: unknown
           description: The status. Default to unknown.
         skip_check_permission:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
           description: The skip check permission.
     RoleResponse:
       type: object
@@ -1415,8 +1450,9 @@ components:
         feedback:
           type: string
         final_mark:
-          type: integer
-          nullable: true
+          type:
+            - integer
+            - 'null'
         flag:
           $ref: '#/components/schemas/ScaleFlagResponse'
         begin_at:
@@ -1433,9 +1469,10 @@ components:
           type: object
           additionalProperties: true
         filled_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         questions_with_answers:
           type: array
@@ -1533,11 +1570,13 @@ components:
         id:
           type: integer
         value:
-          type: integer
-          nullable: true
+          type:
+            - integer
+            - 'null'
         answer:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
       required:
         - id
         - value
@@ -1548,8 +1587,9 @@ components:
         id:
           type: integer
         final_mark:
-          type: integer
-          nullable: true
+          type:
+            - integer
+            - 'null'
         comment:
           type: string
         created_at:
@@ -1589,8 +1629,9 @@ components:
           type: string
           format: uri
         final_mark:
-          type: integer
-          nullable: true
+          type:
+            - integer
+            - 'null'
         project_id:
           type: integer
         created_at:
@@ -1604,9 +1645,10 @@ components:
         status:
           type: string
         terminating_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         users:
           type: array
@@ -1619,25 +1661,29 @@ components:
         closed?:
           type: boolean
         repo_url:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
         repo_uuid:
           type: string
         locked_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         closed_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         project_session_id:
           type: integer
         project_gitlab_path:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
       required:
         - id
         - name
@@ -1778,66 +1824,79 @@ components:
       type: object
       properties:
         project_id:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           description: The project id.
         name:
-          type: string
+          type:
+            - string
+            - 'null'
           maxLength: 255
-          nullable: true
           description: The name.
         created_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         updated_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         locked_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         closed_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         final_mark:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           description: The final mark.
         repo_url:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
           description: The repo url.
         repo_uuid:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
           description: The repo uuid.
         deadline_at:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           description: The deadline at. Must be after today.
         terminating_at:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         project_session_id:
-          type: integer
+          type:
+            - integer
+            - 'null'
           format: int64
-          nullable: true
           description: The project session id.
         teams_users_attributes:
-          type: array
-          nullable: true
+          type:
+            - array
+            - 'null'
           description: The teams users attributes.
           items:
             type: object
@@ -1849,19 +1908,22 @@ components:
                 format: int64
                 description: The user id. Must be unique in the scope of a given team.
               leader:
-                type: boolean
-                nullable: true
+                type:
+                  - boolean
+                  - 'null'
                 default: false
                 description: Is it leader?
               validated:
-                type: boolean
-                nullable: true
+                type:
+                  - boolean
+                  - 'null'
                 default: false
                 description: Is it validated?
               occurrence:
-                type: integer
+                type:
+                  - integer
+                  - 'null'
                 format: int64
-                nullable: true
                 default: 0
                 description: The occurrence.
     TitleResponse:
@@ -1979,9 +2041,10 @@ components:
           type: string
           description: The first name of the user.
         usual_first_name:
-          type: string
+          type:
+            - string
+            - 'null'
           description: The usual first name of the user, first_name if none.
-          nullable: true
         usual_full_name:
           type: string
           description: The usual full name of the user, usually usual_first_name or first_name + last_name.
@@ -2024,16 +2087,18 @@ components:
           type: string
           description: The year of the user's pool.
         location:
-          type: string
+          type:
+            - string
+            - 'null'
           description: The location of the user.
-          nullable: true
         wallet:
           type: integer
           description: The user's wallet balance.
         anonymize_date:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
           description: The date when user data will be anonymized.
         data_erasure_date:
@@ -2128,31 +2193,35 @@ components:
           type: integer
         birth_date:
           type: string
-          nullable: false
           format: date
         gender:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
           enum:
             - male
             - female
             - other
         zip_code:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
         country:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
         birth_city:
           type: string
         birth_country:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
         postal_street:
           type: string
         postal_complement:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
         postal_city:
           type: string
         postal_zip_code:
@@ -2168,30 +2237,36 @@ components:
         contact_phone1:
           type: string
         contact_phone2:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
         max_level_memory:
-          type: number
+          type:
+            - number
+            - 'null'
           format: double
-          nullable: true
         max_level_logic:
-          type: number
+          type:
+            - number
+            - 'null'
           format: double
-          nullable: true
         other_information:
-          type: string
-          nullable: true
+          type:
+            - string
+            - 'null'
         language:
           type: string
         meeting_date:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         piscine_date:
-          type: string
+          type:
+            - string
+            - 'null'
           format: date-time
-          nullable: true
           x-go-type: IntraTime
         created_at:
           type: string

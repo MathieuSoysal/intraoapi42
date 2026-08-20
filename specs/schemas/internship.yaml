@@ -6,8 +6,7 @@ InternshipResponse:
     administration_id:
       type: integer
     offer_id:
-      type: integer
-      nullable: true
+      type: [integer, "null"]
     language_id:
       type: integer
     state:
@@ -83,9 +82,8 @@ InternshipResponse:
     currency:
       type: string
     breach_at:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
     convention:
       type: object
       properties:
@@ -93,19 +91,16 @@ InternshipResponse:
           type: object
           properties:
             url:
-              type: string
-              nullable: true
+              type: [string, "null"]
           required:
             - url
       required:
         - convention
     convention_uri:
-      type: string
+      type: [string, "null"]
       format: url
-      nullable: true
     projects_user:
-      type: integer
-      nullable: true
+      type: [integer, "null"]
     user:
       $ref: "#/components/schemas/LightUserResponse"
   required:

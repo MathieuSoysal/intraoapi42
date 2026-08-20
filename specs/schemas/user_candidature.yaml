@@ -7,31 +7,25 @@ UserCandidatureResponse:
       type: integer
     birth_date:
       type: string
-      nullable: false
       format: date
     gender:
-      type: string
-      nullable: true
+      type: [string, "null"]
       enum:
         - male
         - female
         - other
     zip_code:
-      type: string
-      nullable: true
+      type: [string, "null"]
     country:
-      type: string
-      nullable: true
+      type: [string, "null"]
     birth_city:
       type: string
     birth_country:
-      type: string
-      nullable: true
+      type: [string, "null"]
     postal_street:
       type: string
     postal_complement:
-      type: string
-      nullable: true
+      type: [string, "null"]
     postal_city:
       type: string
     postal_zip_code:
@@ -47,30 +41,24 @@ UserCandidatureResponse:
     contact_phone1:
       type: string
     contact_phone2:
-      type: string
-      nullable: true
+      type: [string, "null"]
     max_level_memory:
-      type: number
+      type: [number, "null"]
       format: double
-      nullable: true
     max_level_logic:
-      type: number
+      type: [number, "null"]
       format: double
-      nullable: true
     other_information:
-      type: string
-      nullable: true
+      type: [string, "null"]
     language:
       type: string
     meeting_date:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     piscine_date:
-      type: string
+      type: [string, "null"]
       format: date-time
-      nullable: true
       x-go-type: IntraTime
     created_at:
       type: string
