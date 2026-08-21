@@ -97,7 +97,7 @@ jobs:
         run: |
           mkdir -p _site
           cp docs/index.html _site/index.html
-          cp openapi.yaml _site/openapi.yaml
+          cp openapi/openapi.yaml _site/openapi.yaml
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
