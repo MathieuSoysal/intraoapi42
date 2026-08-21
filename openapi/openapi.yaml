@@ -3,7 +3,7 @@ info:
   title: Intra 42 API
   description: |
     This is the OpenAPI specification for the Intra 42 API v2.
-  version: 1.0.3
+  version: v1.1.0
 servers:
   - url: https://api.intra.42.fr/v2
     description: Production
@@ -2047,8 +2047,7 @@ components:
           description: The usual first name of the user, first_name if none.
         usual_full_name:
           type: string
-          description: The usual full name of the user, usually usual_first_name or
-            first_name + last_name.
+          description: The usual full name of the user, usually usual_first_name or first_name + last_name.
         last_name:
           type: string
           description: The last name of the user.
