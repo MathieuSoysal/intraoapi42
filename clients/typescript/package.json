@@ -1,6 +1,6 @@
 {
   "name": "intraoapi42",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Typed API client for the 42 Intra API",
   "type": "module",
   "main": "./dist/index.js",

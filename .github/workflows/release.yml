@@ -39,6 +39,8 @@ jobs:
     permissions:
       id-token: write
       contents: write
+    outputs:
+      openapi-version: ${{ steps.release-openapi.outputs.version }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -61,6 +63,7 @@ jobs:
         run: npm ci
 
       - name: Release API contract
+        id: release-openapi
         working-directory: openapi
         run: npx --no-install semantic-release -e semantic-release-monorepo
         env:
@@ -90,19 +93,26 @@ jobs:
     needs: release
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
 
-      - name: Prepare static site
-        run: |
-          mkdir -p _site
-          cp docs/index.html _site/index.html
-          cp openapi/openapi.yaml _site/openapi.yaml
+    - name: Stamp OpenAPI version for docs
+      if: needs.release.outputs.openapi-version != ''
+      run: |
+        npm ci
+        node tool/write-api-version.cjs ${{ needs.release.outputs.openapi-version }}
+        working-directory: .
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
+    - name: Prepare static site
+      run: |
+        mkdir -p _site
+        cp docs/index.html _site/index.html
+        cp openapi/openapi.yaml _site/openapi.yaml
+
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: _site
 
   deploy-docs:
     environment:

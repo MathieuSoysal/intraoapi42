@@ -10,13 +10,6 @@
             "repoUrl": "https://test.pypi.org/legacy/"
         }
     ],
-    [
-      "@semantic-release/git",
-      {
-        "message": "chore(release): python-client ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
-        "assets": ["pyproject.toml"]
-      }
-    ],
     "@semantic-release/github"
   ],
   "tagFormat": "clients/python/v${version}"

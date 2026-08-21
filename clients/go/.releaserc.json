@@ -4,13 +4,6 @@
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
-    [
-      "@semantic-release/git",
-      {
-        "message": "chore(release): go-client ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
-        "assets": ["go.mod"]
-      }
-    ],
     "@semantic-release/github"
   ],
   "tagFormat": "clients/go/v${version}"

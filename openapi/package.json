@@ -1,9 +1,6 @@
 {
   "name": "openapi",
   "private": true,
-  "scripts": {
-    "openapi:version": "node write-api-version.cjs"
-  },
   "devDependencies": {
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",

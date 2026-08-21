@@ -7,18 +7,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "npm run openapi:version ${nextRelease.version}"
-      }
-    ],
-    [
-      "@semantic-release/git",
-      {
-        "message": "chore(release): openapi ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
-        "assets": [
-          "openapi.yaml",
-          { "path": "/github/workspace/specs/openapi.yaml" },
-          "package.json"
-        ]
+        "successCmd": "echo \"version=${nextRelease.version}\" >> $GITHUB_OUTPUT"
       }
     ],
     "@semantic-release/github"
