@@ -15,7 +15,9 @@
       {
         "message": "chore(release): openapi ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
         "assets": [
-          "openapi.yaml"
+          "openapi.yaml",
+          "../specs/openapi.yaml",
+          "package.json"
         ]
       }
     ],

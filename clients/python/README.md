@@ -2,7 +2,60 @@
 A client library for accessing Intra 42 API
 
 ## Usage
-First, create a client:
+
+### Quick start with `NewClient` (recommended)
+
+For most use cases against the Intra 42 API, the fastest way to get a working, authenticated client is `NewClient`, which handles OAuth2 client-credentials authentication, automatic token refresh, and retries for you:
+
+```python
+from intraoapi42.custom_client import ProductionConfig, NewClient
+
+config = ProductionConfig.with_client_credentials(
+    client_id="your-client-id",
+    client_secret="your-client-secret",
+)
+
+client = NewClient(config)
+```
+
+A `StagingConfig` is also provided for testing against the 42 staging environment:
+
+```python
+from intraoapi42.custom_client import StagingConfig, NewClient
+
+config = StagingConfig.with_client_credentials(
+    client_id="your-client-id",
+    client_secret="your-client-secret",
+)
+
+client = NewClient(config)
+```
+
+If your application needs specific OAuth2 scopes, chain `with_scopes`:
+
+```python
+config = (
+    ProductionConfig
+    .with_client_credentials(client_id="your-client-id", client_secret="your-client-secret")
+    .with_scopes("public", "projects")
+)
+
+client = NewClient(config)
+```
+
+`NewClient` returns a fully configured `AuthenticatedClient`, so you can use it exactly like any generated client — see [Calling endpoints](#calling-endpoints) below.
+
+### What `NewClient` gives you
+
+Using `NewClient` instead of manually constructing `Client`/`AuthenticatedClient` provides three things out of the box:
+
+- **Automatic token refresh.** `RefreshableTokenSource` fetches an OAuth2 client-credentials token from `config.token_url` and transparently refreshes it one minute before expiration, and again on any `401 Unauthorized` response from the API.
+- **Thread-safe token caching.** Token fetch/refresh is guarded by a lock, so concurrent requests from multiple threads won't trigger redundant token requests.
+- **Automatic retries.** `RetryTransport` retries requests that receive a `429 Too Many Requests` (up to 3 times, 1s apart) or a `500 Internal Server Error` (up to 5 times, 0.5s apart), replaying the original request body safely.
+
+### Manual client construction
+
+If you don't need OAuth2 client-credentials handling (for example, you already have a static token, or you're hitting a different auth flow), you can still construct a client directly:
 
 ```python
 from intraoapi42 import Client
@@ -18,7 +71,11 @@ from intraoapi42 import AuthenticatedClient
 client = AuthenticatedClient(base_url="https://api.example.com", token="SuperSecretToken")
 ```
 
-Now call your endpoint and use your models:
+Note that with this manual approach, you are responsible for refreshing the token yourself — `AuthenticatedClient` does not know how to do this on its own. For any real usage against Intra 42's OAuth2-protected endpoints, prefer `NewClient` above.
+
+### Calling endpoints
+
+Once you have a client (via `NewClient` or manual construction), call your endpoints and use your models the same way:
 
 ```python
 from intraoapi42.models import MyDataModel
@@ -72,6 +129,21 @@ Things to know:
 
 ## Advanced customizations
 
+### Custom `Config`
+
+`Config` is a frozen dataclass, so every "mutation" (`with_client_credentials`, `with_scopes`) returns a new `Config` instance rather than modifying it in place. This makes it safe to build a base config once and derive variants from it:
+
+```python
+from intraoapi42.custom_client import Config
+
+custom_config = Config(
+    token_url="https://my-proxy.internal/oauth/token",
+    server_url="https://my-proxy.internal/v2",
+).with_client_credentials(client_id="id", client_secret="secret")
+```
+
+### Underlying `httpx` client behavior
+
 There are more settings on the generated `Client` class which let you control more runtime behavior, check out the docstring on that class for more info. You can also customize the underlying `httpx.Client` or `httpx.AsyncClient` (depending on your use-case):
 
 ```python
@@ -106,6 +178,42 @@ client = Client(
 )
 # Note that base_url needs to be re-set, as would any shared cookies, headers, etc.
 client.set_httpx_client(httpx.Client(base_url="https://api.example.com", proxies="http://localhost:8030"))
+```
+
+If you're using `NewClient`, the underlying `httpx.Client` is already configured with `OAuth2ClientCredentials` auth and `RetryTransport`; calling `client.set_httpx_client(...)` on a `NewClient`-produced instance will discard those, so only do this if you intend to replace the retry/auth behavior yourself.
+
+### Retry and token-refresh internals
+
+For advanced use cases (e.g. custom observability, testing with fake clocks, or building your own auth flow), the individual building blocks used by `NewClient` are exposed and can be composed directly:
+
+- `RefreshableTokenSource(config, clock=...)`: manages token fetch/refresh; accepts an injectable `clock` callable (defaults to `time.monotonic`) for deterministic testing.
+- `OAuth2ClientCredentials(token_source)`: an `httpx.Auth` implementation that attaches the bearer token to each request and retries once on `401` after invalidating the cached token.
+- `RetryTransport(transport=None, sleep=...)`: an `httpx.BaseTransport` wrapping request retries; accepts an injectable `sleep` callable for deterministic testing, and an optional inner `transport` if you need to layer it over another custom transport.
+
+Example of composing these manually instead of using `NewClient`:
+
+```python
+import httpx
+from intraoapi42 import AuthenticatedClient
+from intraoapi42.custom_client import (
+    ProductionConfig,
+    RefreshableTokenSource,
+    OAuth2ClientCredentials,
+    RetryTransport,
+)
+
+config = ProductionConfig.with_client_credentials(client_id="id", client_secret="secret")
+token_source = RefreshableTokenSource(config)
+auth = OAuth2ClientCredentials(token_source)
+
+http_client = httpx.Client(
+    base_url=config.server_url,
+    auth=auth,
+    transport=RetryTransport(),
+)
+
+client = AuthenticatedClient(base_url=config.server_url, token=token_source.token(), prefix="Bearer")
+client.set_httpx_client(http_client)
 ```
 
 ## Building / publishing this package
