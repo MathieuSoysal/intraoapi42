@@ -2047,8 +2047,7 @@ components:
           description: The usual first name of the user, first_name if none.
         usual_full_name:
           type: string
-          description: The usual full name of the user, usually usual_first_name or
-            first_name + last_name.
+          description: The usual full name of the user, usually usual_first_name or first_name + last_name.
         last_name:
           type: string
           description: The last name of the user.
