@@ -9,7 +9,7 @@ if (!version) {
 }
 
 const files = [
-  'openapi/openapi.yaml',
+  '../openapi/openapi.yaml',
 ];
 
 for (const file of files) {
