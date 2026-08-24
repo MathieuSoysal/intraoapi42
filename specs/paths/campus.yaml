@@ -61,7 +61,7 @@
             schema:
               type: array
               items:
-                $ref: "#/components/schemas/Campus"
+                $ref: "#/components/schemas/LightCampus"
       default:
         $ref: "#/components/responses/ErrorResponse"
 

@@ -67,7 +67,7 @@
             schema:
               type: array
               items:
-                $ref: "#/components/schemas/AchievementsUser"
+                $ref: "#/components/schemas/LightAchievementsUser"
       default:
         $ref: "#/components/responses/ErrorResponse"
 
@@ -134,7 +134,7 @@
             schema:
               type: array
               items:
-                $ref: "#/components/schemas/AchievementsUser"
+                $ref: "#/components/schemas/LightAchievementsUser"
       default:
         $ref: "#/components/responses/ErrorResponse"
 

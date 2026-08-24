@@ -6,9 +6,11 @@ Slot:
     begin_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     end_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     scale_team_id:
       type: [integer, "null"]
     user:
@@ -16,6 +18,7 @@ Slot:
     created_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
   required:
     - id
     - begin_at
@@ -39,9 +42,11 @@ SlotCreate:
         begin_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         end_at:
           type: string
           format: date-time
+          x-go-type: IntraTime
         scale_team_id:
           type: [integer, "null"]
           description: Optional defense to link to this slot

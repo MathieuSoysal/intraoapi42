@@ -16,9 +16,11 @@ ExpertisesUser:
     created_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     updated_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     expertise:
       $ref: "#/components/schemas/Expertise"
   required:

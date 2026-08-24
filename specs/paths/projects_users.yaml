@@ -2,7 +2,7 @@
   get:
     operationId: GetProjectsUsersByUserId
     tags:
-      - Projects Users
+      - Projects users
     summary: Get a list of projects users by a user Id
     security:
       - OAuth2:
@@ -69,7 +69,7 @@
   get:
     operationId: GetProjectsUsersByProjectId
     tags:
-      - Projects Users
+      - Projects users
     summary: Get a list of projects users by a project Id
     security:
       - OAuth2:
@@ -126,7 +126,7 @@
   get:
     operationId: GetProjectsUsers
     tags:
-      - Projects Users
+      - Projects users
     summary: Get a list of projects users
     security:
       - OAuth2:
@@ -186,7 +186,7 @@
   post:
     operationId: PostProjectsUsers
     tags:
-      - Projects Users
+      - Projects users
     summary: Create a project user
     security:
       - OAuth2:
@@ -221,7 +221,7 @@
   get:
     operationId: GetProjectUserById
     tags:
-      - Projects Users
+      - Projects users
     summary: Get a project user by ID
     security:
       - OAuth2:
@@ -245,7 +245,7 @@
   patch:
     operationId: PatchProjectUserById
     tags:
-      - Projects Users
+      - Projects users
     summary: Update a project user
     security:
       - OAuth2:
@@ -282,7 +282,7 @@
   put:
     operationId: PutProjectUserById
     tags:
-      - Projects Users
+      - Projects users
     summary: Update a project user
     security:
       - OAuth2:

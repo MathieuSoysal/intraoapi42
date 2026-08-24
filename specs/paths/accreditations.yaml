@@ -61,7 +61,7 @@
             schema:
               type: array
               items:
-                $ref: "#/components/schemas/Accreditation"
+                $ref: "#/components/schemas/LightAccreditation"
       default:
         $ref: "#/components/responses/ErrorResponse"
 

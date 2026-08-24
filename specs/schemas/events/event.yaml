@@ -18,9 +18,11 @@ Event:
     begin_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     end_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     campus_ids:
       type: array
       items:
@@ -42,9 +44,11 @@ Event:
     created_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     updated_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
   required:
     - id
     - name

@@ -83,7 +83,7 @@
         required: true
         description: The user id
         schema:
-          type: integer
+          type: string
       - name: sort
         in: query
         description: |
@@ -157,7 +157,7 @@
         required: true
         description: The ID of the close
         schema:
-          type: integer
+          type: string
     responses:
       "200":
         description: A close object

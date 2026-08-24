@@ -6,9 +6,11 @@ Location:
     begin_at:
       type: string
       format: date-time
+      x-go-type: IntraTime
     end_at:
       type: [string, "null"]
       format: date-time
+      x-go-type: IntraTime
     primary:
       type: boolean
     host:
