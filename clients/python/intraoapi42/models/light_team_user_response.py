@@ -6,11 +6,11 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="TeamUserResponse")
+T = TypeVar("T", bound="LightTeamUserResponse")
 
 
 @_attrs_define
-class TeamUserResponse:
+class LightTeamUserResponse:
     """
     Attributes:
         id (int):
@@ -79,7 +79,7 @@ class TeamUserResponse:
 
         projects_user_id = d.pop("projects_user_id")
 
-        team_user_response = cls(
+        light_team_user_response = cls(
             id=id,
             login=login,
             url=url,
@@ -89,8 +89,8 @@ class TeamUserResponse:
             projects_user_id=projects_user_id,
         )
 
-        team_user_response.additional_properties = d
-        return team_user_response
+        light_team_user_response.additional_properties = d
+        return light_team_user_response
 
     @property
     def additional_keys(self) -> list[str]:

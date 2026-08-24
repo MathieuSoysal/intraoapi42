@@ -638,7 +638,7 @@ export interface components {
             status: string;
             /** Format: date-time */
             terminating_at: string | null;
-            users: components["schemas"]["TeamUserResponse"][];
+            users: components["schemas"]["LightTeamUserResponse"][];
             "locked?": boolean;
             "validated?": boolean;
             "closed?": boolean;
@@ -650,16 +650,6 @@ export interface components {
             closed_at: string | null;
             project_session_id: number;
             project_gitlab_path: string | null;
-        };
-        TeamUserResponse: {
-            id: number;
-            login: string;
-            /** Format: uri */
-            url: string;
-            leader: boolean;
-            occurrence: number;
-            validated: boolean;
-            projects_user_id: number;
         };
         /**
          * @example {
@@ -827,6 +817,16 @@ export interface components {
                 occurrence: number | null;
             }[] | null;
         };
+        LightTeamUserResponse: {
+            id: number;
+            login: string;
+            /** Format: uri */
+            url: string;
+            leader: boolean;
+            occurrence: number;
+            validated: boolean;
+            projects_user_id: number;
+        };
         TitleResponse: {
             id: number;
             name: string;
@@ -840,6 +840,82 @@ export interface components {
             created_at: string;
             /** Format: date-time */
             updated_at: string;
+        };
+        /**
+         * @example {
+         *       "id": 42,
+         *       "user_id": 42,
+         *       "birth_date": "2013-01-01",
+         *       "gender": "male",
+         *       "zip_code": "75017",
+         *       "country": "France",
+         *       "birth_city": "Paris",
+         *       "birth_country": "France",
+         *       "postal_street": "96 boulevard Bessières",
+         *       "postal_complement": null,
+         *       "postal_city": "Paris",
+         *       "postal_zip_code": "75017",
+         *       "postal_country": "France",
+         *       "contact_affiliation": "Parent",
+         *       "contact_last_name": "Moulinette",
+         *       "contact_first_name": "Norminette",
+         *       "contact_phone1": "+33600000000",
+         *       "contact_phone2": null,
+         *       "max_level_memory": null,
+         *       "max_level_logic": null,
+         *       "other_information": null,
+         *       "language": "fr",
+         *       "meeting_date": "2020-08-27T07:31:49.431Z",
+         *       "piscine_date": null,
+         *       "created_at": "2020-08-27T07:31:49.431Z",
+         *       "updated_at": "2025-07-10T16:16:34.238Z",
+         *       "phone": "+33600000000",
+         *       "email": "tmatis@example.com",
+         *       "pin": "7777",
+         *       "phone_country_code": "FR",
+         *       "hidden_phone": false
+         *     }
+         */
+        UserCandidatureResponse: {
+            id: number;
+            user_id: number;
+            /** Format: date */
+            birth_date?: string;
+            /** @enum {string|null} */
+            gender?: "male" | "female" | "other" | null;
+            zip_code?: string | null;
+            country?: string | null;
+            birth_city: string;
+            birth_country?: string | null;
+            postal_street: string;
+            postal_complement?: string | null;
+            postal_city: string;
+            postal_zip_code: string;
+            postal_country: string;
+            contact_affiliation: string;
+            contact_last_name: string;
+            contact_first_name: string;
+            contact_phone1: string;
+            contact_phone2?: string | null;
+            /** Format: double */
+            max_level_memory?: number | null;
+            /** Format: double */
+            max_level_logic?: number | null;
+            other_information?: string | null;
+            language: string;
+            /** Format: date-time */
+            meeting_date?: string | null;
+            /** Format: date-time */
+            piscine_date?: string | null;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            phone: string;
+            email: string;
+            pin: string;
+            phone_country_code: string;
+            hidden_phone: boolean;
         };
         UserResponse: components["schemas"]["LightUserResponse"] & {
             groups: components["schemas"]["GroupResponse"][];
@@ -958,82 +1034,6 @@ export interface components {
                  */
                 micro: string;
             };
-        };
-        /**
-         * @example {
-         *       "id": 42,
-         *       "user_id": 42,
-         *       "birth_date": "2013-01-01",
-         *       "gender": "male",
-         *       "zip_code": "75017",
-         *       "country": "France",
-         *       "birth_city": "Paris",
-         *       "birth_country": "France",
-         *       "postal_street": "96 boulevard Bessières",
-         *       "postal_complement": null,
-         *       "postal_city": "Paris",
-         *       "postal_zip_code": "75017",
-         *       "postal_country": "France",
-         *       "contact_affiliation": "Parent",
-         *       "contact_last_name": "Moulinette",
-         *       "contact_first_name": "Norminette",
-         *       "contact_phone1": "+33600000000",
-         *       "contact_phone2": null,
-         *       "max_level_memory": null,
-         *       "max_level_logic": null,
-         *       "other_information": null,
-         *       "language": "fr",
-         *       "meeting_date": "2020-08-27T07:31:49.431Z",
-         *       "piscine_date": null,
-         *       "created_at": "2020-08-27T07:31:49.431Z",
-         *       "updated_at": "2025-07-10T16:16:34.238Z",
-         *       "phone": "+33600000000",
-         *       "email": "tmatis@example.com",
-         *       "pin": "7777",
-         *       "phone_country_code": "FR",
-         *       "hidden_phone": false
-         *     }
-         */
-        UserCandidatureResponse: {
-            id: number;
-            user_id: number;
-            /** Format: date */
-            birth_date?: string;
-            /** @enum {string|null} */
-            gender?: "male" | "female" | "other" | null;
-            zip_code?: string | null;
-            country?: string | null;
-            birth_city: string;
-            birth_country?: string | null;
-            postal_street: string;
-            postal_complement?: string | null;
-            postal_city: string;
-            postal_zip_code: string;
-            postal_country: string;
-            contact_affiliation: string;
-            contact_last_name: string;
-            contact_first_name: string;
-            contact_phone1: string;
-            contact_phone2?: string | null;
-            /** Format: double */
-            max_level_memory?: number | null;
-            /** Format: double */
-            max_level_logic?: number | null;
-            other_information?: string | null;
-            language: string;
-            /** Format: date-time */
-            meeting_date?: string | null;
-            /** Format: date-time */
-            piscine_date?: string | null;
-            /** Format: date-time */
-            created_at: string;
-            /** Format: date-time */
-            updated_at: string;
-            phone: string;
-            email: string;
-            pin: string;
-            phone_country_code: string;
-            hidden_phone: boolean;
         };
     };
     responses: {

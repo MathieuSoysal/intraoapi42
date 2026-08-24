@@ -29,6 +29,7 @@ from .language_response import LanguageResponse
 from .language_user_response import LanguageUserResponse
 from .light_project_response import LightProjectResponse
 from .light_team_response import LightTeamResponse
+from .light_team_user_response import LightTeamUserResponse
 from .light_user_response import LightUserResponse
 from .light_user_response_kind import LightUserResponseKind
 from .patch_project_user_by_id_body import PatchProjectUserByIdBody
@@ -52,7 +53,6 @@ from .team_response import TeamResponse
 from .team_update import TeamUpdate
 from .team_update_teams_users_attributes_type_0_item import TeamUpdateTeamsUsersAttributesType0Item
 from .team_upload_response import TeamUploadResponse
-from .team_user_response import TeamUserResponse
 from .title_response import TitleResponse
 from .title_user_response import TitleUserResponse
 from .user_candidature_response import UserCandidatureResponse
@@ -91,6 +91,7 @@ __all__ = (
     "LanguageUserResponse",
     "LightProjectResponse",
     "LightTeamResponse",
+    "LightTeamUserResponse",
     "LightUserResponse",
     "LightUserResponseKind",
     "PatchProjectUserByIdBody",
@@ -114,7 +115,6 @@ __all__ = (
     "TeamUpdate",
     "TeamUpdateTeamsUsersAttributesType0Item",
     "TeamUploadResponse",
-    "TeamUserResponse",
     "TitleResponse",
     "TitleUserResponse",
     "UserCandidatureResponse",

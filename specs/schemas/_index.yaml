@@ -1,31 +1,31 @@
 AchievementResponse:
-  $ref: achievement.yaml#/AchievementResponse
+  $ref: achivements/achievement.yaml#/AchievementResponse
 CampusResponse:
-  $ref: campus.yaml#/CampusResponse
+  $ref: campus/campus.yaml#/CampusResponse
 CampusUserResponse:
-  $ref: campus_user.yaml#/CampusUserResponse
+  $ref: campus_users/campus_user.yaml#/CampusUserResponse
 CloseResponse:
-  $ref: close.yaml#/CloseResponse
+  $ref: closes/close.yaml#/CloseResponse
 CommunityServiceResponse:
-  $ref: community_service.yaml#/CommunityServiceResponse
+  $ref: community_services/community_service.yaml#/CommunityServiceResponse
 CursusResponse:
-  $ref: cursus.yaml#/CursusResponse
+  $ref: cursus/cursus.yaml#/CursusResponse
 CursusUserResponse:
-  $ref: cursus_user.yaml#/CursusUserResponse
+  $ref: cursus_users/cursus_user.yaml#/CursusUserResponse
 Error:
   $ref: error.yaml#/Error
 GroupResponse:
-  $ref: group.yaml#/GroupResponse
+  $ref: groups/group.yaml#/GroupResponse
 InternshipResponse:
-  $ref: internship.yaml#/InternshipResponse
+  $ref: internships/internship.yaml#/InternshipResponse
 LanguageResponse:
-  $ref: language.yaml#/LanguageResponse
+  $ref: languages/language.yaml#/LanguageResponse
 LanguageUserResponse:
-  $ref: language_user.yaml#/LanguageUserResponse
+  $ref: languages_users/language_user.yaml#/LanguageUserResponse
 PatronageResponse:
-  $ref: patronage.yaml#/PatronageResponse
+  $ref: patronages/patronage.yaml#/PatronageResponse
 LightProjectResponse:
-  $ref: project.yaml#/LightProjectResponse
+  $ref: projects/light_project.yaml#/LightProjectResponse
 ProjectUserResponse:
   $ref: projects_users/project_user.yaml#/ProjectUserResponse
 ProjectUserCreate:
@@ -33,38 +33,38 @@ ProjectUserCreate:
 ProjectUserUpdate:
   $ref: projects_users/project_user_update.yaml#/ProjectUserUpdate
 RoleResponse:
-  $ref: role.yaml#/RoleResponse
+  $ref: roles/role.yaml#/RoleResponse
 ScaleTeamResponse:
-  $ref: scale_teams.yaml#/ScaleTeamResponse
+  $ref: scale_teams/scale_team.yaml#/ScaleTeamResponse
 ScaleFlagResponse:
-  $ref: scale_teams.yaml#/ScaleFlagResponse
+  $ref: scale_teams/scale_team.yaml#/ScaleFlagResponse
 ScaleUserResponse:
-  $ref: scale_teams.yaml#/ScaleUserResponse
+  $ref: scale_teams/scale_team.yaml#/ScaleUserResponse
 QuestionWithAnswersResponse:
-  $ref: scale_teams.yaml#/QuestionWithAnswersResponse
+  $ref: scale_teams/scale_team.yaml#/QuestionWithAnswersResponse
 QuestionAnswerResponse:
-  $ref: scale_teams.yaml#/QuestionAnswerResponse
+  $ref: scale_teams/scale_team.yaml#/QuestionAnswerResponse
 TeamUploadResponse:
-  $ref: scale_teams.yaml#/TeamUploadResponse
+  $ref: scale_teams/scale_team.yaml#/TeamUploadResponse
 SkillResponse:
-  $ref: skill.yaml#/SkillResponse
+  $ref: skills/skill.yaml#/SkillResponse
 LightTeamResponse:
-  $ref: team.yaml#/LightTeamResponse
-TeamUserResponse:
-  $ref: team.yaml#/TeamUserResponse
+  $ref: teams/light_team.yaml#/LightTeamResponse
 TeamResponse:
-  $ref: team.yaml#/TeamResponse
+  $ref: teams/team.yaml#/TeamResponse
 TeamUpdate:
-  $ref: team.yaml#/TeamUpdate
+  $ref: teams/team_update.yaml#/TeamUpdate
+LightTeamUserResponse:
+  $ref: teams_users/light_team_user.yaml#/LightTeamUserResponse
 TitleResponse:
-  $ref: title.yaml#/TitleResponse
+  $ref: titles/title.yaml#/TitleResponse
 TitleUserResponse:
-  $ref: title_user.yaml#/TitleUserResponse
-UserResponse:
-  $ref: user.yaml#/UserResponse
-LightUserResponse:
-  $ref: user.yaml#/LightUserResponse
-UserImageResponse:
-  $ref: user.yaml#/UserImageResponse
+  $ref: titles_users/title_user.yaml#/TitleUserResponse
 UserCandidatureResponse:
-  $ref: user_candidature.yaml#/UserCandidatureResponse
+  $ref: user_candidatures/user_candidature.yaml#/UserCandidatureResponse
+UserResponse:
+  $ref: users/user.yaml#/UserResponse
+LightUserResponse:
+  $ref: users/user.yaml#/LightUserResponse
+UserImageResponse:
+  $ref: users/user.yaml#/UserImageResponse

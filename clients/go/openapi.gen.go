@@ -403,25 +403,36 @@ type LightProjectResponse struct {
 
 // LightTeamResponse defines model for LightTeamResponse.
 type LightTeamResponse struct {
-	Closed            bool               `json:"closed?"`
-	ClosedAt          *IntraTime         `json:"closed_at"`
-	CreatedAt         IntraTime          `json:"created_at"`
-	FinalMark         *int               `json:"final_mark,omitempty"`
-	Id                int                `json:"id"`
-	Locked            bool               `json:"locked?"`
-	LockedAt          *IntraTime         `json:"locked_at"`
-	Name              string             `json:"name"`
-	ProjectGitlabPath *string            `json:"project_gitlab_path"`
-	ProjectId         int                `json:"project_id"`
-	ProjectSessionId  int                `json:"project_session_id"`
-	RepoUrl           *string            `json:"repo_url"`
-	RepoUuid          string             `json:"repo_uuid"`
-	Status            string             `json:"status"`
-	TerminatingAt     *IntraTime         `json:"terminating_at"`
-	UpdatedAt         IntraTime          `json:"updated_at"`
-	Url               string             `json:"url"`
-	Users             []TeamUserResponse `json:"users"`
-	Validated         bool               `json:"validated?"`
+	Closed            bool                    `json:"closed?"`
+	ClosedAt          *IntraTime              `json:"closed_at"`
+	CreatedAt         IntraTime               `json:"created_at"`
+	FinalMark         *int                    `json:"final_mark,omitempty"`
+	Id                int                     `json:"id"`
+	Locked            bool                    `json:"locked?"`
+	LockedAt          *IntraTime              `json:"locked_at"`
+	Name              string                  `json:"name"`
+	ProjectGitlabPath *string                 `json:"project_gitlab_path"`
+	ProjectId         int                     `json:"project_id"`
+	ProjectSessionId  int                     `json:"project_session_id"`
+	RepoUrl           *string                 `json:"repo_url"`
+	RepoUuid          string                  `json:"repo_uuid"`
+	Status            string                  `json:"status"`
+	TerminatingAt     *IntraTime              `json:"terminating_at"`
+	UpdatedAt         IntraTime               `json:"updated_at"`
+	Url               string                  `json:"url"`
+	Users             []LightTeamUserResponse `json:"users"`
+	Validated         bool                    `json:"validated?"`
+}
+
+// LightTeamUserResponse defines model for LightTeamUserResponse.
+type LightTeamUserResponse struct {
+	Id             int    `json:"id"`
+	Leader         bool   `json:"leader"`
+	Login          string `json:"login"`
+	Occurrence     int    `json:"occurrence"`
+	ProjectsUserId int    `json:"projects_user_id"`
+	Url            string `json:"url"`
+	Validated      bool   `json:"validated"`
 }
 
 // LightUserResponse defines model for LightUserResponse.
@@ -667,26 +678,26 @@ type SkillResponse struct {
 
 // TeamResponse defines model for TeamResponse.
 type TeamResponse struct {
-	Closed            bool                `json:"closed?"`
-	ClosedAt          *IntraTime          `json:"closed_at"`
-	CreatedAt         IntraTime           `json:"created_at"`
-	FinalMark         *int                `json:"final_mark,omitempty"`
-	Id                int                 `json:"id"`
-	Locked            bool                `json:"locked?"`
-	LockedAt          *IntraTime          `json:"locked_at"`
-	Name              string              `json:"name"`
-	ProjectGitlabPath *string             `json:"project_gitlab_path"`
-	ProjectId         int                 `json:"project_id"`
-	ProjectSessionId  int                 `json:"project_session_id"`
-	RepoUrl           *string             `json:"repo_url"`
-	RepoUuid          string              `json:"repo_uuid"`
-	ScaleTeams        []ScaleTeamResponse `json:"scale_teams"`
-	Status            string              `json:"status"`
-	TerminatingAt     *IntraTime          `json:"terminating_at"`
-	UpdatedAt         IntraTime           `json:"updated_at"`
-	Url               string              `json:"url"`
-	Users             []TeamUserResponse  `json:"users"`
-	Validated         bool                `json:"validated?"`
+	Closed            bool                    `json:"closed?"`
+	ClosedAt          *IntraTime              `json:"closed_at"`
+	CreatedAt         IntraTime               `json:"created_at"`
+	FinalMark         *int                    `json:"final_mark,omitempty"`
+	Id                int                     `json:"id"`
+	Locked            bool                    `json:"locked?"`
+	LockedAt          *IntraTime              `json:"locked_at"`
+	Name              string                  `json:"name"`
+	ProjectGitlabPath *string                 `json:"project_gitlab_path"`
+	ProjectId         int                     `json:"project_id"`
+	ProjectSessionId  int                     `json:"project_session_id"`
+	RepoUrl           *string                 `json:"repo_url"`
+	RepoUuid          string                  `json:"repo_uuid"`
+	ScaleTeams        []ScaleTeamResponse     `json:"scale_teams"`
+	Status            string                  `json:"status"`
+	TerminatingAt     *IntraTime              `json:"terminating_at"`
+	UpdatedAt         IntraTime               `json:"updated_at"`
+	Url               string                  `json:"url"`
+	Users             []LightTeamUserResponse `json:"users"`
+	Validated         bool                    `json:"validated?"`
 }
 
 // TeamUpdate defines model for TeamUpdate.
@@ -741,17 +752,6 @@ type TeamUploadResponse struct {
 	FinalMark *int      `json:"final_mark"`
 	Id        int       `json:"id"`
 	UploadId  int       `json:"upload_id"`
-}
-
-// TeamUserResponse defines model for TeamUserResponse.
-type TeamUserResponse struct {
-	Id             int    `json:"id"`
-	Leader         bool   `json:"leader"`
-	Login          string `json:"login"`
-	Occurrence     int    `json:"occurrence"`
-	ProjectsUserId int    `json:"projects_user_id"`
-	Url            string `json:"url"`
-	Validated      bool   `json:"validated"`
 }
 
 // TitleResponse defines model for TitleResponse.

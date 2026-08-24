@@ -10,7 +10,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.team_user_response import TeamUserResponse
+    from ..models.light_team_user_response import LightTeamUserResponse
 
 
 T = TypeVar("T", bound="LightTeamResponse")
@@ -28,7 +28,7 @@ class LightTeamResponse:
         updated_at (datetime.datetime):
         status (str):
         terminating_at (datetime.datetime | None):
-        users (list[TeamUserResponse]):
+        users (list[LightTeamUserResponse]):
         locked (bool):
         validated (bool):
         closed (bool):
@@ -49,7 +49,7 @@ class LightTeamResponse:
     updated_at: datetime.datetime
     status: str
     terminating_at: datetime.datetime | None
-    users: list[TeamUserResponse]
+    users: list[LightTeamUserResponse]
     locked: bool
     validated: bool
     closed: bool
@@ -153,7 +153,7 @@ class LightTeamResponse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.team_user_response import TeamUserResponse
+        from ..models.light_team_user_response import LightTeamUserResponse
 
         d = dict(src_dict)
         id = d.pop("id")
@@ -188,7 +188,7 @@ class LightTeamResponse:
         users = []
         _users = d.pop("users")
         for users_item_data in _users:
-            users_item = TeamUserResponse.from_dict(users_item_data)
+            users_item = LightTeamUserResponse.from_dict(users_item_data)
 
             users.append(users_item)
 
