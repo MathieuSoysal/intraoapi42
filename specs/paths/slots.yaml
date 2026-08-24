@@ -82,29 +82,7 @@
       content:
         application/json:
           schema:
-            type: object
-            required:
-              - slot
-            properties:
-              slot:
-                type: object
-                required:
-                  - user_id
-                  - begin_at
-                  - end_at
-                properties:
-                  user_id:
-                    type: integer
-                    description: Must match the token owner unless Advanced tutor
-                  begin_at:
-                    type: string
-                    format: date-time
-                  end_at:
-                    type: string
-                    format: date-time
-                  scale_team_id:
-                    type: [integer, "null"]
-                    description: Optional defense to link to this slot
+            $ref: "#/components/schemas/SlotCreate"
     responses:
       "201":
         description: Slot created

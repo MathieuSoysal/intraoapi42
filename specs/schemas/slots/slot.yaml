@@ -35,6 +35,7 @@ SlotCreate:
       properties:
         user_id:
           type: integer
+          description: Must match the token owner unless Advanced tutor
         begin_at:
           type: string
           format: date-time
@@ -43,3 +44,4 @@ SlotCreate:
           format: date-time
         scale_team_id:
           type: [integer, "null"]
+          description: Optional defense to link to this slot
