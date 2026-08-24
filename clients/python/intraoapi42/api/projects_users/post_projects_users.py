@@ -6,7 +6,7 @@ import httpx
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
 from ...models.post_projects_users_body import PostProjectsUsersBody
-from ...models.project_user_response import ProjectUserResponse
+from ...models.project_user import ProjectUser
 from ...types import Response
 
 
@@ -29,9 +29,9 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | ProjectUserResponse:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | ProjectUser:
     if response.status_code == 201:
-        response_201 = ProjectUserResponse.from_dict(response.json())
+        response_201 = ProjectUser.from_dict(response.json())
 
         return response_201
 
@@ -45,9 +45,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
     return response_default
 
 
-def _build_response(
-    *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Error | ProjectUserResponse]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | ProjectUser]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -60,7 +58,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     body: PostProjectsUsersBody,
-) -> Response[Error | ProjectUserResponse]:
+) -> Response[Error | ProjectUser]:
     """Create a project user
 
     Args:
@@ -71,7 +69,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Error | ProjectUserResponse]
+        Response[Error | ProjectUser]
     """
 
     kwargs = _get_kwargs(
@@ -89,7 +87,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     body: PostProjectsUsersBody,
-) -> Error | ProjectUserResponse | None:
+) -> Error | ProjectUser | None:
     """Create a project user
 
     Args:
@@ -100,7 +98,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Error | ProjectUserResponse
+        Error | ProjectUser
     """
 
     return sync_detailed(
@@ -113,7 +111,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     body: PostProjectsUsersBody,
-) -> Response[Error | ProjectUserResponse]:
+) -> Response[Error | ProjectUser]:
     """Create a project user
 
     Args:
@@ -124,7 +122,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Error | ProjectUserResponse]
+        Response[Error | ProjectUser]
     """
 
     kwargs = _get_kwargs(
@@ -140,7 +138,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     body: PostProjectsUsersBody,
-) -> Error | ProjectUserResponse | None:
+) -> Error | ProjectUser | None:
     """Create a project user
 
     Args:
@@ -151,7 +149,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Error | ProjectUserResponse
+        Error | ProjectUser
     """
 
     return (

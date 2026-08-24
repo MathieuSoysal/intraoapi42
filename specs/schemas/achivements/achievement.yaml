@@ -1,4 +1,4 @@
-AchievementResponse:
+Achievement:
   type: object
   properties:
     id:

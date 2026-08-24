@@ -61,7 +61,7 @@
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/ProjectUserResponse'
+                $ref: '#/components/schemas/ProjectUser'
       default:
         $ref: '#/components/responses/ErrorResponse'
 /projects_users:
@@ -94,7 +94,7 @@
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ProjectUserResponse"
+              $ref: "#/components/schemas/ProjectUser"
       "400":
         $ref: '#/components/responses/ErrorResponse'
       default:

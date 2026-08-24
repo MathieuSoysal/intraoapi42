@@ -1,4 +1,4 @@
-SkillResponse:
+Skill:
   type: object
   properties:
     id:

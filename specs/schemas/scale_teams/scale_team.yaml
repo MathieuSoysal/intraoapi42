@@ -1,4 +1,4 @@
-ScaleTeamResponse:
+ScaleTeam:
   type: object
   properties:
     id:
@@ -20,7 +20,7 @@ ScaleTeamResponse:
     final_mark:
       type: [integer, "null"]
     flag:
-      $ref: "#/components/schemas/ScaleFlagResponse"
+      $ref: "#/components/schemas/ScaleFlag"
     begin_at:
       type: string
       format: date-time
@@ -28,9 +28,9 @@ ScaleTeamResponse:
     correcteds:
       type: array
       items:
-        $ref: "#/components/schemas/ScaleUserResponse"
+        $ref: "#/components/schemas/ScaleUser"
     corrector:
-      $ref: "#/components/schemas/ScaleUserResponse"
+      $ref: "#/components/schemas/ScaleUser"
     truant:
       type: object
       additionalProperties: true
@@ -41,11 +41,11 @@ ScaleTeamResponse:
     questions_with_answers:
       type: array
       items:
-        $ref: "#/components/schemas/QuestionWithAnswersResponse"
+        $ref: "#/components/schemas/QuestionWithAnswers"
     teams_uploads:
       type: array
       items:
-        $ref: "#/components/schemas/TeamUploadResponse"
+        $ref: "#/components/schemas/TeamUpload"
   required:
     - id
     - scale_id
@@ -62,7 +62,7 @@ ScaleTeamResponse:
     - filled_at
     - questions_with_answers
 
-ScaleFlagResponse:
+ScaleFlag:
   type: object
   properties:
     id:
@@ -89,7 +89,7 @@ ScaleFlagResponse:
     - created_at
     - updated_at
 
-ScaleUserResponse:
+ScaleUser:
   type: object
   properties:
     id:
@@ -104,7 +104,7 @@ ScaleUserResponse:
     - login
     - url
 
-QuestionWithAnswersResponse:
+QuestionWithAnswers:
   type: object
   properties:
     id:
@@ -122,7 +122,7 @@ QuestionWithAnswersResponse:
     answers:
       type: array
       items:
-        $ref: "#/components/schemas/QuestionAnswerResponse"
+        $ref: "#/components/schemas/QuestionAnswer"
   required:
     - id
     - name
@@ -132,7 +132,7 @@ QuestionWithAnswersResponse:
     - position
     - answers
 
-QuestionAnswerResponse:
+QuestionAnswer:
   type: object
   properties:
     id:
@@ -146,7 +146,7 @@ QuestionAnswerResponse:
     - value
     - answer
 
-TeamUploadResponse:
+TeamUpload:
   type: object
   properties:
     id:

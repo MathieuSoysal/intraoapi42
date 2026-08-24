@@ -1,4 +1,4 @@
-CursusResponse:
+Cursus:
   type: object
   properties:
     id:

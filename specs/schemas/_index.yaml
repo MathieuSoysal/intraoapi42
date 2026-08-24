@@ -1,70 +1,84 @@
-AchievementResponse:
-  $ref: achivements/achievement.yaml#/AchievementResponse
-CampusResponse:
-  $ref: campus/campus.yaml#/CampusResponse
-CampusUserResponse:
-  $ref: campus_users/campus_user.yaml#/CampusUserResponse
-CloseResponse:
-  $ref: closes/close.yaml#/CloseResponse
-CommunityServiceResponse:
-  $ref: community_services/community_service.yaml#/CommunityServiceResponse
-CursusResponse:
-  $ref: cursus/cursus.yaml#/CursusResponse
-CursusUserResponse:
-  $ref: cursus_users/cursus_user.yaml#/CursusUserResponse
+LightAccreditation:
+  $ref: accreditations/light_accreditation.yaml#/LightAccreditation
+LightAchievementsUser:
+  $ref: achievements_users/light_achievements_user.yaml#/LightAchievementsUser
+Achievement:
+  $ref: achivements/achievement.yaml#/Achievement
+LightApp:
+  $ref: apps/light_app.yaml#/LightApp
+Campus:
+  $ref: campus/campus.yaml#/Campus
+LightCampus:
+  $ref: campus/light_campus.yaml#/LightCampus
+CampusUser:
+  $ref: campus_users/campus_user.yaml#/CampusUser
+Close:
+  $ref: closes/close.yaml#/Close
+LightClose:
+  $ref: closes/light_close.yaml#/LightClose
+LightCoalition:
+  $ref: coalitions/light_coalition.yaml#/LightCoalition
+CommunityService:
+  $ref: community_services/community_service.yaml#/CommunityService
+LightCommunityService:
+  $ref: community_services/light_community_service.yaml#/LightCommunityService
+Cursus:
+  $ref: cursus/cursus.yaml#/Cursus
+CursusUser:
+  $ref: cursus_users/cursus_user.yaml#/CursusUser
 Error:
   $ref: error.yaml#/Error
-GroupResponse:
-  $ref: groups/group.yaml#/GroupResponse
-InternshipResponse:
-  $ref: internships/internship.yaml#/InternshipResponse
-LanguageResponse:
-  $ref: languages/language.yaml#/LanguageResponse
-LanguageUserResponse:
-  $ref: languages_users/language_user.yaml#/LanguageUserResponse
-PatronageResponse:
-  $ref: patronages/patronage.yaml#/PatronageResponse
-LightProjectResponse:
-  $ref: projects/light_project.yaml#/LightProjectResponse
-ProjectUserResponse:
-  $ref: projects_users/project_user.yaml#/ProjectUserResponse
+Group:
+  $ref: groups/group.yaml#/Group
+Internship:
+  $ref: internships/internship.yaml#/Internship
+Language:
+  $ref: languages/language.yaml#/Language
+LanguageUser:
+  $ref: languages_users/language_user.yaml#/LanguageUser
+Patronage:
+  $ref: patronages/patronage.yaml#/Patronage
+LightProject:
+  $ref: projects/light_project.yaml#/LightProject
+ProjectUser:
+  $ref: projects_users/project_user.yaml#/ProjectUser
 ProjectUserCreate:
   $ref: projects_users/project_user_create.yaml#/ProjectUserCreate
 ProjectUserUpdate:
   $ref: projects_users/project_user_update.yaml#/ProjectUserUpdate
-RoleResponse:
-  $ref: roles/role.yaml#/RoleResponse
-ScaleTeamResponse:
-  $ref: scale_teams/scale_team.yaml#/ScaleTeamResponse
-ScaleFlagResponse:
-  $ref: scale_teams/scale_team.yaml#/ScaleFlagResponse
-ScaleUserResponse:
-  $ref: scale_teams/scale_team.yaml#/ScaleUserResponse
-QuestionWithAnswersResponse:
-  $ref: scale_teams/scale_team.yaml#/QuestionWithAnswersResponse
-QuestionAnswerResponse:
-  $ref: scale_teams/scale_team.yaml#/QuestionAnswerResponse
-TeamUploadResponse:
-  $ref: scale_teams/scale_team.yaml#/TeamUploadResponse
-SkillResponse:
-  $ref: skills/skill.yaml#/SkillResponse
-LightTeamResponse:
-  $ref: teams/light_team.yaml#/LightTeamResponse
-TeamResponse:
-  $ref: teams/team.yaml#/TeamResponse
+Role:
+  $ref: roles/role.yaml#/Role
+ScaleTeam:
+  $ref: scale_teams/scale_team.yaml#/ScaleTeam
+ScaleFlag:
+  $ref: scale_teams/scale_team.yaml#/ScaleFlag
+ScaleUser:
+  $ref: scale_teams/scale_team.yaml#/ScaleUser
+QuestionWithAnswers:
+  $ref: scale_teams/scale_team.yaml#/QuestionWithAnswers
+QuestionAnswer:
+  $ref: scale_teams/scale_team.yaml#/QuestionAnswer
+TeamUpload:
+  $ref: scale_teams/scale_team.yaml#/TeamUpload
+Skill:
+  $ref: skills/skill.yaml#/Skill
+LightTeam:
+  $ref: teams/light_team.yaml#/LightTeam
+Team:
+  $ref: teams/team.yaml#/Team
 TeamUpdate:
   $ref: teams/team_update.yaml#/TeamUpdate
-LightTeamUserResponse:
-  $ref: teams_users/light_team_user.yaml#/LightTeamUserResponse
-TitleResponse:
-  $ref: titles/title.yaml#/TitleResponse
-TitleUserResponse:
-  $ref: titles_users/title_user.yaml#/TitleUserResponse
-UserCandidatureResponse:
-  $ref: user_candidatures/user_candidature.yaml#/UserCandidatureResponse
-UserResponse:
-  $ref: users/user.yaml#/UserResponse
-LightUserResponse:
-  $ref: users/user.yaml#/LightUserResponse
-UserImageResponse:
-  $ref: users/user.yaml#/UserImageResponse
+LightTeamUser:
+  $ref: teams_users/light_team_user.yaml#/LightTeamUser
+Title:
+  $ref: titles/title.yaml#/Title
+TitleUser:
+  $ref: titles_users/title_user.yaml#/TitleUser
+UserCandidature:
+  $ref: user_candidatures/user_candidature.yaml#/UserCandidature
+LightUser:
+  $ref: users/light_user.yaml#/LightUser
+UserImage:
+  $ref: users/light_user.yaml#/UserImage
+User:
+  $ref: users/user.yaml#/User

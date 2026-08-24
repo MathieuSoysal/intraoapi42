@@ -20,6 +20,6 @@
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserCandidatureResponse"
+              $ref: "#/components/schemas/UserCandidature"
       default:
         $ref: "#/components/responses/ErrorResponse"

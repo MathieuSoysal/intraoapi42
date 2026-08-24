@@ -1,4 +1,4 @@
-LightTeamResponse:
+LightTeam:
   type: object
   properties:
     id:
@@ -29,7 +29,7 @@ LightTeamResponse:
     users:
       type: array
       items:
-        $ref: "#/components/schemas/LightTeamUserResponse"
+        $ref: "#/components/schemas/LightTeamUser"
     locked?:
       type: boolean
     validated?:

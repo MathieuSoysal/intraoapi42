@@ -1,0 +1,23 @@
+LightClose:
+  type: object
+  properties:
+    id:
+      type: integer
+    reason:
+      type: string
+    state:
+      type: string
+    created_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+    updated_at:
+      type: string
+      format: date-time
+      x-go-type: IntraTime
+  required:
+  - id
+  - reason
+  - state
+  - created_at
+  - updated_at

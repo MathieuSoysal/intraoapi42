@@ -1,51 +1,33 @@
-CloseResponse:
-  type: object
-  properties:
-    id:
-      type: integer
-    reason:
-      type: string
-    state:
-      type: string
-    created_at:
-      type: string
-      format: date-time
-      x-go-type: IntraTime
-    updated_at:
-      type: string
-      format: date-time
-      x-go-type: IntraTime
-    end_at:
-      type: [string, "null"]
-      format: date-time
-      x-go-type: IntraTime
-    community_services:
-      type: array
-      items:
-        $ref: "#/components/schemas/CommunityServiceResponse"
-    kind:
-      type: string
-      enum:
-        - agu
-        - other
-        - deserter
-        - pace_unknown
-        - black_hole
-        - serious_misconduct
-        - social_security
-        - non_admitted
-
-    user:
-      $ref: "#/components/schemas/LightUserResponse"
-    closer:
-      $ref: "#/components/schemas/LightUserResponse"
-  required:
-    - id
-    - reason
-    - state
-    - created_at
-    - updated_at
-    - community_services
-    - user
-    - closer
-    - kind
+Close:
+  allOf:
+    - $ref: "#/components/schemas/LightUser"
+    - type: object
+      properties:
+        end_at:
+          type: [string, "null"]
+          format: date-time
+          x-go-type: IntraTime
+        community_services:
+          type: array
+          items:
+            $ref: "#/components/schemas/CommunityService"
+        kind:
+          type: string
+          enum:
+            - agu
+            - other
+            - deserter
+            - pace_unknown
+            - black_hole
+            - serious_misconduct
+            - social_security
+            - non_admitted
+        user:
+          $ref: "#/components/schemas/LightUser"
+        closer:
+          $ref: "#/components/schemas/LightUser"
+      required:
+        - community_services
+        - user
+        - closer
+        - kind

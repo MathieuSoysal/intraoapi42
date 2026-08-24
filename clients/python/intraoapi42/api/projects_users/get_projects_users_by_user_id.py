@@ -8,7 +8,7 @@ from ...client import AuthenticatedClient, Client
 from ...models.error import Error
 from ...models.get_projects_users_by_user_id_filter import GetProjectsUsersByUserIdFilter
 from ...models.get_projects_users_by_user_id_range import GetProjectsUsersByUserIdRange
-from ...models.project_user_response import ProjectUserResponse
+from ...models.project_user import ProjectUser
 from ...types import UNSET, Response, Unset
 
 
@@ -58,14 +58,12 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(
-    *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Error | list[ProjectUserResponse]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | list[ProjectUser]:
     if response.status_code == 200:
         response_200 = []
         _response_200 = response.json()
         for response_200_item_data in _response_200:
-            response_200_item = ProjectUserResponse.from_dict(response_200_item_data)
+            response_200_item = ProjectUser.from_dict(response_200_item_data)
 
             response_200.append(response_200_item)
 
@@ -78,7 +76,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Error | list[ProjectUserResponse]]:
+) -> Response[Error | list[ProjectUser]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -97,7 +95,7 @@ def sync_detailed(
     per_page: int | Unset = UNSET,
     pagenumber: int | Unset = UNSET,
     pagesize: int | Unset = UNSET,
-) -> Response[Error | list[ProjectUserResponse]]:
+) -> Response[Error | list[ProjectUser]]:
     """Get a list of projects users by a user Id
 
     Args:
@@ -114,7 +112,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Error | list[ProjectUserResponse]]
+        Response[Error | list[ProjectUser]]
     """
 
     kwargs = _get_kwargs(
@@ -144,7 +142,7 @@ def sync(
     per_page: int | Unset = UNSET,
     pagenumber: int | Unset = UNSET,
     pagesize: int | Unset = UNSET,
-) -> Error | list[ProjectUserResponse] | None:
+) -> Error | list[ProjectUser] | None:
     """Get a list of projects users by a user Id
 
     Args:
@@ -161,7 +159,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Error | list[ProjectUserResponse]
+        Error | list[ProjectUser]
     """
 
     return sync_detailed(
@@ -186,7 +184,7 @@ async def asyncio_detailed(
     per_page: int | Unset = UNSET,
     pagenumber: int | Unset = UNSET,
     pagesize: int | Unset = UNSET,
-) -> Response[Error | list[ProjectUserResponse]]:
+) -> Response[Error | list[ProjectUser]]:
     """Get a list of projects users by a user Id
 
     Args:
@@ -203,7 +201,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Error | list[ProjectUserResponse]]
+        Response[Error | list[ProjectUser]]
     """
 
     kwargs = _get_kwargs(
@@ -231,7 +229,7 @@ async def asyncio(
     per_page: int | Unset = UNSET,
     pagenumber: int | Unset = UNSET,
     pagesize: int | Unset = UNSET,
-) -> Error | list[ProjectUserResponse] | None:
+) -> Error | list[ProjectUser] | None:
     """Get a list of projects users by a user Id
 
     Args:
@@ -248,7 +246,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Error | list[ProjectUserResponse]
+        Error | list[ProjectUser]
     """
 
     return (

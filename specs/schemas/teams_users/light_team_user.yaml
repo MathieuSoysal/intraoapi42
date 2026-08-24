@@ -1,4 +1,4 @@
-LightTeamUserResponse:
+LightTeamUser:
   type: object
   properties:
     id:

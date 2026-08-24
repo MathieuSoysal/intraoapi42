@@ -1,4 +1,4 @@
-TitleUserResponse:
+TitleUser:
   type: object
   properties:
     id:

@@ -1,4 +1,4 @@
-LanguageResponse:
+Language:
   type: object
   properties:
     id:

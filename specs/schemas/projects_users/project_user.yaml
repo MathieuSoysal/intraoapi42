@@ -1,4 +1,4 @@
-ProjectUserResponse:
+ProjectUser:
   type: object
   properties:
     id:
@@ -14,17 +14,17 @@ ProjectUserResponse:
     current_team_id:
       type: integer
     project:
-      $ref: "#/components/schemas/LightProjectResponse"
+      $ref: "#/components/schemas/LightProject"
     cursus_ids:
       type: array
       items:
         type: integer
     user:
-      $ref: "#/components/schemas/LightUserResponse"
+      $ref: "#/components/schemas/LightUser"
     teams:
       type: array
       items:
-        $ref: "#/components/schemas/LightTeamResponse"
+        $ref: "#/components/schemas/LightTeam"
     marked_at:
       type: [string, "null"]
       format: date-time

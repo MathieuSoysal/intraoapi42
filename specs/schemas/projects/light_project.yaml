@@ -1,4 +1,4 @@
-LightProjectResponse:
+LightProject:
   type: object
   properties:
     id:

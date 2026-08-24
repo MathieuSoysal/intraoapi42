@@ -1,4 +1,4 @@
-CursusUserResponse:
+CursusUser:
   type: object
   properties:
     id:
@@ -19,11 +19,11 @@ CursusUserResponse:
     skills:
       type: array
       items:
-        $ref: "#/components/schemas/SkillResponse"
+        $ref: "#/components/schemas/Skill"
     cursus_id:
       type: integer
     cursus:
-      $ref: "#/components/schemas/CursusResponse"
+      $ref: "#/components/schemas/Cursus"
     has_coalition:
       type: boolean
     blackholed_at:

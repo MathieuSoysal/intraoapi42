@@ -1,4 +1,4 @@
-UserCandidatureResponse:
+UserCandidature:
   type: object
   properties:
     id:
@@ -98,35 +98,3 @@ UserCandidatureResponse:
     - pin
     - phone_country_code
     - hidden_phone
-  example:
-    id: 42
-    user_id: 42
-    birth_date: "2013-01-01"
-    gender: male
-    zip_code: "75017"
-    country: France
-    birth_city: Paris
-    birth_country: France
-    postal_street: "96 boulevard Bessières"
-    postal_complement: null
-    postal_city: Paris
-    postal_zip_code: "75017"
-    postal_country: France
-    contact_affiliation: Parent
-    contact_last_name: Moulinette
-    contact_first_name: Norminette
-    contact_phone1: "+33600000000"
-    contact_phone2: null
-    max_level_memory: null
-    max_level_logic: null
-    other_information: null
-    language: fr
-    meeting_date: "2020-08-27T07:31:49.431Z"
-    piscine_date: null
-    created_at: "2020-08-27T07:31:49.431Z"
-    updated_at: "2025-07-10T16:16:34.238Z"
-    phone: "+33600000000"
-    email: tmatis@example.com
-    pin: "7777"
-    phone_country_code: FR
-    hidden_phone: false

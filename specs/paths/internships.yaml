@@ -64,6 +64,6 @@
             schema:
               type: array
               items:
-                $ref: "#/components/schemas/InternshipResponse"
+                $ref: "#/components/schemas/Internship"
       default:
         $ref: "#/components/responses/ErrorResponse"

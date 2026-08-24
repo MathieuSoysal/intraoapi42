@@ -18,99 +18,99 @@ import (
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
-// Defines values for CloseResponseKind.
+// Defines values for CloseKind.
 const (
-	CloseResponseKindAgu               CloseResponseKind = "agu"
-	CloseResponseKindBlackHole         CloseResponseKind = "black_hole"
-	CloseResponseKindDeserter          CloseResponseKind = "deserter"
-	CloseResponseKindNonAdmitted       CloseResponseKind = "non_admitted"
-	CloseResponseKindOther             CloseResponseKind = "other"
-	CloseResponseKindPaceUnknown       CloseResponseKind = "pace_unknown"
-	CloseResponseKindSeriousMisconduct CloseResponseKind = "serious_misconduct"
-	CloseResponseKindSocialSecurity    CloseResponseKind = "social_security"
+	CloseKindAgu               CloseKind = "agu"
+	CloseKindBlackHole         CloseKind = "black_hole"
+	CloseKindDeserter          CloseKind = "deserter"
+	CloseKindNonAdmitted       CloseKind = "non_admitted"
+	CloseKindOther             CloseKind = "other"
+	CloseKindPaceUnknown       CloseKind = "pace_unknown"
+	CloseKindSeriousMisconduct CloseKind = "serious_misconduct"
+	CloseKindSocialSecurity    CloseKind = "social_security"
 )
 
-// Valid indicates whether the value is a known member of the CloseResponseKind enum.
-func (e CloseResponseKind) Valid() bool {
+// Valid indicates whether the value is a known member of the CloseKind enum.
+func (e CloseKind) Valid() bool {
 	switch e {
-	case CloseResponseKindAgu:
+	case CloseKindAgu:
 		return true
-	case CloseResponseKindBlackHole:
+	case CloseKindBlackHole:
 		return true
-	case CloseResponseKindDeserter:
+	case CloseKindDeserter:
 		return true
-	case CloseResponseKindNonAdmitted:
+	case CloseKindNonAdmitted:
 		return true
-	case CloseResponseKindOther:
+	case CloseKindOther:
 		return true
-	case CloseResponseKindPaceUnknown:
+	case CloseKindPaceUnknown:
 		return true
-	case CloseResponseKindSeriousMisconduct:
+	case CloseKindSeriousMisconduct:
 		return true
-	case CloseResponseKindSocialSecurity:
+	case CloseKindSocialSecurity:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for LightUserResponseKind.
+// Defines values for LightUserKind.
 const (
-	LightUserResponseKindAdmin    LightUserResponseKind = "admin"
-	LightUserResponseKindExternal LightUserResponseKind = "external"
-	LightUserResponseKindStudent  LightUserResponseKind = "student"
+	LightUserKindAdmin    LightUserKind = "admin"
+	LightUserKindExternal LightUserKind = "external"
+	LightUserKindStudent  LightUserKind = "student"
 )
 
-// Valid indicates whether the value is a known member of the LightUserResponseKind enum.
-func (e LightUserResponseKind) Valid() bool {
+// Valid indicates whether the value is a known member of the LightUserKind enum.
+func (e LightUserKind) Valid() bool {
 	switch e {
-	case LightUserResponseKindAdmin:
+	case LightUserKindAdmin:
 		return true
-	case LightUserResponseKindExternal:
+	case LightUserKindExternal:
 		return true
-	case LightUserResponseKindStudent:
+	case LightUserKindStudent:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for UserCandidatureResponseGender.
+// Defines values for UserKind.
 const (
-	UserCandidatureResponseGenderFemale UserCandidatureResponseGender = "female"
-	UserCandidatureResponseGenderMale   UserCandidatureResponseGender = "male"
-	UserCandidatureResponseGenderOther  UserCandidatureResponseGender = "other"
+	UserKindAdmin    UserKind = "admin"
+	UserKindExternal UserKind = "external"
+	UserKindStudent  UserKind = "student"
 )
 
-// Valid indicates whether the value is a known member of the UserCandidatureResponseGender enum.
-func (e UserCandidatureResponseGender) Valid() bool {
+// Valid indicates whether the value is a known member of the UserKind enum.
+func (e UserKind) Valid() bool {
 	switch e {
-	case UserCandidatureResponseGenderFemale:
+	case UserKindAdmin:
 		return true
-	case UserCandidatureResponseGenderMale:
+	case UserKindExternal:
 		return true
-	case UserCandidatureResponseGenderOther:
+	case UserKindStudent:
 		return true
 	default:
 		return false
 	}
 }
 
-// Defines values for UserResponseKind.
+// Defines values for UserCandidatureGender.
 const (
-	UserResponseKindAdmin    UserResponseKind = "admin"
-	UserResponseKindExternal UserResponseKind = "external"
-	UserResponseKindStudent  UserResponseKind = "student"
+	UserCandidatureGenderFemale UserCandidatureGender = "female"
+	UserCandidatureGenderMale   UserCandidatureGender = "male"
+	UserCandidatureGenderOther  UserCandidatureGender = "other"
 )
 
-// Valid indicates whether the value is a known member of the UserResponseKind enum.
-func (e UserResponseKind) Valid() bool {
+// Valid indicates whether the value is a known member of the UserCandidatureGender enum.
+func (e UserCandidatureGender) Valid() bool {
 	switch e {
-	case UserResponseKindAdmin:
+	case UserCandidatureGenderFemale:
 		return true
-	case UserResponseKindExternal:
+	case UserCandidatureGenderMale:
 		return true
-	case UserResponseKindStudent:
+	case UserCandidatureGenderOther:
 		return true
 	default:
 		return false
@@ -201,8 +201,8 @@ func (e GetClosesByUserIdParamsSort) Valid() bool {
 	}
 }
 
-// AchievementResponse defines model for AchievementResponse.
-type AchievementResponse struct {
+// Achievement defines model for Achievement.
+type Achievement struct {
 	Description  string `json:"description"`
 	Id           int    `json:"id"`
 	Image        string `json:"image"`
@@ -214,29 +214,29 @@ type AchievementResponse struct {
 	Visible      bool   `json:"visible"`
 }
 
-// CampusResponse defines model for CampusResponse.
-type CampusResponse struct {
-	Active             bool              `json:"active"`
-	Address            *string           `json:"address,omitempty"`
-	City               string            `json:"city"`
-	Country            string            `json:"country"`
-	DefaultHiddenPhone *bool             `json:"default_hidden_phone,omitempty"`
-	EmailExtension     string            `json:"email_extension"`
-	Facebook           *string           `json:"facebook,omitempty"`
-	Id                 int               `json:"id"`
-	Language           *LanguageResponse `json:"language,omitempty"`
-	Name               string            `json:"name"`
-	Public             bool              `json:"public"`
-	TimeZone           string            `json:"time_zone"`
-	Twitter            *string           `json:"twitter,omitempty"`
-	UsersCount         int               `json:"users_count"`
-	VogsphereId        int               `json:"vogsphere_id"`
-	Website            *string           `json:"website,omitempty"`
-	Zip                *string           `json:"zip,omitempty"`
+// Campus defines model for Campus.
+type Campus struct {
+	Active             bool      `json:"active"`
+	Address            *string   `json:"address,omitempty"`
+	City               string    `json:"city"`
+	Country            string    `json:"country"`
+	DefaultHiddenPhone *bool     `json:"default_hidden_phone,omitempty"`
+	EmailExtension     string    `json:"email_extension"`
+	Facebook           *string   `json:"facebook,omitempty"`
+	Id                 int       `json:"id"`
+	Language           *Language `json:"language,omitempty"`
+	Name               string    `json:"name"`
+	Public             bool      `json:"public"`
+	TimeZone           string    `json:"time_zone"`
+	Twitter            *string   `json:"twitter,omitempty"`
+	UsersCount         int       `json:"users_count"`
+	VogsphereId        int       `json:"vogsphere_id"`
+	Website            *string   `json:"website,omitempty"`
+	Zip                *string   `json:"zip,omitempty"`
 }
 
-// CampusUserResponse defines model for CampusUserResponse.
-type CampusUserResponse struct {
+// CampusUser defines model for CampusUser.
+type CampusUser struct {
 	CampusId  int       `json:"campus_id"`
 	CreatedAt IntraTime `json:"created_at"`
 	Id        int       `json:"id"`
@@ -245,36 +245,101 @@ type CampusUserResponse struct {
 	UserId    int       `json:"user_id"`
 }
 
-// CloseResponse defines model for CloseResponse.
-type CloseResponse struct {
-	Closer            LightUserResponse          `json:"closer"`
-	CommunityServices []CommunityServiceResponse `json:"community_services"`
-	CreatedAt         IntraTime                  `json:"created_at"`
-	EndAt             *IntraTime                 `json:"end_at,omitempty"`
-	Id                int                        `json:"id"`
-	Kind              CloseResponseKind          `json:"kind"`
-	Reason            string                     `json:"reason"`
-	State             string                     `json:"state"`
-	UpdatedAt         IntraTime                  `json:"updated_at"`
-	User              LightUserResponse          `json:"user"`
+// Close defines model for Close.
+type Close struct {
+	// Active Indicates if the user is active.
+	Active bool `json:"active?"`
+
+	// Alumni Indicates if the user is an alumnus.
+	Alumni bool `json:"alumni?"`
+
+	// AlumnizedAt The date when the user became an alumnus.
+	AlumnizedAt IntraTime `json:"alumnized_at"`
+
+	// AnonymizeDate The date when user data will be anonymized.
+	AnonymizeDate     *IntraTime         `json:"anonymize_date"`
+	Closer            LightUser          `json:"closer"`
+	CommunityServices []CommunityService `json:"community_services"`
+
+	// CorrectionPoint The user's correction points.
+	CorrectionPoint int `json:"correction_point"`
+
+	// CreatedAt The user creation timestamp.
+	CreatedAt IntraTime `json:"created_at"`
+
+	// DataErasureDate The date when user data will be erased.
+	DataErasureDate IntraTime `json:"data_erasure_date"`
+
+	// Displayname The display name of the user.
+	Displayname string `json:"displayname"`
+
+	// Email The email address of the user.
+	Email openapi_types.Email `json:"email"`
+	EndAt *IntraTime          `json:"end_at,omitempty"`
+
+	// FirstName The first name of the user.
+	FirstName string `json:"first_name"`
+
+	// Id The unique identifier of the user.
+	Id    int       `json:"id"`
+	Image UserImage `json:"image"`
+	Kind  CloseKind `json:"kind"`
+
+	// LastName The last name of the user.
+	LastName string `json:"last_name"`
+
+	// Location The location of the user.
+	Location *string `json:"location,omitempty"`
+
+	// Login The login name of the user.
+	Login string `json:"login"`
+
+	// Phone The phone number of the user (always hidden).
+	Phone *string `json:"phone,omitempty"`
+
+	// PoolMonth The month of the user's pool.
+	PoolMonth string `json:"pool_month"`
+
+	// PoolYear The year of the user's pool.
+	PoolYear string `json:"pool_year"`
+
+	// Staff Indicates if the user is staff.
+	Staff bool `json:"staff?"`
+
+	// UpdatedAt The last user update timestamp.
+	UpdatedAt IntraTime `json:"updated_at"`
+
+	// Url The URL to the user's resource.
+	Url  string    `json:"url"`
+	User LightUser `json:"user"`
+
+	// UsualFirstName The usual first name of the user, first_name if none.
+	UsualFirstName *string `json:"usual_first_name,omitempty"`
+
+	// UsualFullName The usual full name of the user, usually usual_first_name or first_name + last_name.
+	UsualFullName string `json:"usual_full_name"`
+
+	// Wallet The user's wallet balance.
+	Wallet int `json:"wallet"`
 }
 
-// CloseResponseKind defines model for CloseResponse.Kind.
-type CloseResponseKind string
+// CloseKind defines model for Close.Kind.
+type CloseKind string
 
-// CommunityServiceResponse defines model for CommunityServiceResponse.
-type CommunityServiceResponse struct {
-	CreatedAt  IntraTime `json:"created_at"`
-	Duration   int       `json:"duration"`
-	Id         int       `json:"id"`
-	Occupation string    `json:"occupation"`
-	ScheduleAt IntraTime `json:"schedule_at"`
-	State      string    `json:"state"`
-	UpdatedAt  string    `json:"updated_at"`
+// CommunityService defines model for CommunityService.
+type CommunityService struct {
+	Close      *LightClose `json:"close,omitempty"`
+	CreatedAt  IntraTime   `json:"created_at"`
+	Duration   int         `json:"duration"`
+	Id         int         `json:"id"`
+	Occupation string      `json:"occupation"`
+	ScheduleAt IntraTime   `json:"schedule_at"`
+	State      string      `json:"state"`
+	UpdatedAt  string      `json:"updated_at"`
 }
 
-// CursusResponse defines model for CursusResponse.
-type CursusResponse struct {
+// Cursus defines model for Cursus.
+type Cursus struct {
 	CreatedAt IntraTime `json:"created_at"`
 	Id        int       `json:"id"`
 	Kind      string    `json:"kind"`
@@ -282,20 +347,20 @@ type CursusResponse struct {
 	Slug      string    `json:"slug"`
 }
 
-// CursusUserResponse defines model for CursusUserResponse.
-type CursusUserResponse struct {
-	BeginAt      IntraTime       `json:"begin_at"`
-	BlackholedAt *IntraTime      `json:"blackholed_at,omitempty"`
-	CreatedAt    IntraTime       `json:"created_at"`
-	Cursus       CursusResponse  `json:"cursus"`
-	CursusId     int             `json:"cursus_id"`
-	EndAt        *IntraTime      `json:"end_at,omitempty"`
-	Grade        string          `json:"grade"`
-	HasCoalition bool            `json:"has_coalition"`
-	Id           int             `json:"id"`
-	Level        float64         `json:"level"`
-	Skills       []SkillResponse `json:"skills"`
-	UpdatedAt    IntraTime       `json:"updated_at"`
+// CursusUser defines model for CursusUser.
+type CursusUser struct {
+	BeginAt      IntraTime  `json:"begin_at"`
+	BlackholedAt *IntraTime `json:"blackholed_at,omitempty"`
+	CreatedAt    IntraTime  `json:"created_at"`
+	Cursus       Cursus     `json:"cursus"`
+	CursusId     int        `json:"cursus_id"`
+	EndAt        *IntraTime `json:"end_at,omitempty"`
+	Grade        string     `json:"grade"`
+	HasCoalition bool       `json:"has_coalition"`
+	Id           int        `json:"id"`
+	Level        float64    `json:"level"`
+	Skills       []Skill    `json:"skills"`
+	UpdatedAt    IntraTime  `json:"updated_at"`
 }
 
 // Error defines model for Error.
@@ -307,14 +372,14 @@ type Error struct {
 	Status int `json:"status"`
 }
 
-// GroupResponse defines model for GroupResponse.
-type GroupResponse struct {
+// Group defines model for Group.
+type Group struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
 }
 
-// InternshipResponse defines model for InternshipResponse.
-type InternshipResponse struct {
+// Internship defines model for Internship.
+type Internship struct {
 	AdministrationId         int        `json:"administration_id"`
 	BreachAt                 *time.Time `json:"breach_at"`
 	CompanyAddress           string     `json:"company_address"`
@@ -338,45 +403,45 @@ type InternshipResponse struct {
 			Url *string `json:"url"`
 		} `json:"convention"`
 	} `json:"convention"`
-	ConventionUri     *string                   `json:"convention_uri"`
-	Currency          string                    `json:"currency"`
-	Days              string                    `json:"days"`
-	Duration          int                       `json:"duration"`
-	EndAt             time.Time                 `json:"end_at"`
-	Id                int                       `json:"id"`
-	InternshipAddress string                    `json:"internship_address"`
-	InternshipCity    string                    `json:"internship_city"`
-	InternshipCountry string                    `json:"internship_country"`
-	InternshipPostal  string                    `json:"internship_postal"`
-	LanguageId        int                       `json:"language_id"`
-	NbDays            int                       `json:"nb_days"`
-	NbHours           int                       `json:"nb_hours"`
-	OfferId           *int                      `json:"offer_id"`
-	ProjectsUser      *int                      `json:"projects_user,omitempty"`
-	Salary            InternshipResponse_Salary `json:"salary"`
-	StartAt           time.Time                 `json:"start_at"`
-	State             string                    `json:"state"`
-	Subject           string                    `json:"subject"`
-	User              LightUserResponse         `json:"user"`
-	UserAddress       string                    `json:"user_address"`
-	UserCity          string                    `json:"user_city"`
-	UserCountry       string                    `json:"user_country"`
-	UserPostal        string                    `json:"user_postal"`
+	ConventionUri     *string           `json:"convention_uri"`
+	Currency          string            `json:"currency"`
+	Days              string            `json:"days"`
+	Duration          int               `json:"duration"`
+	EndAt             time.Time         `json:"end_at"`
+	Id                int               `json:"id"`
+	InternshipAddress string            `json:"internship_address"`
+	InternshipCity    string            `json:"internship_city"`
+	InternshipCountry string            `json:"internship_country"`
+	InternshipPostal  string            `json:"internship_postal"`
+	LanguageId        int               `json:"language_id"`
+	NbDays            int               `json:"nb_days"`
+	NbHours           int               `json:"nb_hours"`
+	OfferId           *int              `json:"offer_id"`
+	ProjectsUser      *int              `json:"projects_user,omitempty"`
+	Salary            Internship_Salary `json:"salary"`
+	StartAt           time.Time         `json:"start_at"`
+	State             string            `json:"state"`
+	Subject           string            `json:"subject"`
+	User              LightUser         `json:"user"`
+	UserAddress       string            `json:"user_address"`
+	UserCity          string            `json:"user_city"`
+	UserCountry       string            `json:"user_country"`
+	UserPostal        string            `json:"user_postal"`
 }
 
-// InternshipResponseSalary0 defines model for InternshipResponse.Salary.0.
-type InternshipResponseSalary0 = int
+// InternshipSalary0 defines model for Internship.Salary.0.
+type InternshipSalary0 = int
 
-// InternshipResponseSalary1 defines model for InternshipResponse.Salary.1.
-type InternshipResponseSalary1 = float32
+// InternshipSalary1 defines model for Internship.Salary.1.
+type InternshipSalary1 = float32
 
-// InternshipResponse_Salary defines model for InternshipResponse.Salary.
-type InternshipResponse_Salary struct {
+// Internship_Salary defines model for Internship.Salary.
+type Internship_Salary struct {
 	union json.RawMessage
 }
 
-// LanguageResponse defines model for LanguageResponse.
-type LanguageResponse struct {
+// Language defines model for Language.
+type Language struct {
 	CreatedAt  IntraTime `json:"created_at"`
 	Id         int       `json:"id"`
 	Identifier string    `json:"identifier"`
@@ -384,8 +449,8 @@ type LanguageResponse struct {
 	UpdatedAt  IntraTime `json:"updated_at"`
 }
 
-// LanguageUserResponse defines model for LanguageUserResponse.
-type LanguageUserResponse struct {
+// LanguageUser defines model for LanguageUser.
+type LanguageUser struct {
 	CreatedAt  IntraTime `json:"created_at"`
 	Id         int       `json:"id"`
 	LanguageId int       `json:"language_id"`
@@ -393,39 +458,48 @@ type LanguageUserResponse struct {
 	UserId     int       `json:"user_id"`
 }
 
-// LightProjectResponse defines model for LightProjectResponse.
-type LightProjectResponse struct {
+// LightClose defines model for LightClose.
+type LightClose struct {
+	CreatedAt IntraTime `json:"created_at"`
+	Id        int       `json:"id"`
+	Reason    string    `json:"reason"`
+	State     string    `json:"state"`
+	UpdatedAt IntraTime `json:"updated_at"`
+}
+
+// LightProject defines model for LightProject.
+type LightProject struct {
 	Id       int    `json:"id"`
 	Name     string `json:"name"`
 	ParentId *int   `json:"parent_id"`
 	Slug     string `json:"slug"`
 }
 
-// LightTeamResponse defines model for LightTeamResponse.
-type LightTeamResponse struct {
-	Closed            bool                    `json:"closed?"`
-	ClosedAt          *IntraTime              `json:"closed_at"`
-	CreatedAt         IntraTime               `json:"created_at"`
-	FinalMark         *int                    `json:"final_mark,omitempty"`
-	Id                int                     `json:"id"`
-	Locked            bool                    `json:"locked?"`
-	LockedAt          *IntraTime              `json:"locked_at"`
-	Name              string                  `json:"name"`
-	ProjectGitlabPath *string                 `json:"project_gitlab_path"`
-	ProjectId         int                     `json:"project_id"`
-	ProjectSessionId  int                     `json:"project_session_id"`
-	RepoUrl           *string                 `json:"repo_url"`
-	RepoUuid          string                  `json:"repo_uuid"`
-	Status            string                  `json:"status"`
-	TerminatingAt     *IntraTime              `json:"terminating_at"`
-	UpdatedAt         IntraTime               `json:"updated_at"`
-	Url               string                  `json:"url"`
-	Users             []LightTeamUserResponse `json:"users"`
-	Validated         bool                    `json:"validated?"`
+// LightTeam defines model for LightTeam.
+type LightTeam struct {
+	Closed            bool            `json:"closed?"`
+	ClosedAt          *IntraTime      `json:"closed_at"`
+	CreatedAt         IntraTime       `json:"created_at"`
+	FinalMark         *int            `json:"final_mark,omitempty"`
+	Id                int             `json:"id"`
+	Locked            bool            `json:"locked?"`
+	LockedAt          *IntraTime      `json:"locked_at"`
+	Name              string          `json:"name"`
+	ProjectGitlabPath *string         `json:"project_gitlab_path"`
+	ProjectId         int             `json:"project_id"`
+	ProjectSessionId  int             `json:"project_session_id"`
+	RepoUrl           *string         `json:"repo_url"`
+	RepoUuid          string          `json:"repo_uuid"`
+	Status            string          `json:"status"`
+	TerminatingAt     *IntraTime      `json:"terminating_at"`
+	UpdatedAt         IntraTime       `json:"updated_at"`
+	Url               string          `json:"url"`
+	Users             []LightTeamUser `json:"users"`
+	Validated         bool            `json:"validated?"`
 }
 
-// LightTeamUserResponse defines model for LightTeamUserResponse.
-type LightTeamUserResponse struct {
+// LightTeamUser defines model for LightTeamUser.
+type LightTeamUser struct {
 	Id             int    `json:"id"`
 	Leader         bool   `json:"leader"`
 	Login          string `json:"login"`
@@ -435,8 +509,8 @@ type LightTeamUserResponse struct {
 	Validated      bool   `json:"validated"`
 }
 
-// LightUserResponse defines model for LightUserResponse.
-type LightUserResponse struct {
+// LightUser defines model for LightUser.
+type LightUser struct {
 	// Active Indicates if the user is active.
 	Active bool `json:"active?"`
 
@@ -468,11 +542,11 @@ type LightUserResponse struct {
 	FirstName string `json:"first_name"`
 
 	// Id The unique identifier of the user.
-	Id    int               `json:"id"`
-	Image UserImageResponse `json:"image"`
+	Id    int       `json:"id"`
+	Image UserImage `json:"image"`
 
 	// Kind The kind of user (e.g., student, admin, external).
-	Kind LightUserResponseKind `json:"kind"`
+	Kind LightUserKind `json:"kind"`
 
 	// LastName The last name of the user.
 	LastName string `json:"last_name"`
@@ -511,11 +585,11 @@ type LightUserResponse struct {
 	Wallet int `json:"wallet"`
 }
 
-// LightUserResponseKind The kind of user (e.g., student, admin, external).
-type LightUserResponseKind string
+// LightUserKind The kind of user (e.g., student, admin, external).
+type LightUserKind string
 
-// PatronageResponse defines model for PatronageResponse.
-type PatronageResponse struct {
+// Patronage defines model for Patronage.
+type Patronage struct {
 	CreatedAt   IntraTime `json:"created_at"`
 	GodfatherId *int      `json:"godfather_id,omitempty"`
 	GodsonId    *int      `json:"godson_id,omitempty"`
@@ -523,6 +597,25 @@ type PatronageResponse struct {
 	Ongoing     bool      `json:"ongoing"`
 	UpdatedAt   IntraTime `json:"updated_at"`
 	UserId      *int      `json:"user_id,omitempty"`
+}
+
+// ProjectUser defines model for ProjectUser.
+type ProjectUser struct {
+	CreatedAt     *IntraTime   `json:"created_at,omitempty"`
+	CurrentTeamId int          `json:"current_team_id"`
+	CursusIds     []int        `json:"cursus_ids"`
+	FinalMark     *int         `json:"final_mark,omitempty"`
+	Id            int          `json:"id"`
+	Marked        *bool        `json:"marked,omitempty"`
+	MarkedAt      *IntraTime   `json:"marked_at,omitempty"`
+	Occurrence    int          `json:"occurrence"`
+	Project       LightProject `json:"project"`
+	RetriableAt   *IntraTime   `json:"retriable_at,omitempty"`
+	Status        string       `json:"status"`
+	Teams         []LightTeam  `json:"teams"`
+	UpdatedAt     *IntraTime   `json:"updated_at,omitempty"`
+	User          LightUser    `json:"user"`
+	Validated     *bool        `json:"validated?"`
 }
 
 // ProjectUserCreate defines model for ProjectUserCreate.
@@ -552,25 +645,6 @@ type ProjectUserCreate struct {
 
 	// UserId The user id. Must be unique in the scope of a given project.
 	UserId int64 `json:"user_id"`
-}
-
-// ProjectUserResponse defines model for ProjectUserResponse.
-type ProjectUserResponse struct {
-	CreatedAt     *IntraTime           `json:"created_at,omitempty"`
-	CurrentTeamId int                  `json:"current_team_id"`
-	CursusIds     []int                `json:"cursus_ids"`
-	FinalMark     *int                 `json:"final_mark,omitempty"`
-	Id            int                  `json:"id"`
-	Marked        *bool                `json:"marked,omitempty"`
-	MarkedAt      *IntraTime           `json:"marked_at,omitempty"`
-	Occurrence    int                  `json:"occurrence"`
-	Project       LightProjectResponse `json:"project"`
-	RetriableAt   *IntraTime           `json:"retriable_at,omitempty"`
-	Status        string               `json:"status"`
-	Teams         []LightTeamResponse  `json:"teams"`
-	UpdatedAt     *IntraTime           `json:"updated_at,omitempty"`
-	User          LightUserResponse    `json:"user"`
-	Validated     *bool                `json:"validated?"`
 }
 
 // ProjectUserUpdate defines model for ProjectUserUpdate.
@@ -609,32 +683,32 @@ type ProjectUserUpdate struct {
 	UserId *int64 `json:"user_id,omitempty"`
 }
 
-// QuestionAnswerResponse defines model for QuestionAnswerResponse.
-type QuestionAnswerResponse struct {
+// QuestionAnswer defines model for QuestionAnswer.
+type QuestionAnswer struct {
 	Answer *string `json:"answer"`
 	Id     int     `json:"id"`
 	Value  *int    `json:"value"`
 }
 
-// QuestionWithAnswersResponse defines model for QuestionWithAnswersResponse.
-type QuestionWithAnswersResponse struct {
-	Answers    []QuestionAnswerResponse `json:"answers"`
-	Guidelines string                   `json:"guidelines"`
-	Id         int                      `json:"id"`
-	Kind       string                   `json:"kind"`
-	Name       string                   `json:"name"`
-	Position   int                      `json:"position"`
-	Rating     string                   `json:"rating"`
+// QuestionWithAnswers defines model for QuestionWithAnswers.
+type QuestionWithAnswers struct {
+	Answers    []QuestionAnswer `json:"answers"`
+	Guidelines string           `json:"guidelines"`
+	Id         int              `json:"id"`
+	Kind       string           `json:"kind"`
+	Name       string           `json:"name"`
+	Position   int              `json:"position"`
+	Rating     string           `json:"rating"`
 }
 
-// RoleResponse defines model for RoleResponse.
-type RoleResponse struct {
+// Role defines model for Role.
+type Role struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
 }
 
-// ScaleFlagResponse defines model for ScaleFlagResponse.
-type ScaleFlagResponse struct {
+// ScaleFlag defines model for ScaleFlag.
+type ScaleFlag struct {
 	CreatedAt IntraTime `json:"created_at"`
 	Icon      string    `json:"icon"`
 	Id        int       `json:"id"`
@@ -643,61 +717,61 @@ type ScaleFlagResponse struct {
 	UpdatedAt IntraTime `json:"updated_at"`
 }
 
-// ScaleTeamResponse defines model for ScaleTeamResponse.
-type ScaleTeamResponse struct {
-	BeginAt              IntraTime                     `json:"begin_at"`
-	Comment              string                        `json:"comment"`
-	Correcteds           []ScaleUserResponse           `json:"correcteds"`
-	Corrector            ScaleUserResponse             `json:"corrector"`
-	CreatedAt            IntraTime                     `json:"created_at"`
-	Feedback             string                        `json:"feedback"`
-	FilledAt             *IntraTime                    `json:"filled_at"`
-	FinalMark            *int                          `json:"final_mark"`
-	Flag                 ScaleFlagResponse             `json:"flag"`
-	Id                   int                           `json:"id"`
-	QuestionsWithAnswers []QuestionWithAnswersResponse `json:"questions_with_answers"`
-	ScaleId              int                           `json:"scale_id"`
-	TeamsUploads         *[]TeamUploadResponse         `json:"teams_uploads,omitempty"`
-	Truant               map[string]interface{}        `json:"truant"`
-	UpdatedAt            IntraTime                     `json:"updated_at"`
+// ScaleTeam defines model for ScaleTeam.
+type ScaleTeam struct {
+	BeginAt              IntraTime              `json:"begin_at"`
+	Comment              string                 `json:"comment"`
+	Correcteds           []ScaleUser            `json:"correcteds"`
+	Corrector            ScaleUser              `json:"corrector"`
+	CreatedAt            IntraTime              `json:"created_at"`
+	Feedback             string                 `json:"feedback"`
+	FilledAt             *IntraTime             `json:"filled_at"`
+	FinalMark            *int                   `json:"final_mark"`
+	Flag                 ScaleFlag              `json:"flag"`
+	Id                   int                    `json:"id"`
+	QuestionsWithAnswers []QuestionWithAnswers  `json:"questions_with_answers"`
+	ScaleId              int                    `json:"scale_id"`
+	TeamsUploads         *[]TeamUpload          `json:"teams_uploads,omitempty"`
+	Truant               map[string]interface{} `json:"truant"`
+	UpdatedAt            IntraTime              `json:"updated_at"`
 }
 
-// ScaleUserResponse defines model for ScaleUserResponse.
-type ScaleUserResponse struct {
+// ScaleUser defines model for ScaleUser.
+type ScaleUser struct {
 	Id    int    `json:"id"`
 	Login string `json:"login"`
 	Url   string `json:"url"`
 }
 
-// SkillResponse defines model for SkillResponse.
-type SkillResponse struct {
+// Skill defines model for Skill.
+type Skill struct {
 	Id    int     `json:"id"`
 	Level float64 `json:"level"`
 	Name  string  `json:"name"`
 }
 
-// TeamResponse defines model for TeamResponse.
-type TeamResponse struct {
-	Closed            bool                    `json:"closed?"`
-	ClosedAt          *IntraTime              `json:"closed_at"`
-	CreatedAt         IntraTime               `json:"created_at"`
-	FinalMark         *int                    `json:"final_mark,omitempty"`
-	Id                int                     `json:"id"`
-	Locked            bool                    `json:"locked?"`
-	LockedAt          *IntraTime              `json:"locked_at"`
-	Name              string                  `json:"name"`
-	ProjectGitlabPath *string                 `json:"project_gitlab_path"`
-	ProjectId         int                     `json:"project_id"`
-	ProjectSessionId  int                     `json:"project_session_id"`
-	RepoUrl           *string                 `json:"repo_url"`
-	RepoUuid          string                  `json:"repo_uuid"`
-	ScaleTeams        []ScaleTeamResponse     `json:"scale_teams"`
-	Status            string                  `json:"status"`
-	TerminatingAt     *IntraTime              `json:"terminating_at"`
-	UpdatedAt         IntraTime               `json:"updated_at"`
-	Url               string                  `json:"url"`
-	Users             []LightTeamUserResponse `json:"users"`
-	Validated         bool                    `json:"validated?"`
+// Team defines model for Team.
+type Team struct {
+	Closed            bool            `json:"closed?"`
+	ClosedAt          *IntraTime      `json:"closed_at"`
+	CreatedAt         IntraTime       `json:"created_at"`
+	FinalMark         *int            `json:"final_mark,omitempty"`
+	Id                int             `json:"id"`
+	Locked            bool            `json:"locked?"`
+	LockedAt          *IntraTime      `json:"locked_at"`
+	Name              string          `json:"name"`
+	ProjectGitlabPath *string         `json:"project_gitlab_path"`
+	ProjectId         int             `json:"project_id"`
+	ProjectSessionId  int             `json:"project_session_id"`
+	RepoUrl           *string         `json:"repo_url"`
+	RepoUuid          string          `json:"repo_uuid"`
+	ScaleTeams        []ScaleTeam     `json:"scale_teams"`
+	Status            string          `json:"status"`
+	TerminatingAt     *IntraTime      `json:"terminating_at"`
+	UpdatedAt         IntraTime       `json:"updated_at"`
+	Url               string          `json:"url"`
+	Users             []LightTeamUser `json:"users"`
+	Validated         bool            `json:"validated?"`
 }
 
 // TeamUpdate defines model for TeamUpdate.
@@ -745,8 +819,8 @@ type TeamUpdate struct {
 	UpdatedAt     *IntraTime `json:"updated_at,omitempty"`
 }
 
-// TeamUploadResponse defines model for TeamUploadResponse.
-type TeamUploadResponse struct {
+// TeamUpload defines model for TeamUpload.
+type TeamUpload struct {
 	Comment   string    `json:"comment"`
 	CreatedAt IntraTime `json:"created_at"`
 	FinalMark *int      `json:"final_mark"`
@@ -754,14 +828,14 @@ type TeamUploadResponse struct {
 	UploadId  int       `json:"upload_id"`
 }
 
-// TitleResponse defines model for TitleResponse.
-type TitleResponse struct {
+// Title defines model for Title.
+type Title struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
 }
 
-// TitleUserResponse defines model for TitleUserResponse.
-type TitleUserResponse struct {
+// TitleUser defines model for TitleUser.
+type TitleUser struct {
 	CreatedAt IntraTime `json:"created_at"`
 	Id        int       `json:"id"`
 	Selected  bool      `json:"selected"`
@@ -770,66 +844,9 @@ type TitleUserResponse struct {
 	UserId    int       `json:"user_id"`
 }
 
-// UserCandidatureResponse defines model for UserCandidatureResponse.
-type UserCandidatureResponse struct {
-	BirthCity          string                         `json:"birth_city"`
-	BirthCountry       *string                        `json:"birth_country,omitempty"`
-	BirthDate          *openapi_types.Date            `json:"birth_date,omitempty"`
-	ContactAffiliation string                         `json:"contact_affiliation"`
-	ContactFirstName   string                         `json:"contact_first_name"`
-	ContactLastName    string                         `json:"contact_last_name"`
-	ContactPhone1      string                         `json:"contact_phone1"`
-	ContactPhone2      *string                        `json:"contact_phone2,omitempty"`
-	Country            *string                        `json:"country,omitempty"`
-	CreatedAt          IntraTime                      `json:"created_at"`
-	Email              string                         `json:"email"`
-	Gender             *UserCandidatureResponseGender `json:"gender,omitempty"`
-	HiddenPhone        bool                           `json:"hidden_phone"`
-	Id                 int                            `json:"id"`
-	Language           string                         `json:"language"`
-	MaxLevelLogic      *float64                       `json:"max_level_logic,omitempty"`
-	MaxLevelMemory     *float64                       `json:"max_level_memory,omitempty"`
-	MeetingDate        *IntraTime                     `json:"meeting_date,omitempty"`
-	OtherInformation   *string                        `json:"other_information,omitempty"`
-	Phone              string                         `json:"phone"`
-	PhoneCountryCode   string                         `json:"phone_country_code"`
-	Pin                string                         `json:"pin"`
-	PiscineDate        *IntraTime                     `json:"piscine_date,omitempty"`
-	PostalCity         string                         `json:"postal_city"`
-	PostalComplement   *string                        `json:"postal_complement,omitempty"`
-	PostalCountry      string                         `json:"postal_country"`
-	PostalStreet       string                         `json:"postal_street"`
-	PostalZipCode      string                         `json:"postal_zip_code"`
-	UpdatedAt          IntraTime                      `json:"updated_at"`
-	UserId             int                            `json:"user_id"`
-	ZipCode            *string                        `json:"zip_code,omitempty"`
-}
-
-// UserCandidatureResponseGender defines model for UserCandidatureResponse.Gender.
-type UserCandidatureResponseGender string
-
-// UserImageResponse defines model for UserImageResponse.
-type UserImageResponse struct {
-	// Link The URL to the user's image.
-	Link     string `json:"link"`
-	Versions struct {
-		// Large URL to the large version of the user's image.
-		Large string `json:"large"`
-
-		// Medium URL to the medium version of the user's image.
-		Medium string `json:"medium"`
-
-		// Micro URL to the micro version of the user's image.
-		Micro string `json:"micro"`
-
-		// Small URL to the small version of the user's image.
-		Small string `json:"small"`
-	} `json:"versions"`
-}
-
-// UserResponse defines model for UserResponse.
-type UserResponse struct {
-	Achievements []AchievementResponse `json:"achievements"`
+// User defines model for User.
+type User struct {
+	Achievements []Achievement `json:"achievements"`
 
 	// Active Indicates if the user is active.
 	Active bool `json:"active?"`
@@ -841,16 +858,16 @@ type UserResponse struct {
 	AlumnizedAt IntraTime `json:"alumnized_at"`
 
 	// AnonymizeDate The date when user data will be anonymized.
-	AnonymizeDate *IntraTime           `json:"anonymize_date"`
-	Campus        []CampusResponse     `json:"campus"`
-	CampusUsers   []CampusUserResponse `json:"campus_users"`
+	AnonymizeDate *IntraTime   `json:"anonymize_date"`
+	Campus        []Campus     `json:"campus"`
+	CampusUsers   []CampusUser `json:"campus_users"`
 
 	// CorrectionPoint The user's correction points.
 	CorrectionPoint int `json:"correction_point"`
 
 	// CreatedAt The user creation timestamp.
-	CreatedAt   IntraTime            `json:"created_at"`
-	CursusUsers []CursusUserResponse `json:"cursus_users"`
+	CreatedAt   IntraTime    `json:"created_at"`
+	CursusUsers []CursusUser `json:"cursus_users"`
 
 	// DataErasureDate The date when user data will be erased.
 	DataErasureDate IntraTime `json:"data_erasure_date"`
@@ -862,16 +879,16 @@ type UserResponse struct {
 	Email openapi_types.Email `json:"email"`
 
 	// FirstName The first name of the user.
-	FirstName string          `json:"first_name"`
-	Groups    []GroupResponse `json:"groups"`
+	FirstName string  `json:"first_name"`
+	Groups    []Group `json:"groups"`
 
 	// Id The unique identifier of the user.
-	Id    int               `json:"id"`
-	Image UserImageResponse `json:"image"`
+	Id    int       `json:"id"`
+	Image UserImage `json:"image"`
 
 	// Kind The kind of user (e.g., student, admin, external).
-	Kind           UserResponseKind       `json:"kind"`
-	LanguagesUsers []LanguageUserResponse `json:"languages_users"`
+	Kind           UserKind       `json:"kind"`
+	LanguagesUsers []LanguageUser `json:"languages_users"`
 
 	// LastName The last name of the user.
 	LastName string `json:"last_name"`
@@ -880,9 +897,9 @@ type UserResponse struct {
 	Location *string `json:"location,omitempty"`
 
 	// Login The login name of the user.
-	Login     string              `json:"login"`
-	Patroned  []PatronageResponse `json:"patroned"`
-	Patroning []PatronageResponse `json:"patroning"`
+	Login     string      `json:"login"`
+	Patroned  []Patronage `json:"patroned"`
+	Patroning []Patronage `json:"patroning"`
 
 	// Phone The phone number of the user (always hidden).
 	Phone *string `json:"phone,omitempty"`
@@ -891,14 +908,14 @@ type UserResponse struct {
 	PoolMonth string `json:"pool_month"`
 
 	// PoolYear The year of the user's pool.
-	PoolYear      string                `json:"pool_year"`
-	ProjectsUsers []ProjectUserResponse `json:"projects_users"`
-	Roles         []RoleResponse        `json:"roles"`
+	PoolYear      string        `json:"pool_year"`
+	ProjectsUsers []ProjectUser `json:"projects_users"`
+	Roles         []Role        `json:"roles"`
 
 	// Staff Indicates if the user is staff.
-	Staff       bool                `json:"staff?"`
-	Titles      []TitleResponse     `json:"titles"`
-	TitlesUsers []TitleUserResponse `json:"titles_users"`
+	Staff       bool        `json:"staff?"`
+	Titles      []Title     `json:"titles"`
+	TitlesUsers []TitleUser `json:"titles_users"`
 
 	// UpdatedAt The last user update timestamp.
 	UpdatedAt IntraTime `json:"updated_at"`
@@ -916,8 +933,65 @@ type UserResponse struct {
 	Wallet int `json:"wallet"`
 }
 
-// UserResponseKind The kind of user (e.g., student, admin, external).
-type UserResponseKind string
+// UserKind The kind of user (e.g., student, admin, external).
+type UserKind string
+
+// UserCandidature defines model for UserCandidature.
+type UserCandidature struct {
+	BirthCity          string                 `json:"birth_city"`
+	BirthCountry       *string                `json:"birth_country,omitempty"`
+	BirthDate          *openapi_types.Date    `json:"birth_date,omitempty"`
+	ContactAffiliation string                 `json:"contact_affiliation"`
+	ContactFirstName   string                 `json:"contact_first_name"`
+	ContactLastName    string                 `json:"contact_last_name"`
+	ContactPhone1      string                 `json:"contact_phone1"`
+	ContactPhone2      *string                `json:"contact_phone2,omitempty"`
+	Country            *string                `json:"country,omitempty"`
+	CreatedAt          IntraTime              `json:"created_at"`
+	Email              string                 `json:"email"`
+	Gender             *UserCandidatureGender `json:"gender,omitempty"`
+	HiddenPhone        bool                   `json:"hidden_phone"`
+	Id                 int                    `json:"id"`
+	Language           string                 `json:"language"`
+	MaxLevelLogic      *float64               `json:"max_level_logic,omitempty"`
+	MaxLevelMemory     *float64               `json:"max_level_memory,omitempty"`
+	MeetingDate        *IntraTime             `json:"meeting_date,omitempty"`
+	OtherInformation   *string                `json:"other_information,omitempty"`
+	Phone              string                 `json:"phone"`
+	PhoneCountryCode   string                 `json:"phone_country_code"`
+	Pin                string                 `json:"pin"`
+	PiscineDate        *IntraTime             `json:"piscine_date,omitempty"`
+	PostalCity         string                 `json:"postal_city"`
+	PostalComplement   *string                `json:"postal_complement,omitempty"`
+	PostalCountry      string                 `json:"postal_country"`
+	PostalStreet       string                 `json:"postal_street"`
+	PostalZipCode      string                 `json:"postal_zip_code"`
+	UpdatedAt          IntraTime              `json:"updated_at"`
+	UserId             int                    `json:"user_id"`
+	ZipCode            *string                `json:"zip_code,omitempty"`
+}
+
+// UserCandidatureGender defines model for UserCandidature.Gender.
+type UserCandidatureGender string
+
+// UserImage defines model for UserImage.
+type UserImage struct {
+	// Link The URL to the user's image.
+	Link     string `json:"link"`
+	Versions struct {
+		// Large URL to the large version of the user's image.
+		Large string `json:"large"`
+
+		// Medium URL to the medium version of the user's image.
+		Medium string `json:"medium"`
+
+		// Micro URL to the micro version of the user's image.
+		Micro string `json:"micro"`
+
+		// Small URL to the small version of the user's image.
+		Small string `json:"small"`
+	} `json:"versions"`
+}
 
 // Page defines model for page.
 type Page = int
@@ -1120,22 +1194,22 @@ type PatchTeamByIdJSONRequestBody PatchTeamByIdJSONBody
 // PutTeamByIdJSONRequestBody defines body for PutTeamById for application/json ContentType.
 type PutTeamByIdJSONRequestBody PutTeamByIdJSONBody
 
-// AsInternshipResponseSalary0 returns the union data inside the InternshipResponse_Salary as a InternshipResponseSalary0
-func (t InternshipResponse_Salary) AsInternshipResponseSalary0() (InternshipResponseSalary0, error) {
-	var body InternshipResponseSalary0
+// AsInternshipSalary0 returns the union data inside the Internship_Salary as a InternshipSalary0
+func (t Internship_Salary) AsInternshipSalary0() (InternshipSalary0, error) {
+	var body InternshipSalary0
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromInternshipResponseSalary0 overwrites any union data inside the InternshipResponse_Salary as the provided InternshipResponseSalary0
-func (t *InternshipResponse_Salary) FromInternshipResponseSalary0(v InternshipResponseSalary0) error {
+// FromInternshipSalary0 overwrites any union data inside the Internship_Salary as the provided InternshipSalary0
+func (t *Internship_Salary) FromInternshipSalary0(v InternshipSalary0) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeInternshipResponseSalary0 performs a merge with any union data inside the InternshipResponse_Salary, using the provided InternshipResponseSalary0
-func (t *InternshipResponse_Salary) MergeInternshipResponseSalary0(v InternshipResponseSalary0) error {
+// MergeInternshipSalary0 performs a merge with any union data inside the Internship_Salary, using the provided InternshipSalary0
+func (t *Internship_Salary) MergeInternshipSalary0(v InternshipSalary0) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -1146,22 +1220,22 @@ func (t *InternshipResponse_Salary) MergeInternshipResponseSalary0(v InternshipR
 	return err
 }
 
-// AsInternshipResponseSalary1 returns the union data inside the InternshipResponse_Salary as a InternshipResponseSalary1
-func (t InternshipResponse_Salary) AsInternshipResponseSalary1() (InternshipResponseSalary1, error) {
-	var body InternshipResponseSalary1
+// AsInternshipSalary1 returns the union data inside the Internship_Salary as a InternshipSalary1
+func (t Internship_Salary) AsInternshipSalary1() (InternshipSalary1, error) {
+	var body InternshipSalary1
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromInternshipResponseSalary1 overwrites any union data inside the InternshipResponse_Salary as the provided InternshipResponseSalary1
-func (t *InternshipResponse_Salary) FromInternshipResponseSalary1(v InternshipResponseSalary1) error {
+// FromInternshipSalary1 overwrites any union data inside the Internship_Salary as the provided InternshipSalary1
+func (t *Internship_Salary) FromInternshipSalary1(v InternshipSalary1) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeInternshipResponseSalary1 performs a merge with any union data inside the InternshipResponse_Salary, using the provided InternshipResponseSalary1
-func (t *InternshipResponse_Salary) MergeInternshipResponseSalary1(v InternshipResponseSalary1) error {
+// MergeInternshipSalary1 performs a merge with any union data inside the Internship_Salary, using the provided InternshipSalary1
+func (t *Internship_Salary) MergeInternshipSalary1(v InternshipSalary1) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -1172,12 +1246,12 @@ func (t *InternshipResponse_Salary) MergeInternshipResponseSalary1(v InternshipR
 	return err
 }
 
-func (t InternshipResponse_Salary) MarshalJSON() ([]byte, error) {
+func (t Internship_Salary) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
 }
 
-func (t *InternshipResponse_Salary) UnmarshalJSON(b []byte) error {
+func (t *Internship_Salary) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -2977,7 +3051,7 @@ type GetClosesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *[]CloseResponse
+	JSON200 *[]Close
 	// JSON400 the response for an HTTP 400 `application/json` response
 	JSON400 *ErrorResponse
 	// JSONDefault the response for an HTTP default `application/json` response
@@ -2985,7 +3059,7 @@ type GetClosesResponse struct {
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetClosesResponse) GetJSON200() *[]CloseResponse {
+func (r GetClosesResponse) GetJSON200() *[]Close {
 	return r.JSON200
 }
 
@@ -3032,13 +3106,13 @@ type GetCloseByIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *CloseResponse
+	JSON200 *Close
 	// JSONDefault the response for an HTTP default `application/json` response
 	JSONDefault *ErrorResponse
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetCloseByIdResponse) GetJSON200() *CloseResponse {
+func (r GetCloseByIdResponse) GetJSON200() *Close {
 	return r.JSON200
 }
 
@@ -3088,7 +3162,7 @@ type GetInternshipsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *[]InternshipResponse
+	JSON200 *[]Internship
 	// JSONDefault the response for an HTTP default `application/json` response
 	JSONDefault *ErrorResponse
 	// Headers200 the parsed response headers for an HTTP 200 response
@@ -3096,7 +3170,7 @@ type GetInternshipsResponse struct {
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetInternshipsResponse) GetJSON200() *[]InternshipResponse {
+func (r GetInternshipsResponse) GetJSON200() *[]Internship {
 	return r.JSON200
 }
 
@@ -3138,13 +3212,13 @@ type GetLanguageByIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *LanguageResponse
+	JSON200 *Language
 	// JSONDefault the response for an HTTP default `application/json` response
 	JSONDefault *ErrorResponse
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetLanguageByIdResponse) GetJSON200() *LanguageResponse {
+func (r GetLanguageByIdResponse) GetJSON200() *Language {
 	return r.JSON200
 }
 
@@ -3186,7 +3260,7 @@ type PostProjectsUsersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON201 the response for an HTTP 201 `application/json` response
-	JSON201 *ProjectUserResponse
+	JSON201 *ProjectUser
 	// JSON400 the response for an HTTP 400 `application/json` response
 	JSON400 *ErrorResponse
 	// JSONDefault the response for an HTTP default `application/json` response
@@ -3194,7 +3268,7 @@ type PostProjectsUsersResponse struct {
 }
 
 // GetJSON201 returns the response for an HTTP 201 `application/json` response
-func (r PostProjectsUsersResponse) GetJSON201() *ProjectUserResponse {
+func (r PostProjectsUsersResponse) GetJSON201() *ProjectUser {
 	return r.JSON201
 }
 
@@ -3330,13 +3404,13 @@ type GetTeamByIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *TeamResponse
+	JSON200 *Team
 	// JSONDefault the response for an HTTP default `application/json` response
 	JSONDefault *ErrorResponse
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetTeamByIdResponse) GetJSON200() *TeamResponse {
+func (r GetTeamByIdResponse) GetJSON200() *Team {
 	return r.JSON200
 }
 
@@ -3509,7 +3583,7 @@ type GetUsersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *[]LightUserResponse
+	JSON200 *[]LightUser
 	// JSONDefault the response for an HTTP default `application/json` response
 	JSONDefault *ErrorResponse
 	// Headers200 the parsed response headers for an HTTP 200 response
@@ -3517,7 +3591,7 @@ type GetUsersResponse struct {
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetUsersResponse) GetJSON200() *[]LightUserResponse {
+func (r GetUsersResponse) GetJSON200() *[]LightUser {
 	return r.JSON200
 }
 
@@ -3559,13 +3633,13 @@ type GetUserByIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *UserResponse
+	JSON200 *User
 	// JSONDefault the response for an HTTP default `application/json` response
 	JSONDefault *ErrorResponse
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetUserByIdResponse) GetJSON200() *UserResponse {
+func (r GetUserByIdResponse) GetJSON200() *User {
 	return r.JSON200
 }
 
@@ -3607,13 +3681,13 @@ type GetUserCandidatureByIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *UserCandidatureResponse
+	JSON200 *UserCandidature
 	// JSONDefault the response for an HTTP default `application/json` response
 	JSONDefault *ErrorResponse
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetUserCandidatureByIdResponse) GetJSON200() *UserCandidatureResponse {
+func (r GetUserCandidatureByIdResponse) GetJSON200() *UserCandidature {
 	return r.JSON200
 }
 
@@ -3655,13 +3729,13 @@ type GetClosesByUserIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *[]CloseResponse
+	JSON200 *[]Close
 	// JSONDefault the response for an HTTP default `application/json` response
 	JSONDefault *ErrorResponse
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetClosesByUserIdResponse) GetJSON200() *[]CloseResponse {
+func (r GetClosesByUserIdResponse) GetJSON200() *[]Close {
 	return r.JSON200
 }
 
@@ -3711,7 +3785,7 @@ type GetProjectsUsersByUserIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *[]ProjectUserResponse
+	JSON200 *[]ProjectUser
 	// JSONDefault the response for an HTTP default `application/json` response
 	JSONDefault *ErrorResponse
 	// Headers200 the parsed response headers for an HTTP 200 response
@@ -3719,7 +3793,7 @@ type GetProjectsUsersByUserIdResponse struct {
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r GetProjectsUsersByUserIdResponse) GetJSON200() *[]ProjectUserResponse {
+func (r GetProjectsUsersByUserIdResponse) GetJSON200() *[]ProjectUser {
 	return r.JSON200
 }
 
@@ -4045,7 +4119,7 @@ func ParseGetClosesResponse(rsp *http.Response) (*GetClosesResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []CloseResponse
+		var dest []Close
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4085,7 +4159,7 @@ func ParseGetCloseByIdResponse(rsp *http.Response) (*GetCloseByIdResponse, error
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CloseResponse
+		var dest Close
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4118,7 +4192,7 @@ func ParseGetInternshipsResponse(rsp *http.Response) (*GetInternshipsResponse, e
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []InternshipResponse
+		var dest []Internship
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4185,7 +4259,7 @@ func ParseGetLanguageByIdResponse(rsp *http.Response) (*GetLanguageByIdResponse,
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest LanguageResponse
+		var dest Language
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4218,7 +4292,7 @@ func ParsePostProjectsUsersResponse(rsp *http.Response) (*PostProjectsUsersRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest ProjectUserResponse
+		var dest ProjectUser
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4323,7 +4397,7 @@ func ParseGetTeamByIdResponse(rsp *http.Response) (*GetTeamByIdResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TeamResponse
+		var dest Team
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4443,7 +4517,7 @@ func ParseGetUsersResponse(rsp *http.Response) (*GetUsersResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []LightUserResponse
+		var dest []LightUser
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4510,7 +4584,7 @@ func ParseGetUserByIdResponse(rsp *http.Response) (*GetUserByIdResponse, error) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserResponse
+		var dest User
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4543,7 +4617,7 @@ func ParseGetUserCandidatureByIdResponse(rsp *http.Response) (*GetUserCandidatur
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserCandidatureResponse
+		var dest UserCandidature
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4576,7 +4650,7 @@ func ParseGetClosesByUserIdResponse(rsp *http.Response) (*GetClosesByUserIdRespo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []CloseResponse
+		var dest []Close
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -4609,7 +4683,7 @@ func ParseGetProjectsUsersByUserIdResponse(rsp *http.Response) (*GetProjectsUser
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ProjectUserResponse
+		var dest []ProjectUser
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}

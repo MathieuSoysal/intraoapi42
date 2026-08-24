@@ -1,4 +1,4 @@
-PatronageResponse:
+Patronage:
   type: object
   properties:
     id:

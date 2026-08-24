@@ -1,4 +1,4 @@
-CampusUserResponse:
+CampusUser:
   type: object
   properties:
     id:

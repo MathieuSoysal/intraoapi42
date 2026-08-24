@@ -63,7 +63,7 @@
             schema:
               type: array
               items:
-                $ref: "#/components/schemas/CloseResponse"
+                $ref: "#/components/schemas/Close"
       "400":
         $ref: '#/components/responses/ErrorResponse'
       default:
@@ -139,7 +139,7 @@
             schema:
               type: array
               items:
-                $ref: "#/components/schemas/CloseResponse"
+                $ref: "#/components/schemas/Close"
       default:
         $ref: "#/components/responses/ErrorResponse"
 /closes/{id}:
@@ -164,6 +164,6 @@
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CloseResponse"
+              $ref: "#/components/schemas/Close"
       default:
         $ref: "#/components/responses/ErrorResponse"

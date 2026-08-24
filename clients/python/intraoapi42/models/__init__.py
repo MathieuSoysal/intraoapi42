@@ -1,13 +1,11 @@
 """Contains all the data models used in inputs/outputs"""
 
-from .achievement_response import AchievementResponse
-from .campus_response import CampusResponse
-from .campus_user_response import CampusUserResponse
-from .close_response import CloseResponse
-from .close_response_kind import CloseResponseKind
-from .community_service_response import CommunityServiceResponse
-from .cursus_response import CursusResponse
-from .cursus_user_response import CursusUserResponse
+from .achievement import Achievement
+from .campus import Campus
+from .campus_user import CampusUser
+from .community_service import CommunityService
+from .cursus import Cursus
+from .cursus_user import CursusUser
 from .error import Error
 from .get_closes_by_user_id_filter import GetClosesByUserIdFilter
 from .get_closes_by_user_id_range import GetClosesByUserIdRange
@@ -21,55 +19,60 @@ from .get_projects_users_by_user_id_filter import GetProjectsUsersByUserIdFilter
 from .get_projects_users_by_user_id_range import GetProjectsUsersByUserIdRange
 from .get_users_filter import GetUsersFilter
 from .get_users_range import GetUsersRange
-from .group_response import GroupResponse
-from .internship_response import InternshipResponse
-from .internship_response_convention import InternshipResponseConvention
-from .internship_response_convention_convention import InternshipResponseConventionConvention
-from .language_response import LanguageResponse
-from .language_user_response import LanguageUserResponse
-from .light_project_response import LightProjectResponse
-from .light_team_response import LightTeamResponse
-from .light_team_user_response import LightTeamUserResponse
-from .light_user_response import LightUserResponse
-from .light_user_response_kind import LightUserResponseKind
+from .group import Group
+from .internship import Internship
+from .internship_convention import InternshipConvention
+from .internship_convention_convention import InternshipConventionConvention
+from .language import Language
+from .language_user import LanguageUser
+from .light_accreditation import LightAccreditation
+from .light_achievements_user import LightAchievementsUser
+from .light_app import LightApp
+from .light_campus import LightCampus
+from .light_close import LightClose
+from .light_coalition import LightCoalition
+from .light_community_service import LightCommunityService
+from .light_project import LightProject
+from .light_team import LightTeam
+from .light_team_user import LightTeamUser
+from .light_user import LightUser
+from .light_user_kind import LightUserKind
 from .patch_project_user_by_id_body import PatchProjectUserByIdBody
 from .patch_team_by_id_body import PatchTeamByIdBody
-from .patronage_response import PatronageResponse
+from .patronage import Patronage
 from .post_projects_users_body import PostProjectsUsersBody
+from .project_user import ProjectUser
 from .project_user_create import ProjectUserCreate
-from .project_user_response import ProjectUserResponse
 from .project_user_update import ProjectUserUpdate
 from .put_project_user_by_id_body import PutProjectUserByIdBody
 from .put_team_by_id_body import PutTeamByIdBody
-from .question_answer_response import QuestionAnswerResponse
-from .question_with_answers_response import QuestionWithAnswersResponse
-from .role_response import RoleResponse
-from .scale_flag_response import ScaleFlagResponse
-from .scale_team_response import ScaleTeamResponse
-from .scale_team_response_truant import ScaleTeamResponseTruant
-from .scale_user_response import ScaleUserResponse
-from .skill_response import SkillResponse
-from .team_response import TeamResponse
+from .question_answer import QuestionAnswer
+from .question_with_answers import QuestionWithAnswers
+from .role import Role
+from .scale_flag import ScaleFlag
+from .scale_team import ScaleTeam
+from .scale_team_truant import ScaleTeamTruant
+from .scale_user import ScaleUser
+from .skill import Skill
+from .team import Team
 from .team_update import TeamUpdate
 from .team_update_teams_users_attributes_type_0_item import TeamUpdateTeamsUsersAttributesType0Item
-from .team_upload_response import TeamUploadResponse
-from .title_response import TitleResponse
-from .title_user_response import TitleUserResponse
-from .user_candidature_response import UserCandidatureResponse
-from .user_candidature_response_gender import UserCandidatureResponseGender
-from .user_image_response import UserImageResponse
-from .user_image_response_versions import UserImageResponseVersions
-from .user_response import UserResponse
+from .team_upload import TeamUpload
+from .title import Title
+from .title_user import TitleUser
+from .user import User
+from .user_candidature import UserCandidature
+from .user_candidature_gender import UserCandidatureGender
+from .user_image import UserImage
+from .user_image_versions import UserImageVersions
 
 __all__ = (
-    "AchievementResponse",
-    "CampusResponse",
-    "CampusUserResponse",
-    "CloseResponse",
-    "CloseResponseKind",
-    "CommunityServiceResponse",
-    "CursusResponse",
-    "CursusUserResponse",
+    "Achievement",
+    "Campus",
+    "CampusUser",
+    "CommunityService",
+    "Cursus",
+    "CursusUser",
     "Error",
     "GetClosesByUserIdFilter",
     "GetClosesByUserIdRange",
@@ -83,43 +86,50 @@ __all__ = (
     "GetProjectsUsersByUserIdRange",
     "GetUsersFilter",
     "GetUsersRange",
-    "GroupResponse",
-    "InternshipResponse",
-    "InternshipResponseConvention",
-    "InternshipResponseConventionConvention",
-    "LanguageResponse",
-    "LanguageUserResponse",
-    "LightProjectResponse",
-    "LightTeamResponse",
-    "LightTeamUserResponse",
-    "LightUserResponse",
-    "LightUserResponseKind",
+    "Group",
+    "Internship",
+    "InternshipConvention",
+    "InternshipConventionConvention",
+    "Language",
+    "LanguageUser",
+    "LightAccreditation",
+    "LightAchievementsUser",
+    "LightApp",
+    "LightCampus",
+    "LightClose",
+    "LightCoalition",
+    "LightCommunityService",
+    "LightProject",
+    "LightTeam",
+    "LightTeamUser",
+    "LightUser",
+    "LightUserKind",
     "PatchProjectUserByIdBody",
     "PatchTeamByIdBody",
-    "PatronageResponse",
+    "Patronage",
     "PostProjectsUsersBody",
+    "ProjectUser",
     "ProjectUserCreate",
-    "ProjectUserResponse",
     "ProjectUserUpdate",
     "PutProjectUserByIdBody",
     "PutTeamByIdBody",
-    "QuestionAnswerResponse",
-    "QuestionWithAnswersResponse",
-    "RoleResponse",
-    "ScaleFlagResponse",
-    "ScaleTeamResponse",
-    "ScaleTeamResponseTruant",
-    "ScaleUserResponse",
-    "SkillResponse",
-    "TeamResponse",
+    "QuestionAnswer",
+    "QuestionWithAnswers",
+    "Role",
+    "ScaleFlag",
+    "ScaleTeam",
+    "ScaleTeamTruant",
+    "ScaleUser",
+    "Skill",
+    "Team",
     "TeamUpdate",
     "TeamUpdateTeamsUsersAttributesType0Item",
-    "TeamUploadResponse",
-    "TitleResponse",
-    "TitleUserResponse",
-    "UserCandidatureResponse",
-    "UserCandidatureResponseGender",
-    "UserImageResponse",
-    "UserImageResponseVersions",
-    "UserResponse",
+    "TeamUpload",
+    "Title",
+    "TitleUser",
+    "User",
+    "UserCandidature",
+    "UserCandidatureGender",
+    "UserImage",
+    "UserImageVersions",
 )

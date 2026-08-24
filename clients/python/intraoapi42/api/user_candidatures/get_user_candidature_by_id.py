@@ -6,7 +6,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.user_candidature_response import UserCandidatureResponse
+from ...models.user_candidature import UserCandidature
 from ...types import Response
 
 
@@ -24,11 +24,9 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(
-    *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Error | UserCandidatureResponse:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | UserCandidature:
     if response.status_code == 200:
-        response_200 = UserCandidatureResponse.from_dict(response.json())
+        response_200 = UserCandidature.from_dict(response.json())
 
         return response_200
 
@@ -39,7 +37,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Error | UserCandidatureResponse]:
+) -> Response[Error | UserCandidature]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -52,7 +50,7 @@ def sync_detailed(
     id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[Error | UserCandidatureResponse]:
+) -> Response[Error | UserCandidature]:
     """Get user candidature information
 
     Args:
@@ -63,7 +61,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Error | UserCandidatureResponse]
+        Response[Error | UserCandidature]
     """
 
     kwargs = _get_kwargs(
@@ -81,7 +79,7 @@ def sync(
     id: str,
     *,
     client: AuthenticatedClient,
-) -> Error | UserCandidatureResponse | None:
+) -> Error | UserCandidature | None:
     """Get user candidature information
 
     Args:
@@ -92,7 +90,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Error | UserCandidatureResponse
+        Error | UserCandidature
     """
 
     return sync_detailed(
@@ -105,7 +103,7 @@ async def asyncio_detailed(
     id: str,
     *,
     client: AuthenticatedClient,
-) -> Response[Error | UserCandidatureResponse]:
+) -> Response[Error | UserCandidature]:
     """Get user candidature information
 
     Args:
@@ -116,7 +114,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Error | UserCandidatureResponse]
+        Response[Error | UserCandidature]
     """
 
     kwargs = _get_kwargs(
@@ -132,7 +130,7 @@ async def asyncio(
     id: str,
     *,
     client: AuthenticatedClient,
-) -> Error | UserCandidatureResponse | None:
+) -> Error | UserCandidature | None:
     """Get user candidature information
 
     Args:
@@ -143,7 +141,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Error | UserCandidatureResponse
+        Error | UserCandidature
     """
 
     return (

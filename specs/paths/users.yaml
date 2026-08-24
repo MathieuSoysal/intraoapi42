@@ -64,7 +64,7 @@
             schema:
               type: array
               items:
-                $ref: "#/components/schemas/LightUserResponse"
+                $ref: "#/components/schemas/LightUser"
       default:
         $ref: "#/components/responses/ErrorResponse"
 /users/{id}:
@@ -89,6 +89,6 @@
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserResponse"
+              $ref: "#/components/schemas/User"
       default:
         $ref: "#/components/responses/ErrorResponse"

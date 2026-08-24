@@ -20,6 +20,6 @@
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/LanguageResponse"
+              $ref: "#/components/schemas/Language"
       default:
         $ref: "#/components/responses/ErrorResponse"

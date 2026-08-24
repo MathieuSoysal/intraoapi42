@@ -1,0 +1,21 @@
+LightAchievementsUser:
+  type: object
+  properties:
+    id:
+      type: integer
+    user_id:
+      type: integer
+    login:
+      type: string
+    url:
+      type: string
+      format: uri
+    created_at:
+      type: string
+      format: date-time
+  required:
+    - id
+    - user_id
+    - login
+    - url
+    - created_at

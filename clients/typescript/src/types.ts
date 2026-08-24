@@ -232,7 +232,23 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        AchievementResponse: {
+        LightAccreditation: {
+            id: number;
+            name: string;
+            user_id: number;
+            cursus_id: number;
+            validated: boolean;
+        };
+        LightAchievementsUser: {
+            id: number;
+            user_id: number;
+            login: string;
+            /** Format: uri */
+            url: string;
+            /** Format: date-time */
+            created_at: string;
+        };
+        Achievement: {
             id: number;
             name: string;
             description: string;
@@ -244,11 +260,25 @@ export interface components {
             /** Format: uri */
             users_url: string;
         };
-        CampusResponse: {
+        LightApp: {
+            id: number;
+            name: string;
+            description?: string | null;
+            image?: string | null;
+            website?: string | null;
+            public: boolean;
+            scopes: string[];
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+            rate_limit: number;
+        };
+        Campus: {
             id: number;
             name: string;
             time_zone: string;
-            language?: components["schemas"]["LanguageResponse"];
+            language?: components["schemas"]["Language"];
             users_count: number;
             vogsphere_id: number;
             country: string;
@@ -266,7 +296,28 @@ export interface components {
             email_extension: string;
             default_hidden_phone?: boolean;
         };
-        CampusUserResponse: {
+        LightCampus: {
+            id: number;
+            name: string;
+            time_zone: string;
+            users_count: number;
+            vogsphere_id: number;
+            country: string;
+            address: string;
+            zip: string;
+            city: string;
+            /** Format: uri */
+            website: string;
+            /** Format: uri */
+            facebook: string;
+            /** Format: uri */
+            twitter: string;
+            active: boolean;
+            public: boolean;
+            email_extension: string;
+            default_hidden_phone: boolean;
+        };
+        CampusUser: {
             id: number;
             user_id: number;
             campus_id: number;
@@ -276,7 +327,16 @@ export interface components {
             /** Format: date-time */
             updated_at: string;
         };
-        CloseResponse: {
+        Close: components["schemas"]["LightUser"] & {
+            /** Format: date-time */
+            end_at?: string | null;
+            community_services: components["schemas"]["CommunityService"][];
+            /** @enum {string} */
+            kind: "agu" | "other" | "deserter" | "pace_unknown" | "black_hole" | "serious_misconduct" | "social_security" | "non_admitted";
+            user: components["schemas"]["LightUser"];
+            closer: components["schemas"]["LightUser"];
+        };
+        LightClose: {
             id: number;
             reason: string;
             state: string;
@@ -284,15 +344,18 @@ export interface components {
             created_at: string;
             /** Format: date-time */
             updated_at: string;
-            /** Format: date-time */
-            end_at?: string | null;
-            community_services: components["schemas"]["CommunityServiceResponse"][];
-            /** @enum {string} */
-            kind: "agu" | "other" | "deserter" | "pace_unknown" | "black_hole" | "serious_misconduct" | "social_security" | "non_admitted";
-            user: components["schemas"]["LightUserResponse"];
-            closer: components["schemas"]["LightUserResponse"];
         };
-        CommunityServiceResponse: {
+        LightCoalition: {
+            id: number;
+            name: string;
+            slug: string;
+            /** Format: uri */
+            image_url: string;
+            color: string;
+            score: number;
+            user_id: number;
+        };
+        CommunityService: {
             id: number;
             duration: number;
             /** Format: date-time */
@@ -302,8 +365,21 @@ export interface components {
             /** Format: date-time */
             created_at: string;
             updated_at: string;
+            close?: components["schemas"]["LightClose"];
         };
-        CursusResponse: {
+        LightCommunityService: {
+            id: number;
+            duration: number;
+            /** Format: date-time */
+            schedule_at: string;
+            occupation: string;
+            state: string;
+            /** Format: date-time */
+            created_at: string;
+            /** Format: date-time */
+            updated_at: string;
+        };
+        Cursus: {
             id: number;
             /** Format: date-time */
             created_at: string;
@@ -311,7 +387,7 @@ export interface components {
             slug: string;
             kind: string;
         };
-        CursusUserResponse: {
+        CursusUser: {
             id: number;
             /** Format: date-time */
             begin_at: string;
@@ -320,9 +396,9 @@ export interface components {
             grade: string;
             /** Format: double */
             level: number;
-            skills: components["schemas"]["SkillResponse"][];
+            skills: components["schemas"]["Skill"][];
             cursus_id: number;
-            cursus: components["schemas"]["CursusResponse"];
+            cursus: components["schemas"]["Cursus"];
             has_coalition: boolean;
             /** Format: date-time */
             blackholed_at?: string | null;
@@ -343,11 +419,11 @@ export interface components {
             /** @description Error message */
             error: string;
         };
-        GroupResponse: {
+        Group: {
             id: number;
             name: string;
         };
-        InternshipResponse: {
+        Internship: {
             id: number;
             administration_id: number;
             offer_id: number | null;
@@ -398,9 +474,9 @@ export interface components {
             /** Format: url */
             convention_uri: string | null;
             projects_user?: number | null;
-            user: components["schemas"]["LightUserResponse"];
+            user: components["schemas"]["LightUser"];
         };
-        LanguageResponse: {
+        Language: {
             id: number;
             name: string;
             identifier: string;
@@ -409,7 +485,7 @@ export interface components {
             /** Format: date-time */
             updated_at: string;
         };
-        LanguageUserResponse: {
+        LanguageUser: {
             id: number;
             language_id: number;
             user_id: number;
@@ -417,7 +493,7 @@ export interface components {
             /** Format: date-time */
             created_at: string;
         };
-        PatronageResponse: {
+        Patronage: {
             id: number;
             user_id?: number;
             godson_id?: number;
@@ -428,23 +504,23 @@ export interface components {
             /** Format: date-time */
             updated_at: string;
         };
-        LightProjectResponse: {
+        LightProject: {
             id: number;
             name: string;
             slug: string;
             parent_id: number | null;
         };
-        ProjectUserResponse: {
+        ProjectUser: {
             id: number;
             occurrence: number;
             final_mark?: number | null;
             status: string;
             "validated?": boolean | null;
             current_team_id: number;
-            project: components["schemas"]["LightProjectResponse"];
+            project: components["schemas"]["LightProject"];
             cursus_ids: number[];
-            user: components["schemas"]["LightUserResponse"];
-            teams: components["schemas"]["LightTeamResponse"][];
+            user: components["schemas"]["LightUser"];
+            teams: components["schemas"]["LightTeam"][];
             /** Format: date-time */
             marked_at?: string | null;
             marked?: boolean | null;
@@ -553,11 +629,11 @@ export interface components {
             /** @description The skip check permission. */
             skip_check_permission?: string | null;
         };
-        RoleResponse: {
+        Role: {
             id: number;
             name: string;
         };
-        ScaleTeamResponse: {
+        ScaleTeam: {
             id: number;
             scale_id: number;
             comment: string;
@@ -567,20 +643,20 @@ export interface components {
             updated_at: string;
             feedback: string;
             final_mark: number | null;
-            flag: components["schemas"]["ScaleFlagResponse"];
+            flag: components["schemas"]["ScaleFlag"];
             /** Format: date-time */
             begin_at: string;
-            correcteds: components["schemas"]["ScaleUserResponse"][];
-            corrector: components["schemas"]["ScaleUserResponse"];
+            correcteds: components["schemas"]["ScaleUser"][];
+            corrector: components["schemas"]["ScaleUser"];
             truant: {
                 [key: string]: unknown;
             };
             /** Format: date-time */
             filled_at: string | null;
-            questions_with_answers: components["schemas"]["QuestionWithAnswersResponse"][];
-            teams_uploads?: components["schemas"]["TeamUploadResponse"][];
+            questions_with_answers: components["schemas"]["QuestionWithAnswers"][];
+            teams_uploads?: components["schemas"]["TeamUpload"][];
         };
-        ScaleFlagResponse: {
+        ScaleFlag: {
             id: number;
             name: string;
             positive: boolean;
@@ -590,27 +666,27 @@ export interface components {
             /** Format: date-time */
             updated_at: string;
         };
-        ScaleUserResponse: {
+        ScaleUser: {
             id: number;
             login: string;
             /** Format: uri */
             url: string;
         };
-        QuestionWithAnswersResponse: {
+        QuestionWithAnswers: {
             id: number;
             name: string;
             guidelines: string;
             rating: string;
             kind: string;
             position: number;
-            answers: components["schemas"]["QuestionAnswerResponse"][];
+            answers: components["schemas"]["QuestionAnswer"][];
         };
-        QuestionAnswerResponse: {
+        QuestionAnswer: {
             id: number;
             value: number | null;
             answer: string | null;
         };
-        TeamUploadResponse: {
+        TeamUpload: {
             id: number;
             final_mark: number | null;
             comment: string;
@@ -618,13 +694,13 @@ export interface components {
             created_at: string;
             upload_id: number;
         };
-        SkillResponse: {
+        Skill: {
             id: number;
             name: string;
             /** Format: double */
             level: number;
         };
-        LightTeamResponse: {
+        LightTeam: {
             id: number;
             name: string;
             /** Format: uri */
@@ -638,7 +714,7 @@ export interface components {
             status: string;
             /** Format: date-time */
             terminating_at: string | null;
-            users: components["schemas"]["LightTeamUserResponse"][];
+            users: components["schemas"]["LightTeamUser"][];
             "locked?": boolean;
             "validated?": boolean;
             "closed?": boolean;
@@ -651,109 +727,8 @@ export interface components {
             project_session_id: number;
             project_gitlab_path: string | null;
         };
-        /**
-         * @example {
-         *       "id": 1000001,
-         *       "name": "example-team",
-         *       "url": "https://api.example.com/v2/teams/1000001",
-         *       "final_mark": 80,
-         *       "project_id": 2000001,
-         *       "created_at": "2024-01-10T10:00:00.000Z",
-         *       "updated_at": "2024-01-10T12:00:00.000Z",
-         *       "status": "finished",
-         *       "terminating_at": "2024-01-11T12:00:00.000Z",
-         *       "users": [
-         *         {
-         *           "id": 1000002,
-         *           "login": "example-user",
-         *           "url": "https://api.example.com/v2/users/example-user",
-         *           "leader": true,
-         *           "occurrence": 0,
-         *           "validated": true,
-         *           "projects_user_id": 3000001
-         *         }
-         *       ],
-         *       "locked?": true,
-         *       "validated?": true,
-         *       "closed?": true,
-         *       "repo_url": "git@example.com:example/project.git",
-         *       "repo_uuid": "example-repository-uuid",
-         *       "locked_at": "2024-01-10T10:00:00.000Z",
-         *       "closed_at": "2024-01-11T12:00:00.000Z",
-         *       "project_session_id": 4000001,
-         *       "project_gitlab_path": "example/project",
-         *       "scale_teams": [
-         *         {
-         *           "id": 5000001,
-         *           "scale_id": 6000001,
-         *           "comment": "Example evaluation comment.",
-         *           "created_at": "2024-01-10T10:05:00.000Z",
-         *           "updated_at": "2024-01-10T11:00:00.000Z",
-         *           "feedback": "Example feedback.",
-         *           "final_mark": 75,
-         *           "flag": {
-         *             "id": 1,
-         *             "name": "Approved",
-         *             "positive": true,
-         *             "icon": "check",
-         *             "created_at": "2024-01-01T00:00:00.000Z",
-         *             "updated_at": "2024-01-01T00:00:00.000Z"
-         *           },
-         *           "begin_at": "2024-01-10T10:30:00.000Z",
-         *           "correcteds": [
-         *             {
-         *               "id": 1000002,
-         *               "login": "example-user",
-         *               "url": "https://api.example.com/v2/users/example-user"
-         *             }
-         *           ],
-         *           "corrector": {
-         *             "id": 1000003,
-         *             "login": "evaluator",
-         *             "url": "https://api.example.com/v2/users/evaluator"
-         *           },
-         *           "truant": {},
-         *           "filled_at": "2024-01-10T11:00:00.000Z",
-         *           "questions_with_answers": []
-         *         },
-         *         {
-         *           "id": 5000002,
-         *           "scale_id": 6000001,
-         *           "comment": "Another example evaluation comment.",
-         *           "created_at": "2024-01-10T10:05:00.000Z",
-         *           "updated_at": "2024-01-10T11:05:00.000Z",
-         *           "feedback": "Another example feedback.",
-         *           "final_mark": 85,
-         *           "flag": {
-         *             "id": 1,
-         *             "name": "Approved",
-         *             "positive": true,
-         *             "icon": "check",
-         *             "created_at": "2024-01-01T00:00:00.000Z",
-         *             "updated_at": "2024-01-01T00:00:00.000Z"
-         *           },
-         *           "begin_at": "2024-01-10T11:00:00.000Z",
-         *           "correcteds": [
-         *             {
-         *               "id": 1000002,
-         *               "login": "example-user",
-         *               "url": "https://api.example.com/v2/users/example-user"
-         *             }
-         *           ],
-         *           "corrector": {
-         *             "id": 1000004,
-         *             "login": "second-evaluator",
-         *             "url": "https://api.example.com/v2/users/second-evaluator"
-         *           },
-         *           "truant": {},
-         *           "filled_at": "2024-01-10T11:05:00.000Z",
-         *           "questions_with_answers": []
-         *         }
-         *       ]
-         *     }
-         */
-        TeamResponse: components["schemas"]["LightTeamResponse"] & {
-            scale_teams: components["schemas"]["ScaleTeamResponse"][];
+        Team: components["schemas"]["LightTeam"] & {
+            scale_teams: components["schemas"]["ScaleTeam"][];
         };
         TeamUpdate: {
             /**
@@ -817,7 +792,7 @@ export interface components {
                 occurrence: number | null;
             }[] | null;
         };
-        LightTeamUserResponse: {
+        LightTeamUser: {
             id: number;
             login: string;
             /** Format: uri */
@@ -827,11 +802,11 @@ export interface components {
             validated: boolean;
             projects_user_id: number;
         };
-        TitleResponse: {
+        Title: {
             id: number;
             name: string;
         };
-        TitleUserResponse: {
+        TitleUser: {
             id: number;
             user_id: number;
             title_id: number;
@@ -841,42 +816,7 @@ export interface components {
             /** Format: date-time */
             updated_at: string;
         };
-        /**
-         * @example {
-         *       "id": 42,
-         *       "user_id": 42,
-         *       "birth_date": "2013-01-01",
-         *       "gender": "male",
-         *       "zip_code": "75017",
-         *       "country": "France",
-         *       "birth_city": "Paris",
-         *       "birth_country": "France",
-         *       "postal_street": "96 boulevard Bessières",
-         *       "postal_complement": null,
-         *       "postal_city": "Paris",
-         *       "postal_zip_code": "75017",
-         *       "postal_country": "France",
-         *       "contact_affiliation": "Parent",
-         *       "contact_last_name": "Moulinette",
-         *       "contact_first_name": "Norminette",
-         *       "contact_phone1": "+33600000000",
-         *       "contact_phone2": null,
-         *       "max_level_memory": null,
-         *       "max_level_logic": null,
-         *       "other_information": null,
-         *       "language": "fr",
-         *       "meeting_date": "2020-08-27T07:31:49.431Z",
-         *       "piscine_date": null,
-         *       "created_at": "2020-08-27T07:31:49.431Z",
-         *       "updated_at": "2025-07-10T16:16:34.238Z",
-         *       "phone": "+33600000000",
-         *       "email": "tmatis@example.com",
-         *       "pin": "7777",
-         *       "phone_country_code": "FR",
-         *       "hidden_phone": false
-         *     }
-         */
-        UserCandidatureResponse: {
+        UserCandidature: {
             id: number;
             user_id: number;
             /** Format: date */
@@ -917,21 +857,7 @@ export interface components {
             phone_country_code: string;
             hidden_phone: boolean;
         };
-        UserResponse: components["schemas"]["LightUserResponse"] & {
-            groups: components["schemas"]["GroupResponse"][];
-            cursus_users: components["schemas"]["CursusUserResponse"][];
-            projects_users: components["schemas"]["ProjectUserResponse"][];
-            languages_users: components["schemas"]["LanguageUserResponse"][];
-            achievements: components["schemas"]["AchievementResponse"][];
-            titles: components["schemas"]["TitleResponse"][];
-            titles_users: components["schemas"]["TitleUserResponse"][];
-            patroned: components["schemas"]["PatronageResponse"][];
-            patroning: components["schemas"]["PatronageResponse"][];
-            roles: components["schemas"]["RoleResponse"][];
-            campus: components["schemas"]["CampusResponse"][];
-            campus_users: components["schemas"]["CampusUserResponse"][];
-        };
-        LightUserResponse: {
+        LightUser: {
             /** @description The unique identifier of the user. */
             id: number;
             /** @description The login name of the user. */
@@ -963,7 +889,7 @@ export interface components {
              * @enum {string}
              */
             kind: "student" | "admin" | "external";
-            image: components["schemas"]["UserImageResponse"];
+            image: components["schemas"]["UserImage"];
             /** @description Indicates if the user is staff. */
             "staff?": boolean;
             /** @description The user's correction points. */
@@ -1006,7 +932,7 @@ export interface components {
             /** @description Indicates if the user is active. */
             "active?": boolean;
         };
-        UserImageResponse: {
+        UserImage: {
             /**
              * Format: uri
              * @description The URL to the user's image.
@@ -1034,6 +960,20 @@ export interface components {
                  */
                 micro: string;
             };
+        };
+        User: components["schemas"]["LightUser"] & {
+            groups: components["schemas"]["Group"][];
+            cursus_users: components["schemas"]["CursusUser"][];
+            projects_users: components["schemas"]["ProjectUser"][];
+            languages_users: components["schemas"]["LanguageUser"][];
+            achievements: components["schemas"]["Achievement"][];
+            titles: components["schemas"]["Title"][];
+            titles_users: components["schemas"]["TitleUser"][];
+            patroned: components["schemas"]["Patronage"][];
+            patroning: components["schemas"]["Patronage"][];
+            roles: components["schemas"]["Role"][];
+            campus: components["schemas"]["Campus"][];
+            campus_users: components["schemas"]["CampusUser"][];
         };
     };
     responses: {
@@ -1118,7 +1058,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["CloseResponse"][];
+                    "application/json": components["schemas"]["Close"][];
                 };
             };
             400: components["responses"]["ErrorResponse"];
@@ -1168,7 +1108,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["CloseResponse"][];
+                    "application/json": components["schemas"]["Close"][];
                 };
             };
             default: components["responses"]["ErrorResponse"];
@@ -1192,7 +1132,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["CloseResponse"];
+                    "application/json": components["schemas"]["Close"];
                 };
             };
             default: components["responses"]["ErrorResponse"];
@@ -1251,7 +1191,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["InternshipResponse"][];
+                    "application/json": components["schemas"]["Internship"][];
                 };
             };
             default: components["responses"]["ErrorResponse"];
@@ -1275,7 +1215,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["LanguageResponse"];
+                    "application/json": components["schemas"]["Language"];
                 };
             };
             default: components["responses"]["ErrorResponse"];
@@ -1331,7 +1271,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ProjectUserResponse"][];
+                    "application/json": components["schemas"]["ProjectUser"][];
                 };
             };
             default: components["responses"]["ErrorResponse"];
@@ -1366,7 +1306,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ProjectUserResponse"];
+                    "application/json": components["schemas"]["ProjectUser"];
                 };
             };
             400: components["responses"]["ErrorResponse"];
@@ -1464,7 +1404,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["TeamResponse"];
+                    "application/json": components["schemas"]["Team"];
                 };
             };
             default: components["responses"]["ErrorResponse"];
@@ -1580,7 +1520,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserCandidatureResponse"];
+                    "application/json": components["schemas"]["UserCandidature"];
                 };
             };
             default: components["responses"]["ErrorResponse"];
@@ -1639,7 +1579,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["LightUserResponse"][];
+                    "application/json": components["schemas"]["LightUser"][];
                 };
             };
             default: components["responses"]["ErrorResponse"];
@@ -1663,7 +1603,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserResponse"];
+                    "application/json": components["schemas"]["User"];
                 };
             };
             default: components["responses"]["ErrorResponse"];

@@ -1,0 +1,109 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+T = TypeVar("T", bound="LightCoalition")
+
+
+@_attrs_define
+class LightCoalition:
+    """
+    Attributes:
+        id (int):
+        name (str):
+        slug (str):
+        image_url (str):
+        color (str):
+        score (int):
+        user_id (int):
+    """
+
+    id: int
+    name: str
+    slug: str
+    image_url: str
+    color: str
+    score: int
+    user_id: int
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        id = self.id
+
+        name = self.name
+
+        slug = self.slug
+
+        image_url = self.image_url
+
+        color = self.color
+
+        score = self.score
+
+        user_id = self.user_id
+
+        field_dict: dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update(
+            {
+                "id": id,
+                "name": name,
+                "slug": slug,
+                "image_url": image_url,
+                "color": color,
+                "score": score,
+                "user_id": user_id,
+            }
+        )
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        id = d.pop("id")
+
+        name = d.pop("name")
+
+        slug = d.pop("slug")
+
+        image_url = d.pop("image_url")
+
+        color = d.pop("color")
+
+        score = d.pop("score")
+
+        user_id = d.pop("user_id")
+
+        light_coalition = cls(
+            id=id,
+            name=name,
+            slug=slug,
+            image_url=image_url,
+            color=color,
+            score=score,
+            user_id=user_id,
+        )
+
+        light_coalition.additional_properties = d
+        return light_coalition
+
+    @property
+    def additional_keys(self) -> list[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties

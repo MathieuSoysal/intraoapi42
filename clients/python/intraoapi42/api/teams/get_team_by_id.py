@@ -6,7 +6,7 @@ import httpx
 
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.team_response import TeamResponse
+from ...models.team import Team
 from ...types import Response
 
 
@@ -24,9 +24,9 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | TeamResponse:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | Team:
     if response.status_code == 200:
-        response_200 = TeamResponse.from_dict(response.json())
+        response_200 = Team.from_dict(response.json())
 
         return response_200
 
@@ -35,9 +35,7 @@ def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Res
     return response_default
 
 
-def _build_response(
-    *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Error | TeamResponse]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | Team]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -50,7 +48,7 @@ def sync_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-) -> Response[Error | TeamResponse]:
+) -> Response[Error | Team]:
     """Get a team by ID
 
     Args:
@@ -61,7 +59,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Error | TeamResponse]
+        Response[Error | Team]
     """
 
     kwargs = _get_kwargs(
@@ -79,7 +77,7 @@ def sync(
     id: int,
     *,
     client: AuthenticatedClient,
-) -> Error | TeamResponse | None:
+) -> Error | Team | None:
     """Get a team by ID
 
     Args:
@@ -90,7 +88,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Error | TeamResponse
+        Error | Team
     """
 
     return sync_detailed(
@@ -103,7 +101,7 @@ async def asyncio_detailed(
     id: int,
     *,
     client: AuthenticatedClient,
-) -> Response[Error | TeamResponse]:
+) -> Response[Error | Team]:
     """Get a team by ID
 
     Args:
@@ -114,7 +112,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Error | TeamResponse]
+        Response[Error | Team]
     """
 
     kwargs = _get_kwargs(
@@ -130,7 +128,7 @@ async def asyncio(
     id: int,
     *,
     client: AuthenticatedClient,
-) -> Error | TeamResponse | None:
+) -> Error | Team | None:
     """Get a team by ID
 
     Args:
@@ -141,7 +139,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Error | TeamResponse
+        Error | Team
     """
 
     return (

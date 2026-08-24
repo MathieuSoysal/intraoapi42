@@ -1,4 +1,4 @@
-RoleResponse:
+Role:
   type: object
   properties:
     id:

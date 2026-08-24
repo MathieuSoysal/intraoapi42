@@ -20,7 +20,7 @@
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/TeamResponse"
+              $ref: "#/components/schemas/Team"
       default:
         $ref: "#/components/responses/ErrorResponse"
   patch:

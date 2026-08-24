@@ -1,4 +1,4 @@
-InternshipResponse:
+Internship:
   type: object
   properties:
     id:
@@ -102,7 +102,7 @@ InternshipResponse:
     projects_user:
       type: [integer, "null"]
     user:
-      $ref: "#/components/schemas/LightUserResponse"
+      $ref: "#/components/schemas/LightUser"
   required:
     - id
     - administration_id

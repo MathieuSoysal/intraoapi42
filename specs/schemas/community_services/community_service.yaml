@@ -1,4 +1,4 @@
-CommunityServiceResponse:
+CommunityService:
   type: object
   properties:
     id:
@@ -19,6 +19,8 @@ CommunityServiceResponse:
       x-go-type: IntraTime
     updated_at:
       type: string
+    close:
+      $ref: "#/components/schemas/LightClose"
   required:
     - id
     - duration

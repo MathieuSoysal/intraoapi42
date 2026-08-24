@@ -73,7 +73,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CloseResponse'
+                  $ref: '#/components/schemas/Close'
         '400':
           $ref: '#/components/responses/ErrorResponse'
         default:
@@ -147,7 +147,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CloseResponse'
+                  $ref: '#/components/schemas/Close'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /closes/{id}:
@@ -172,7 +172,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CloseResponse'
+                $ref: '#/components/schemas/Close'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /internships:
@@ -241,7 +241,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/InternshipResponse'
+                  $ref: '#/components/schemas/Internship'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /languages/{id}:
@@ -266,7 +266,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LanguageResponse'
+                $ref: '#/components/schemas/Language'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /users/{user_id}/projects_users:
@@ -332,7 +332,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ProjectUserResponse'
+                  $ref: '#/components/schemas/ProjectUser'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /projects_users:
@@ -365,7 +365,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProjectUserResponse'
+                $ref: '#/components/schemas/ProjectUser'
         '400':
           $ref: '#/components/responses/ErrorResponse'
         default:
@@ -465,7 +465,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TeamResponse'
+                $ref: '#/components/schemas/Team'
         default:
           $ref: '#/components/responses/ErrorResponse'
     patch:
@@ -579,7 +579,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserCandidatureResponse'
+                $ref: '#/components/schemas/UserCandidature'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /users:
@@ -648,7 +648,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/LightUserResponse'
+                  $ref: '#/components/schemas/LightUser'
         default:
           $ref: '#/components/responses/ErrorResponse'
   /users/{id}:
@@ -673,12 +673,52 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponse'
+                $ref: '#/components/schemas/User'
         default:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    AchievementResponse:
+    LightAccreditation:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        user_id:
+          type: integer
+        cursus_id:
+          type: integer
+        validated:
+          type: boolean
+      required:
+        - id
+        - name
+        - user_id
+        - cursus_id
+        - validated
+    LightAchievementsUser:
+      type: object
+      properties:
+        id:
+          type: integer
+        user_id:
+          type: integer
+        login:
+          type: string
+        url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - user_id
+        - login
+        - url
+        - created_at
+    Achievement:
       type: object
       properties:
         id:
@@ -711,7 +751,48 @@ components:
         - visible
         - image
         - users_url
-    CampusResponse:
+    LightApp:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type:
+            - string
+            - 'null'
+        image:
+          type:
+            - string
+            - 'null'
+        website:
+          type:
+            - string
+            - 'null'
+        public:
+          type: boolean
+        scopes:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        rate_limit:
+          type: integer
+      required:
+        - id
+        - name
+        - public
+        - scopes
+        - created_at
+        - updated_at
+        - rate_limit
+    Campus:
       type: object
       properties:
         id:
@@ -721,7 +802,7 @@ components:
         time_zone:
           type: string
         language:
-          $ref: '#/components/schemas/LanguageResponse'
+          $ref: '#/components/schemas/Language'
         users_count:
           type: integer
         vogsphere_id:
@@ -762,7 +843,62 @@ components:
         - active
         - public
         - email_extension
-    CampusUserResponse:
+    LightCampus:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        time_zone:
+          type: string
+        users_count:
+          type: integer
+        vogsphere_id:
+          type: integer
+        country:
+          type: string
+        address:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        website:
+          type: string
+          format: uri
+        facebook:
+          type: string
+          format: uri
+        twitter:
+          type: string
+          format: uri
+        active:
+          type: boolean
+        public:
+          type: boolean
+        email_extension:
+          type: string
+        default_hidden_phone:
+          type: boolean
+      required:
+        - id
+        - name
+        - time_zone
+        - users_count
+        - vogsphere_id
+        - country
+        - address
+        - zip
+        - city
+        - website
+        - facebook
+        - twitter
+        - active
+        - public
+        - email_extension
+        - default_hidden_phone
+    CampusUser:
       type: object
       properties:
         id:
@@ -788,7 +924,42 @@ components:
         - is_primary
         - created_at
         - updated_at
-    CloseResponse:
+    Close:
+      allOf:
+        - $ref: '#/components/schemas/LightUser'
+        - type: object
+          properties:
+            end_at:
+              type:
+                - string
+                - 'null'
+              format: date-time
+              x-go-type: IntraTime
+            community_services:
+              type: array
+              items:
+                $ref: '#/components/schemas/CommunityService'
+            kind:
+              type: string
+              enum:
+                - agu
+                - other
+                - deserter
+                - pace_unknown
+                - black_hole
+                - serious_misconduct
+                - social_security
+                - non_admitted
+            user:
+              $ref: '#/components/schemas/LightUser'
+            closer:
+              $ref: '#/components/schemas/LightUser'
+          required:
+            - community_services
+            - user
+            - closer
+            - kind
+    LightClose:
       type: object
       properties:
         id:
@@ -805,42 +976,39 @@ components:
           type: string
           format: date-time
           x-go-type: IntraTime
-        end_at:
-          type:
-            - string
-            - 'null'
-          format: date-time
-          x-go-type: IntraTime
-        community_services:
-          type: array
-          items:
-            $ref: '#/components/schemas/CommunityServiceResponse'
-        kind:
-          type: string
-          enum:
-            - agu
-            - other
-            - deserter
-            - pace_unknown
-            - black_hole
-            - serious_misconduct
-            - social_security
-            - non_admitted
-        user:
-          $ref: '#/components/schemas/LightUserResponse'
-        closer:
-          $ref: '#/components/schemas/LightUserResponse'
       required:
         - id
         - reason
         - state
         - created_at
         - updated_at
-        - community_services
-        - user
-        - closer
-        - kind
-    CommunityServiceResponse:
+    LightCoalition:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        color:
+          type: string
+        score:
+          type: integer
+        user_id:
+          type: integer
+      required:
+        - id
+        - name
+        - slug
+        - image_url
+        - color
+        - score
+        - user_id
+    CommunityService:
       type: object
       properties:
         id:
@@ -861,6 +1029,8 @@ components:
           x-go-type: IntraTime
         updated_at:
           type: string
+        close:
+          $ref: '#/components/schemas/LightClose'
       required:
         - id
         - duration
@@ -869,7 +1039,35 @@ components:
         - state
         - created_at
         - updated_at
-    CursusResponse:
+    LightCommunityService:
+      type: object
+      properties:
+        id:
+          type: integer
+        duration:
+          type: integer
+        schedule_at:
+          type: string
+          format: date-time
+        occupation:
+          type: string
+        state:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - duration
+        - schedule_at
+        - occupation
+        - state
+        - created_at
+        - updated_at
+    Cursus:
       type: object
       properties:
         id:
@@ -890,7 +1088,7 @@ components:
         - name
         - slug
         - kind
-    CursusUserResponse:
+    CursusUser:
       type: object
       properties:
         id:
@@ -911,11 +1109,11 @@ components:
         skills:
           type: array
           items:
-            $ref: '#/components/schemas/SkillResponse'
+            $ref: '#/components/schemas/Skill'
         cursus_id:
           type: integer
         cursus:
-          $ref: '#/components/schemas/CursusResponse'
+          $ref: '#/components/schemas/Cursus'
         has_coalition:
           type: boolean
         blackholed_at:
@@ -958,7 +1156,7 @@ components:
       example:
         status: 401
         error: The access token is invalid
-    GroupResponse:
+    Group:
       type: object
       properties:
         id:
@@ -968,7 +1166,7 @@ components:
       required:
         - id
         - name
-    InternshipResponse:
+    Internship:
       type: object
       properties:
         id:
@@ -1082,7 +1280,7 @@ components:
             - integer
             - 'null'
         user:
-          $ref: '#/components/schemas/LightUserResponse'
+          $ref: '#/components/schemas/LightUser'
       required:
         - id
         - administration_id
@@ -1126,7 +1324,7 @@ components:
         - convention
         - convention_uri
         - user
-    LanguageResponse:
+    Language:
       type: object
       properties:
         id:
@@ -1149,7 +1347,7 @@ components:
         - identifier
         - created_at
         - updated_at
-    LanguageUserResponse:
+    LanguageUser:
       type: object
       properties:
         id:
@@ -1170,7 +1368,7 @@ components:
         - user_id
         - position
         - created_at
-    PatronageResponse:
+    Patronage:
       type: object
       properties:
         id:
@@ -1196,7 +1394,7 @@ components:
         - ongoing
         - created_at
         - updated_at
-    LightProjectResponse:
+    LightProject:
       type: object
       properties:
         id:
@@ -1214,7 +1412,7 @@ components:
         - name
         - slug
         - parent_id
-    ProjectUserResponse:
+    ProjectUser:
       type: object
       properties:
         id:
@@ -1234,17 +1432,17 @@ components:
         current_team_id:
           type: integer
         project:
-          $ref: '#/components/schemas/LightProjectResponse'
+          $ref: '#/components/schemas/LightProject'
         cursus_ids:
           type: array
           items:
             type: integer
         user:
-          $ref: '#/components/schemas/LightUserResponse'
+          $ref: '#/components/schemas/LightUser'
         teams:
           type: array
           items:
-            $ref: '#/components/schemas/LightTeamResponse'
+            $ref: '#/components/schemas/LightTeam'
         marked_at:
           type:
             - string
@@ -1420,7 +1618,7 @@ components:
             - string
             - 'null'
           description: The skip check permission.
-    RoleResponse:
+    Role:
       type: object
       properties:
         id:
@@ -1430,7 +1628,7 @@ components:
       required:
         - id
         - name
-    ScaleTeamResponse:
+    ScaleTeam:
       type: object
       properties:
         id:
@@ -1454,7 +1652,7 @@ components:
             - integer
             - 'null'
         flag:
-          $ref: '#/components/schemas/ScaleFlagResponse'
+          $ref: '#/components/schemas/ScaleFlag'
         begin_at:
           type: string
           format: date-time
@@ -1462,9 +1660,9 @@ components:
         correcteds:
           type: array
           items:
-            $ref: '#/components/schemas/ScaleUserResponse'
+            $ref: '#/components/schemas/ScaleUser'
         corrector:
-          $ref: '#/components/schemas/ScaleUserResponse'
+          $ref: '#/components/schemas/ScaleUser'
         truant:
           type: object
           additionalProperties: true
@@ -1477,11 +1675,11 @@ components:
         questions_with_answers:
           type: array
           items:
-            $ref: '#/components/schemas/QuestionWithAnswersResponse'
+            $ref: '#/components/schemas/QuestionWithAnswers'
         teams_uploads:
           type: array
           items:
-            $ref: '#/components/schemas/TeamUploadResponse'
+            $ref: '#/components/schemas/TeamUpload'
       required:
         - id
         - scale_id
@@ -1497,7 +1695,7 @@ components:
         - truant
         - filled_at
         - questions_with_answers
-    ScaleFlagResponse:
+    ScaleFlag:
       type: object
       properties:
         id:
@@ -1523,7 +1721,7 @@ components:
         - icon
         - created_at
         - updated_at
-    ScaleUserResponse:
+    ScaleUser:
       type: object
       properties:
         id:
@@ -1537,7 +1735,7 @@ components:
         - id
         - login
         - url
-    QuestionWithAnswersResponse:
+    QuestionWithAnswers:
       type: object
       properties:
         id:
@@ -1555,7 +1753,7 @@ components:
         answers:
           type: array
           items:
-            $ref: '#/components/schemas/QuestionAnswerResponse'
+            $ref: '#/components/schemas/QuestionAnswer'
       required:
         - id
         - name
@@ -1564,7 +1762,7 @@ components:
         - kind
         - position
         - answers
-    QuestionAnswerResponse:
+    QuestionAnswer:
       type: object
       properties:
         id:
@@ -1581,7 +1779,7 @@ components:
         - id
         - value
         - answer
-    TeamUploadResponse:
+    TeamUpload:
       type: object
       properties:
         id:
@@ -1604,7 +1802,7 @@ components:
         - comment
         - created_at
         - upload_id
-    SkillResponse:
+    Skill:
       type: object
       properties:
         id:
@@ -1618,7 +1816,7 @@ components:
         - id
         - name
         - level
-    LightTeamResponse:
+    LightTeam:
       type: object
       properties:
         id:
@@ -1653,7 +1851,7 @@ components:
         users:
           type: array
           items:
-            $ref: '#/components/schemas/LightTeamUserResponse'
+            $ref: '#/components/schemas/LightTeamUser'
         locked?:
           type: boolean
         validated?:
@@ -1703,97 +1901,17 @@ components:
         - closed_at
         - project_session_id
         - project_gitlab_path
-    TeamResponse:
+    Team:
       allOf:
-        - $ref: '#/components/schemas/LightTeamResponse'
+        - $ref: '#/components/schemas/LightTeam'
         - type: object
           properties:
             scale_teams:
               type: array
               items:
-                $ref: '#/components/schemas/ScaleTeamResponse'
+                $ref: '#/components/schemas/ScaleTeam'
           required:
             - scale_teams
-      example:
-        id: 1000001
-        name: example-team
-        url: https://api.example.com/v2/teams/1000001
-        final_mark: 80
-        project_id: 2000001
-        created_at: '2024-01-10T10:00:00.000Z'
-        updated_at: '2024-01-10T12:00:00.000Z'
-        status: finished
-        terminating_at: '2024-01-11T12:00:00.000Z'
-        users:
-          - id: 1000002
-            login: example-user
-            url: https://api.example.com/v2/users/example-user
-            leader: true
-            occurrence: 0
-            validated: true
-            projects_user_id: 3000001
-        locked?: true
-        validated?: true
-        closed?: true
-        repo_url: git@example.com:example/project.git
-        repo_uuid: example-repository-uuid
-        locked_at: '2024-01-10T10:00:00.000Z'
-        closed_at: '2024-01-11T12:00:00.000Z'
-        project_session_id: 4000001
-        project_gitlab_path: example/project
-        scale_teams:
-          - id: 5000001
-            scale_id: 6000001
-            comment: Example evaluation comment.
-            created_at: '2024-01-10T10:05:00.000Z'
-            updated_at: '2024-01-10T11:00:00.000Z'
-            feedback: Example feedback.
-            final_mark: 75
-            flag:
-              id: 1
-              name: Approved
-              positive: true
-              icon: check
-              created_at: '2024-01-01T00:00:00.000Z'
-              updated_at: '2024-01-01T00:00:00.000Z'
-            begin_at: '2024-01-10T10:30:00.000Z'
-            correcteds:
-              - id: 1000002
-                login: example-user
-                url: https://api.example.com/v2/users/example-user
-            corrector:
-              id: 1000003
-              login: evaluator
-              url: https://api.example.com/v2/users/evaluator
-            truant: {}
-            filled_at: '2024-01-10T11:00:00.000Z'
-            questions_with_answers: []
-          - id: 5000002
-            scale_id: 6000001
-            comment: Another example evaluation comment.
-            created_at: '2024-01-10T10:05:00.000Z'
-            updated_at: '2024-01-10T11:05:00.000Z'
-            feedback: Another example feedback.
-            final_mark: 85
-            flag:
-              id: 1
-              name: Approved
-              positive: true
-              icon: check
-              created_at: '2024-01-01T00:00:00.000Z'
-              updated_at: '2024-01-01T00:00:00.000Z'
-            begin_at: '2024-01-10T11:00:00.000Z'
-            correcteds:
-              - id: 1000002
-                login: example-user
-                url: https://api.example.com/v2/users/example-user
-            corrector:
-              id: 1000004
-              login: second-evaluator
-              url: https://api.example.com/v2/users/second-evaluator
-            truant: {}
-            filled_at: '2024-01-10T11:05:00.000Z'
-            questions_with_answers: []
     TeamUpdate:
       type: object
       properties:
@@ -1900,7 +2018,7 @@ components:
                 format: int64
                 default: 0
                 description: The occurrence.
-    LightTeamUserResponse:
+    LightTeamUser:
       type: object
       properties:
         id:
@@ -1926,7 +2044,7 @@ components:
         - occurrence
         - validated
         - projects_user_id
-    TitleResponse:
+    Title:
       type: object
       properties:
         id:
@@ -1936,7 +2054,7 @@ components:
       required:
         - id
         - name
-    TitleUserResponse:
+    TitleUser:
       type: object
       properties:
         id:
@@ -1962,7 +2080,7 @@ components:
         - selected
         - created_at
         - updated_at
-    UserCandidatureResponse:
+    UserCandidature:
       type: object
       properties:
         id:
@@ -2084,105 +2202,7 @@ components:
         - pin
         - phone_country_code
         - hidden_phone
-      example:
-        id: 42
-        user_id: 42
-        birth_date: '2013-01-01'
-        gender: male
-        zip_code: '75017'
-        country: France
-        birth_city: Paris
-        birth_country: France
-        postal_street: 96 boulevard Bessières
-        postal_complement: null
-        postal_city: Paris
-        postal_zip_code: '75017'
-        postal_country: France
-        contact_affiliation: Parent
-        contact_last_name: Moulinette
-        contact_first_name: Norminette
-        contact_phone1: '+33600000000'
-        contact_phone2: null
-        max_level_memory: null
-        max_level_logic: null
-        other_information: null
-        language: fr
-        meeting_date: '2020-08-27T07:31:49.431Z'
-        piscine_date: null
-        created_at: '2020-08-27T07:31:49.431Z'
-        updated_at: '2025-07-10T16:16:34.238Z'
-        phone: '+33600000000'
-        email: tmatis@example.com
-        pin: '7777'
-        phone_country_code: FR
-        hidden_phone: false
-    UserResponse:
-      allOf:
-        - $ref: '#/components/schemas/LightUserResponse'
-        - type: object
-          properties:
-            groups:
-              type: array
-              items:
-                $ref: '#/components/schemas/GroupResponse'
-            cursus_users:
-              type: array
-              items:
-                $ref: '#/components/schemas/CursusUserResponse'
-            projects_users:
-              type: array
-              items:
-                $ref: '#/components/schemas/ProjectUserResponse'
-            languages_users:
-              type: array
-              items:
-                $ref: '#/components/schemas/LanguageUserResponse'
-            achievements:
-              type: array
-              items:
-                $ref: '#/components/schemas/AchievementResponse'
-            titles:
-              type: array
-              items:
-                $ref: '#/components/schemas/TitleResponse'
-            titles_users:
-              type: array
-              items:
-                $ref: '#/components/schemas/TitleUserResponse'
-            patroned:
-              type: array
-              items:
-                $ref: '#/components/schemas/PatronageResponse'
-            patroning:
-              type: array
-              items:
-                $ref: '#/components/schemas/PatronageResponse'
-            roles:
-              type: array
-              items:
-                $ref: '#/components/schemas/RoleResponse'
-            campus:
-              type: array
-              items:
-                $ref: '#/components/schemas/CampusResponse'
-            campus_users:
-              type: array
-              items:
-                $ref: '#/components/schemas/CampusUserResponse'
-          required:
-            - groups
-            - cursus_users
-            - projects_users
-            - languages_users
-            - achievements
-            - titles
-            - titles_users
-            - patroned
-            - patroning
-            - roles
-            - campus
-            - campus_users
-    LightUserResponse:
+    LightUser:
       type: object
       properties:
         id:
@@ -2227,7 +2247,7 @@ components:
             - admin
             - external
         image:
-          $ref: '#/components/schemas/UserImageResponse'
+          $ref: '#/components/schemas/UserImage'
         staff?:
           type: boolean
           description: Indicates if the user is staff.
@@ -2304,7 +2324,7 @@ components:
         - alumnized_at
         - alumni?
         - active?
-    UserImageResponse:
+    UserImage:
       type: object
       properties:
         link:
@@ -2338,6 +2358,72 @@ components:
       required:
         - link
         - versions
+    User:
+      allOf:
+        - $ref: '#/components/schemas/LightUser'
+        - type: object
+          properties:
+            groups:
+              type: array
+              items:
+                $ref: '#/components/schemas/Group'
+            cursus_users:
+              type: array
+              items:
+                $ref: '#/components/schemas/CursusUser'
+            projects_users:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProjectUser'
+            languages_users:
+              type: array
+              items:
+                $ref: '#/components/schemas/LanguageUser'
+            achievements:
+              type: array
+              items:
+                $ref: '#/components/schemas/Achievement'
+            titles:
+              type: array
+              items:
+                $ref: '#/components/schemas/Title'
+            titles_users:
+              type: array
+              items:
+                $ref: '#/components/schemas/TitleUser'
+            patroned:
+              type: array
+              items:
+                $ref: '#/components/schemas/Patronage'
+            patroning:
+              type: array
+              items:
+                $ref: '#/components/schemas/Patronage'
+            roles:
+              type: array
+              items:
+                $ref: '#/components/schemas/Role'
+            campus:
+              type: array
+              items:
+                $ref: '#/components/schemas/Campus'
+            campus_users:
+              type: array
+              items:
+                $ref: '#/components/schemas/CampusUser'
+          required:
+            - groups
+            - cursus_users
+            - projects_users
+            - languages_users
+            - achievements
+            - titles
+            - titles_users
+            - patroned
+            - patroning
+            - roles
+            - campus
+            - campus_users
   parameters:
     page:
       name: page
