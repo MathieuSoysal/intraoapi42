@@ -98,7 +98,7 @@ Internship:
         - convention
     convention_uri:
       type: [string, "null"]
-      format: url
+      format: uri
     projects_user:
       type: [integer, "null"]
     user:
