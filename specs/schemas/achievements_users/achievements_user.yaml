@@ -1,0 +1,27 @@
+AchievementsUser:
+  type: object
+  properties:
+    id:
+      type: integer
+    user_id:
+      type: integer
+    achievement_id:
+      type: integer
+    nbr_of_success:
+      type: [integer, "null"]
+    rewarded:
+      type: [boolean, "null"]
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    achievement:
+      $ref: "#/components/schemas/Achievement"
+    user:
+      $ref: "#/components/schemas/LightUser"
+  required:
+    - id
+    - user_id
+    - achievement_id

@@ -1,26 +1,246 @@
+/accreditations:
+  $ref: accreditations.yaml#/~1accreditations
+/accreditations/{id}:
+  $ref: accreditations.yaml#/~1accreditations~1{id}
+/accreditations/{accreditation_id}/users:
+  $ref: accreditations.yaml#/~1accreditations~1{accreditation_id}~1users
+/achievements:
+  $ref: achievements.yaml#/~1achievements
+/cursus/{cursus_id}/achievements:
+  $ref: achievements.yaml#/~1cursus~1{cursus_id}~1achievements
+/campus/{campus_id}/achievements:
+  $ref: achievements.yaml#/~1campus~1{campus_id}~1achievements
+/titles/{title_id}/achievements:
+  $ref: achievements.yaml#/~1titles~1{title_id}~1achievements
+/achievements/{id}:
+  $ref: achievements.yaml#/~1achievements~1{id}
+/achievements/{achievement_id}/users:
+  $ref: achievements.yaml#/~1achievements~1{achievement_id}~1users
+/achievements/{achievement_id}/achievements_users:
+  $ref: achievements_users.yaml#/~1achievements~1{achievement_id}~1achievements_users
+/achievements_users:
+  $ref: achievements_users.yaml#/~1achievements_users
+/achievements_users/{id}:
+  $ref: achievements_users.yaml#/~1achievements_users~1{id}
+/campus:
+  $ref: campus.yaml#/~1campus
+/campus/{id}:
+  $ref: campus.yaml#/~1campus~1{id}
+/campus/{campus_id}/users:
+  $ref: campus.yaml#/~1campus~1{campus_id}~1users
+/campus_users:
+  $ref: campus_users.yaml#/~1campus_users
+/users/{user_id}/campus_users:
+  $ref: campus_users.yaml#/~1users~1{user_id}~1campus_users
+/campus_users/{id}:
+  $ref: campus_users.yaml#/~1campus_users~1{id}
 /closes:
   $ref: closes.yaml#/~1closes
 /users/{user_id}/closes:
   $ref: closes.yaml#/~1users~1{user_id}~1closes
 /closes/{id}:
   $ref: closes.yaml#/~1closes~1{id}
+/coalitions:
+  $ref: coalitions.yaml#/~1coalitions
+/users/{user_id}/coalitions:
+  $ref: coalitions.yaml#/~1users~1{user_id}~1coalitions
+/blocs/{bloc_id}/coalitions:
+  $ref: coalitions.yaml#/~1blocs~1{bloc_id}~1coalitions
+/coalitions/{id}:
+  $ref: coalitions.yaml#/~1coalitions~1{id}
+/coalitions/{coalition_id}/users:
+  $ref: coalitions.yaml#/~1coalitions~1{coalition_id}~1users
+/coalitions/{coalition_id}/coalitions_users:
+  $ref: coalitions_users.yaml#/~1coalitions~1{coalition_id}~1coalitions_users
+/coalitions_users:
+  $ref: coalitions_users.yaml#/~1coalitions_users
+/users/{user_id}/coalitions_users:
+  $ref: coalitions_users.yaml#/~1users~1{user_id}~1coalitions_users
+/coalitions_users/{id}:
+  $ref: coalitions_users.yaml#/~1coalitions_users~1{id}
+/cursus:
+  $ref: cursus.yaml#/~1cursus
+/cursus/{id}:
+  $ref: cursus.yaml#/~1cursus~1{id}
+/cursus/{cursus_id}/users:
+  $ref: cursus.yaml#/~1cursus~1{cursus_id}~1users
+/cursus_users:
+  $ref: cursus_users.yaml#/~1cursus_users
+/users/{user_id}/cursus_users:
+  $ref: cursus_users.yaml#/~1users~1{user_id}~1cursus_users
+/cursus/{cursus_id}/cursus_users:
+  $ref: cursus_users.yaml#/~1cursus~1{cursus_id}~1cursus_users
+/cursus_users/{id}:
+  $ref: cursus_users.yaml#/~1cursus_users~1{id}
+/events:
+  $ref: events.yaml#/~1events
+/cursus/{cursus_id}/events:
+  $ref: events.yaml#/~1cursus~1{cursus_id}~1events
+/campus/{campus_id}/events:
+  $ref: events.yaml#/~1campus~1{campus_id}~1events
+/users/{user_id}/events:
+  $ref: events.yaml#/~1users~1{user_id}~1events
+/events/{id}:
+  $ref: events.yaml#/~1events~1{id}
+/events/{event_id}/users:
+  $ref: events.yaml#/~1events~1{event_id}~1users
+/users/{user_id}/events_users:
+  $ref: events_users.yaml#/~1users~1{user_id}~1events_users
+/events/{event_id}/events_users:
+  $ref: events_users.yaml#/~1events~1{event_id}~1events_users
+/events_users:
+  $ref: events_users.yaml#/~1events_users
+/events_users/{id}:
+  $ref: events_users.yaml#/~1events_users~1{id}
+/expertises:
+  $ref: expertises.yaml#/~1expertises
+/expertises/{id}:
+  $ref: expertises.yaml#/~1expertises~1{id}
+/expertises/{expertise_id}/users:
+  $ref: expertises.yaml#/~1expertises~1{expertise_id}~1users
+/expertises/{expertise_id}/expertises_users:
+  $ref: expertises_users.yaml#/~1expertises~1{expertise_id}~1expertises_users
+/users/{user_id}/expertises_users:
+  $ref: expertises_users.yaml#/~1users~1{user_id}~1expertises_users
+/expertises_users:
+  $ref: expertises_users.yaml#/~1expertises_users
+/expertises_users/{id}:
+  $ref: expertises_users.yaml#/~1expertises_users~1{id}
+/groups:
+  $ref: groups.yaml#/~1groups
+/users/{user_id}/groups:
+  $ref: groups.yaml#/~1users~1{user_id}~1groups
+/groups/{id}:
+  $ref: groups.yaml#/~1groups~1{id}
+/groups/{group_id}/users:
+  $ref: groups.yaml#/~1groups~1{group_id}~1users
+/groups_users:
+  $ref: groups_users.yaml#/~1groups_users
+/groups/{group_id}/groups_users:
+  $ref: groups_users.yaml#/~1groups~1{group_id}~1groups_users
+/users/{user_id}/groups_users:
+  $ref: groups_users.yaml#/~1users~1{user_id}~1groups_users
+/groups_users/{id}:
+  $ref: groups_users.yaml#/~1groups_users~1{id}
 /internships:
   $ref: internships.yaml#/~1internships
+/languages:
+  $ref: languages.yaml#/~1languages
 /languages/{id}:
   $ref: languages.yaml#/~1languages~1{id}
+/users/{user_id}/languages_users:
+  $ref: languages_users.yaml#/~1users~1{user_id}~1languages_users
+/languages_users:
+  $ref: languages_users.yaml#/~1languages_users
+/languages_users/{id}:
+  $ref: languages_users.yaml#/~1languages_users~1{id}
+/locations:
+  $ref: locations.yaml#/~1locations
+/users/{user_id}/locations:
+  $ref: locations.yaml#/~1users~1{user_id}~1locations
+/campus/{campus_id}/locations:
+  $ref: locations.yaml#/~1campus~1{campus_id}~1locations
+/locations/{id}:
+  $ref: locations.yaml#/~1locations~1{id}
+/projects:
+  $ref: projects.yaml#/~1projects
+/cursus/{cursus_id}/projects:
+  $ref: projects.yaml#/~1cursus~1{cursus_id}~1projects
+/me/projects:
+  $ref: projects.yaml#/~1me~1projects
+/projects/{id}:
+  $ref: projects.yaml#/~1projects~1{id}
 /users/{user_id}/projects_users:
   $ref: projects_users.yaml#/~1users~1{user_id}~1projects_users
+/projects/{project_id}/projects_users:
+  $ref: projects_users.yaml#/~1projects~1{project_id}~1projects_users
 /projects_users:
   $ref: projects_users.yaml#/~1projects_users
 /projects_users/{id}:
   $ref: projects_users.yaml#/~1projects_users~1{id}
+/scale_teams:
+  $ref: scale_teams.yaml#/~1scale_teams
+/project_sessions/{project_session_id}/scale_teams:
+  $ref: scale_teams.yaml#/~1project_sessions~1{project_session_id}~1scale_teams
+/projects/{project_id}/scale_teams:
+  $ref: scale_teams.yaml#/~1projects~1{project_id}~1scale_teams
+/users/{user_id}/scale_teams:
+  $ref: scale_teams.yaml#/~1users~1{user_id}~1scale_teams
+/users/{user_id}/scale_teams/as_corrector:
+  $ref: scale_teams.yaml#/~1users~1{user_id}~1scale_teams~1as_corrector
+/users/{user_id}/scale_teams/as_corrected:
+  $ref: scale_teams.yaml#/~1users~1{user_id}~1scale_teams~1as_corrected
+/me/scale_teams:
+  $ref: scale_teams.yaml#/~1me~1scale_teams
+/me/scale_teams/as_corrector:
+  $ref: scale_teams.yaml#/~1me~1scale_teams~1as_corrector
+/me/scale_teams/as_corrected:
+  $ref: scale_teams.yaml#/~1me~1scale_teams~1as_corrected
+/scale_teams/{id}:
+  $ref: scale_teams.yaml#/~1scale_teams~1{id}
+/project_sessions/{project_session_id}/scale_teams/{id}:
+  $ref: scale_teams.yaml#/~1project_sessions~1{project_session_id}~1scale_teams~1{id}
+/skills:
+  $ref: skills.yaml#/~1skills
+/cursus/{cursus_id}/skills:
+  $ref: skills.yaml#/~1cursus~1{cursus_id}~1skills
+/skills/{id}:
+  $ref: skills.yaml#/~1skills~1{id}
+/slots:
+  $ref: slots.yaml#/~1slots
+/projects/{project_id}/slots:
+  $ref: slots.yaml#/~1projects~1{project_id}~1slots
+/users/{user_id}/slots:
+  $ref: slots.yaml#/~1users~1{user_id}~1slots
+/me/slots:
+  $ref: slots.yaml#/~1me~1slots
+/slots/{id}:
+  $ref: slots.yaml#/~1slots~1{id}
 /teams/{id}:
   $ref: teams.yaml#/~1teams~1{id}
 /teams/{id}/reset_team_uploads:
   $ref: teams.yaml#/~1teams~1{id}~1reset_team_uploads
+/teams:
+  $ref: teams.yaml#/~1teams
+/users/{user_id}/teams:
+  $ref: teams.yaml#/~1users~1{user_id}~1teams
+/projects/{project_id}/teams:
+  $ref: teams.yaml#/~1projects~1{project_id}~1teams
+/cursus/{cursus_id}/teams:
+  $ref: teams.yaml#/~1cursus~1{cursus_id}~1teams
+/project_sessions/{project_session_id}/teams:
+  $ref: teams.yaml#/~1project_sessions~1{project_session_id}~1teams
+/me/teams:
+  $ref: teams.yaml#/~1me~1teams
+/titles:
+  $ref: titles.yaml#/~1titles
+/users/{user_id}/titles:
+  $ref: titles.yaml#/~1users~1{user_id}~1titles
+/titles/{id}:
+  $ref: titles.yaml#/~1titles~1{id}
+/achievements/{achievement_id}/titles:
+  $ref: titles.yaml#/~1achievements~1{achievement_id}~1titles
+/titles/{title_id}/titles_users:
+  $ref: titles_users.yaml#/~1titles~1{title_id}~1titles_users
+/users/{user_id}/titles_users:
+  $ref: titles_users.yaml#/~1users~1{user_id}~1titles_users
+/titles_users:
+  $ref: titles_users.yaml#/~1titles_users
+/titles_users/{id}:
+  $ref: titles_users.yaml#/~1titles_users~1{id}
+/titles/{title_id}/users:
+  $ref: titles_users.yaml#/~1titles~1{title_id}~1users
+/translations:
+  $ref: translations.yaml#/~1translations
+/translations/{id}:
+  $ref: translations.yaml#/~1translations~1{id}
 /users/{id}/user_candidature:
   $ref: user_candidatures.yaml#/~1users~1{id}~1user_candidature
 /users:
   $ref: users.yaml#/~1users
 /users/{id}:
   $ref: users.yaml#/~1users~1{id}
+/me:
+  $ref: users.yaml#/~1me
+/users/{id}/locations_stats:
+  $ref: users.yaml#/~1users~1{id}~1locations_stats

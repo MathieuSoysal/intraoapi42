@@ -1,0 +1,45 @@
+Slot:
+  type: object
+  properties:
+    id:
+      type: integer
+    begin_at:
+      type: string
+      format: date-time
+    end_at:
+      type: string
+      format: date-time
+    scale_team_id:
+      type: [integer, "null"]
+    user:
+      $ref: "#/components/schemas/LightUser"
+    created_at:
+      type: string
+      format: date-time
+  required:
+    - id
+    - begin_at
+    - end_at
+
+SlotCreate:
+  type: object
+  required:
+    - slot
+  properties:
+    slot:
+      type: object
+      required:
+        - user_id
+        - begin_at
+        - end_at
+      properties:
+        user_id:
+          type: integer
+        begin_at:
+          type: string
+          format: date-time
+        end_at:
+          type: string
+          format: date-time
+        scale_team_id:
+          type: [integer, "null"]

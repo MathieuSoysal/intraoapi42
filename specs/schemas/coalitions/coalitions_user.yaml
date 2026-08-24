@@ -1,0 +1,26 @@
+CoalitionsUser:
+  type: object
+  properties:
+    id:
+      type: integer
+    coalition_id:
+      type: integer
+    user_id:
+      type: integer
+    this_year_score:
+      type: integer
+    this_year_score_updated_at:
+      type: [string, "null"]
+      format: date-time
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    coalition:
+      $ref: "#/components/schemas/LightCoalition"
+  required:
+    - id
+    - coalition_id
+    - user_id

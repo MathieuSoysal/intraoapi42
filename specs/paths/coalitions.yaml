@@ -1,0 +1,192 @@
+/coalitions:
+  get:
+    operationId: getCoalitions
+    tags:
+      - Coalitions
+    summary: Get a list of coalitions
+    security:
+      - OAuth2:
+          - public
+    parameters:
+      - name: sort
+        in: query
+        description: |
+          The sort field. Sorted by id desc by default.
+          Must be one of: id, bloc_id, user_id, name, image, slug, created_at, updated_at, color, cover.
+        required: false
+        schema:
+          type: string
+      - $ref: "#/components/parameters/page"
+      - $ref: "#/components/parameters/per_page"
+      - $ref: "#/components/parameters/page_number"
+      - $ref: "#/components/parameters/page_size"
+    responses:
+      "200":
+        description: A list of coalitions
+        headers:
+          Link:
+            $ref: "#/components/headers/Link"
+          X-Page:
+            $ref: "#/components/headers/X-Page"
+          X-Per-Page:
+            $ref: "#/components/headers/X-Per-Page"
+          X-Total:
+            $ref: "#/components/headers/X-Total"
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Coalition"
+      default:
+        $ref: "#/components/responses/ErrorResponse"
+
+/users/{user_id}/coalitions:
+  get:
+    operationId: getCoalitionsByUserId
+    tags:
+      - Coalitions
+    summary: Get all coalitions of a user
+    security:
+      - OAuth2:
+          - public
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        description: The ID of the user
+        schema:
+          type: string
+      - $ref: "#/components/parameters/page"
+      - $ref: "#/components/parameters/per_page"
+      - $ref: "#/components/parameters/page_number"
+      - $ref: "#/components/parameters/page_size"
+    responses:
+      "200":
+        description: A list of coalitions
+        headers:
+          Link:
+            $ref: "#/components/headers/Link"
+          X-Page:
+            $ref: "#/components/headers/X-Page"
+          X-Per-Page:
+            $ref: "#/components/headers/X-Per-Page"
+          X-Total:
+            $ref: "#/components/headers/X-Total"
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Coalition"
+      default:
+        $ref: "#/components/responses/ErrorResponse"
+
+/blocs/{bloc_id}/coalitions:
+  get:
+    operationId: getCoalitionsByBlocId
+    tags:
+      - Coalitions
+    summary: Get all coalitions of a bloc
+    security:
+      - OAuth2:
+          - public
+    parameters:
+      - name: bloc_id
+        in: path
+        required: true
+        description: The ID of the bloc
+        schema:
+          type: string
+      - $ref: "#/components/parameters/page"
+      - $ref: "#/components/parameters/per_page"
+      - $ref: "#/components/parameters/page_number"
+      - $ref: "#/components/parameters/page_size"
+    responses:
+      "200":
+        description: A list of coalitions
+        headers:
+          Link:
+            $ref: "#/components/headers/Link"
+          X-Page:
+            $ref: "#/components/headers/X-Page"
+          X-Per-Page:
+            $ref: "#/components/headers/X-Per-Page"
+          X-Total:
+            $ref: "#/components/headers/X-Total"
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Coalition"
+      default:
+        $ref: "#/components/responses/ErrorResponse"
+
+/coalitions/{id}:
+  get:
+    operationId: getCoalitionById
+    tags:
+      - Coalitions
+    summary: Get a coalition by ID
+    security:
+      - OAuth2:
+          - public
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID or slug of the coalition
+        schema:
+          type: string
+    responses:
+      "200":
+        description: A coalition object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Coalition"
+      default:
+        $ref: "#/components/responses/ErrorResponse"
+
+/coalitions/{coalition_id}/users:
+  get:
+    operationId: getUsersByCoalitionId
+    tags:
+      - Coalitions
+      - Users
+    summary: Get all users of a coalition
+    security:
+      - OAuth2:
+          - public
+    parameters:
+      - name: coalition_id
+        in: path
+        required: true
+        description: The ID or slug of the coalition
+        schema:
+          type: string
+      - $ref: "#/components/parameters/page"
+      - $ref: "#/components/parameters/per_page"
+      - $ref: "#/components/parameters/page_number"
+      - $ref: "#/components/parameters/page_size"
+    responses:
+      "200":
+        description: A list of users
+        headers:
+          Link:
+            $ref: "#/components/headers/Link"
+          X-Page:
+            $ref: "#/components/headers/X-Page"
+          X-Per-Page:
+            $ref: "#/components/headers/X-Per-Page"
+          X-Total:
+            $ref: "#/components/headers/X-Total"
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/LightUser"
+      default:
+        $ref: "#/components/responses/ErrorResponse"

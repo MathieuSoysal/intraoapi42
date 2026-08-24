@@ -67,6 +67,7 @@
                 $ref: "#/components/schemas/LightUser"
       default:
         $ref: "#/components/responses/ErrorResponse"
+
 /users/{id}:
   get:
     operationId: getUserById
@@ -90,5 +91,52 @@
           application/json:
             schema:
               $ref: "#/components/schemas/User"
+      default:
+        $ref: "#/components/responses/ErrorResponse"
+
+/me:
+  get:
+    operationId: getMe
+    tags:
+      - Users
+    summary: Get the current authenticated user
+    security:
+      - OAuth2:
+          - public
+    responses:
+      "200":
+        description: The current user object
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      default:
+        $ref: "#/components/responses/ErrorResponse"
+
+/users/{id}/locations_stats:
+  get:
+    operationId: getUserLocationsStats
+    tags:
+      - Users
+    summary: Get location stats for a user
+    security:
+      - OAuth2:
+          - public
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the user
+        schema:
+          type: string
+    responses:
+      "200":
+        description: Location stats object
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: number
       default:
         $ref: "#/components/responses/ErrorResponse"

@@ -1,0 +1,142 @@
+/groups_users:
+  get:
+    operationId: getGroupsUsers
+    tags:
+      - Groups users
+    summary: Get a list of group user associations
+    security:
+      - OAuth2:
+          - public
+    parameters:
+      - $ref: "#/components/parameters/page"
+      - $ref: "#/components/parameters/per_page"
+      - $ref: "#/components/parameters/page_number"
+      - $ref: "#/components/parameters/page_size"
+    responses:
+      "200":
+        description: A list of group user associations
+        headers:
+          Link:
+            $ref: "#/components/headers/Link"
+          X-Page:
+            $ref: "#/components/headers/X-Page"
+          X-Per-Page:
+            $ref: "#/components/headers/X-Per-Page"
+          X-Total:
+            $ref: "#/components/headers/X-Total"
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/GroupsUser"
+      default:
+        $ref: "#/components/responses/ErrorResponse"
+
+/groups/{group_id}/groups_users:
+  get:
+    operationId: getGroupsUsersByGroupId
+    tags:
+      - Groups users
+    summary: Get all group user associations for a group
+    security:
+      - OAuth2:
+          - public
+    parameters:
+      - name: group_id
+        in: path
+        required: true
+        description: The ID of the group
+        schema:
+          type: string
+      - $ref: "#/components/parameters/page"
+      - $ref: "#/components/parameters/per_page"
+      - $ref: "#/components/parameters/page_number"
+      - $ref: "#/components/parameters/page_size"
+    responses:
+      "200":
+        description: A list of group user associations
+        headers:
+          Link:
+            $ref: "#/components/headers/Link"
+          X-Page:
+            $ref: "#/components/headers/X-Page"
+          X-Per-Page:
+            $ref: "#/components/headers/X-Per-Page"
+          X-Total:
+            $ref: "#/components/headers/X-Total"
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/GroupsUser"
+      default:
+        $ref: "#/components/responses/ErrorResponse"
+
+/users/{user_id}/groups_users:
+  get:
+    operationId: getGroupsUsersByUserId
+    tags:
+      - Groups users
+    summary: Get all group user associations for a user
+    security:
+      - OAuth2:
+          - public
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        description: The ID of the user
+        schema:
+          type: string
+      - $ref: "#/components/parameters/page"
+      - $ref: "#/components/parameters/per_page"
+      - $ref: "#/components/parameters/page_number"
+      - $ref: "#/components/parameters/page_size"
+    responses:
+      "200":
+        description: A list of group user associations
+        headers:
+          Link:
+            $ref: "#/components/headers/Link"
+          X-Page:
+            $ref: "#/components/headers/X-Page"
+          X-Per-Page:
+            $ref: "#/components/headers/X-Per-Page"
+          X-Total:
+            $ref: "#/components/headers/X-Total"
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/GroupsUser"
+      default:
+        $ref: "#/components/responses/ErrorResponse"
+
+/groups_users/{id}:
+  get:
+    operationId: getGroupsUserById
+    tags:
+      - Groups users
+    summary: Get a group user association by ID
+    security:
+      - OAuth2:
+          - public
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the group user association
+        schema:
+          type: string
+    responses:
+      "200":
+        description: A group user association
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroupsUser"
+      default:
+        $ref: "#/components/responses/ErrorResponse"
